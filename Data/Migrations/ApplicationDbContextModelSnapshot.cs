@@ -14,7 +14,7 @@ namespace behavior_app.Data.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
+          /*  modelBuilder
                 .HasAnnotation("ProductVersion", "3.0.0-rc1.19455.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -352,6 +352,7 @@ namespace behavior_app.Data.Migrations
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
+          */
         }
     }
 }
