@@ -30,7 +30,8 @@ namespace behavior_app
                 options.UseNpgsql(
                     Configuration.GetConnectionString("AuthenticationConnection")));
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(
+                    options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentityServer()
