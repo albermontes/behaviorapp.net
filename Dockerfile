@@ -1,13 +1,12 @@
 ﻿#ARG REPO=mcr.microsoft.com/dotnet/core
 #FROM $REPO/aspnet:3.1-buster-slim AS base
-ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:5.0.11-bullseye-slim-amd64 AS base
+ARG REPO=mcr.microsoft.com/dotnet
+FROM $REPO/aspnet:5.0.11-bullseye-slim-amd64 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-#FROM $REPO/sdk:5.0.11-bullseye-slim-amd64 AS build
-FROM base AS build
+FROM $REPO/sdk:6.0 AS build
 ENV BuildingDocker true
 WORKDIR /src
 COPY ["behavior-app.csproj", ""]
@@ -24,8 +23,7 @@ RUN npm install
 COPY ClientApp/ .
 RUN npm run-script build
 
-#FROM build AS publish
-FROM base AS publish
+FROM build AS publish
 RUN dotnet publish "behavior-app.csproj" -c Release -o /app/publish
 
 FROM base AS final
