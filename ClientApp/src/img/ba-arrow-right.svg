@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="82px" height="73px" viewBox="0 0 82 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>left-arrow copy</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="left-arrow-copy" transform="translate(41.000279, 36.094267) scale(-1, 1) translate(-41.000279, -36.094267) translate(0.000279, 0.181127)" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M41.1216091,7.51278016 L34.1535187,0 L3.19025882,28.7182158 C-1.0759974,32.675142 -1.06110729,39.240479 3.22123985,43.2074921 L34.1153328,71.8262804 L41.0788601,64.3091773 L10.4633563,35.9483241 L41.1216091,7.51278016 Z" id="Path"></path>
+            <rect id="Rectangle" x="10.2712258" y="30.7814565" width="71.7287742" height="10.2470364"></rect>
+        </g>
+    </g>
+</svg>

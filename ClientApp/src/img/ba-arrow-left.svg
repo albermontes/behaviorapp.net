@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="82px" height="72px" viewBox="0 0 82 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>left-arrow</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="left-arrow" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M41,7.53095064 L34.0525164,0 L3.18082425,28.7876739 C-1.07281535,32.7541704 -1.05796927,39.3353863 3.21171366,43.3119941 L34.0144434,72 L40.9573774,64.464716 L10.4324129,36.035269 L41,7.53095064 Z" id="Path"></path>
+            <rect id="Rectangle" x="10" y="31" width="72" height="10"></rect>
+        </g>
+    </g>
+</svg>

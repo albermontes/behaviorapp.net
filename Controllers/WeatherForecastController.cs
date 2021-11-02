@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace behavior_app.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
