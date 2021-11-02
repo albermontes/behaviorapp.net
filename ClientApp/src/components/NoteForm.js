@@ -92,7 +92,7 @@ export class NoteForm extends Component {
 
 const styles = {
     column: {
-        width: '40%',
+        width: '200px',
         align: 'center'
     },
     splitWidth: '20%'
