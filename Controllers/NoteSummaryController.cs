@@ -16,10 +16,11 @@ namespace behavior_app.Controllers
         [HttpGet]
         public Note Get(string location, string caregivers, string activities)
         {
+            var beVerb = caregivers != null && (caregivers.Contains(",") || caregivers.Contains("and")) ? "were" : "was";
             return new Note 
             {
                 Summary = (location != null ? $"The session took place in the {location}. " : "") +
-                    (caregivers != null ? $"{caregivers.AddStartCapitalLetter()} was present in the session. " : "") +
+                    (caregivers != null ? $"{caregivers.AddStartCapitalLetter()} {beVerb} present in the session. " : "") +
                     (activities != null ? $"After {activities.RemoveStartCapitalLetter()} the child ... " : "") +
                     $"This note summary was elaborated at {DateTime.Now.ToShortTimeString()} of {DateTime.Now.ToShortDateString()}."
             };
