@@ -33,7 +33,8 @@ export class NoteSummary extends Component {
     async getSummary(values){
         const response = await fetch(
             'notesummary?location=' + values.location +
-            '&caregivers=' + values.caregivers);
+            '&caregivers=' + values.caregivers +
+            '&activities=' + values.activities);
         const note = await response.json();
         this.setState({
             summary: note.summary, 

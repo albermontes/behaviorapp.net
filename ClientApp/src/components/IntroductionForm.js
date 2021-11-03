@@ -5,8 +5,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton'; 
 
 export class IntroductionForm extends Component {
-    continue = e => {
-        console.log('clicked');
+    nextStep = e => {
         e.preventDefault();
         this.props.nextStep();
     }
@@ -16,16 +15,15 @@ export class IntroductionForm extends Component {
             <MuiThemeProvider>
                 <React.Fragment>
                     <AppBar title="Introduction" />
+                    <h4>Location</h4>
                     <TextField
                         hintText="Enter a location"
-                        floatingLabelText="Location"
                         onChange={handleChange('location')}
                         defaultValue={values.location}
                     />
-                    <br/>
+                    <h4>Caregivers</h4>
                     <TextField
                         hintText="Enter the caregivers"
-                        floatingLabelText="Caregivers"
                         onChange={handleChange('caregivers')}
                         defaultValue={values.caregivers}
                     />
@@ -34,7 +32,7 @@ export class IntroductionForm extends Component {
                         label="Next"
                         primary={true}
                         styles={styles.button}
-                        onClick={this.continue}
+                        onClick={this.nextStep}
                     />
                 </React.Fragment>
             </MuiThemeProvider>

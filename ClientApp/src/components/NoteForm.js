@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react'
 import IntroductionForm from './IntroductionForm';
+import ProgressForm from './ProgressForm';
 import NoteSummary from './NoteSummary';
 
 export class NoteForm extends Component {
@@ -9,7 +10,7 @@ export class NoteForm extends Component {
         location: '',
         caregivers: '',
         antecedent: '',
-        activities: [],
+        activities: '',
         health: '',
         familyFeedback: [],
         caregiverCompetency: []
@@ -30,11 +31,16 @@ export class NoteForm extends Component {
         });
     };
     // handle fields change
-    handleChange = input => e => {
+    handleChange = input => (event, value) => {
         this.setState({
-            [input]: e.target.value 
+            [input]: value
         });
     };
+    handleDropDownChange = input => (event, index, value) => {
+        this.setState({
+            [input]: value
+        });
+    }
    
     render() {
         const { step } = this.state;
@@ -54,13 +60,19 @@ export class NoteForm extends Component {
                     <IntroductionForm
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
-                        handleUpdate={this.handleUpdate}
                         values={values}
                     />
                 )
                 break;
             case 2:
-                currentStep = <h1>ProgressForm</h1>
+                currentStep = (
+                    <ProgressForm
+                        nextStep={this.nextStep}
+                        prevStep={this.prevStep}
+                        handleDropDownChange={this.handleDropDownChange}
+                        values={values}
+                    />
+                )
                 break;
             case 3:
                 currentStep = <h1>ConclusionForm</h1>
