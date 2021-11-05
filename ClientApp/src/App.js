@@ -9,7 +9,6 @@ import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizat
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
 
 import { NoteForm } from './components/NoteForm';
-import { NoteWizard } from './components/NoteWizard';
 
 import './custom.css'
 

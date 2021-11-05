@@ -11,6 +11,9 @@ export class NoteForm extends Component {
         caregivers: '',
         antecedent: '',
         activities: '',
+        activityResponse: '',
+        behaviors: '',
+        positiveResponse: '',
         health: '',
         familyFeedback: [],
         caregiverCompetency: []
@@ -35,6 +38,22 @@ export class NoteForm extends Component {
         this.setState({
             [input]: value
         });
+        if(input === 'activityResponse'){
+            switch(value){
+                case 'positive':
+                    this.setState({
+                        behaviors: ''
+                    });
+                    break;
+                case 'negative':
+                    this.setState({
+                        positiveResponse: ''
+                    });
+                    break;
+                default:
+                    break;
+            }
+        }
     };
     handleDropDownChange = input => (event, index, value) => {
         this.setState({
@@ -43,24 +62,14 @@ export class NoteForm extends Component {
     }
    
     render() {
-        const { step } = this.state;
-        const { 
-            location, caregivers, antecedent, activities,
-            health, familyFeedback, caregiverCompetency 
-        } = this.state;
-        const values = { 
-            location, caregivers, antecedent, activities,
-            health, familyFeedback, caregiverCompetency 
-        };
-
         let currentStep;
-        switch(step){
+        switch(this.state.step){
             case 1:
                 currentStep = (
                     <IntroductionForm
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
-                        values={values}
+                        values={this.state}
                     />
                 )
                 break;
@@ -69,8 +78,9 @@ export class NoteForm extends Component {
                     <ProgressForm
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
+                        handleChange={this.handleChange}
                         handleDropDownChange={this.handleDropDownChange}
-                        values={values}
+                        values={this.state}
                     />
                 )
                 break;
@@ -90,7 +100,7 @@ export class NoteForm extends Component {
                 <td width={styles.column.width} 
                         align={styles.column.align}>
                     <NoteSummary 
-                        values={values}/>
+                        values={this.state}/>
                 </td>
                 <td width={styles.splitWidth}></td>
                 <td width={styles.column.width} 

@@ -14,5 +14,12 @@ namespace behavior_app.Models
                 ? text.Substring(0,1).ToUpper() + text.Substring(1)
                 : text;
         }
+        public static bool StartsWithVocal(this string text){
+            return text != null && (text.ToLower().StartsWith('a') ||
+                text.ToLower().StartsWith('e') ||
+                text.ToLower().StartsWith('i') ||
+                text.ToLower().StartsWith('o') ||
+                text.ToLower().StartsWith('u'));
+        }
     }
 }
