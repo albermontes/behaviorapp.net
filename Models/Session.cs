@@ -36,7 +36,7 @@ namespace behavior_app.Models
                                 : "";
             var reinfAfterSummary = positiveResponse != null && 
                                         reinforcementsAfter != null
-                                ? $"We also give {reinforcementsAfter.RemoveStartCapitalLetter()} to the child. "
+                                ? $"We also give the child {reinforcementsAfter.RemoveStartCapitalLetter()}. "
                                 : "";
             var replaceSummary = positiveResponse != null && 
                                     replacements != null

@@ -25,7 +25,7 @@ export class ActivityResponse extends Component {
     reinforcements = [
         "Praises",
         "Edibles items",
-        "Give me five",
+        "A give me five",
         "Time to play a video game",
         "Time to play outside in the yard",
         "Time to play in the common areas of the condo",
