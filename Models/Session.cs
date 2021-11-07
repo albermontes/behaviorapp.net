@@ -40,7 +40,7 @@ namespace behavior_app.Models
                                 : "";
             var replaceSummary = positiveResponse != null && 
                                     replacements != null
-                                ? $"{replacements} ."
+                                ? $"{replacements}. "
                                 : "";
 
             var behaviorSummary = behaviors != null &&
