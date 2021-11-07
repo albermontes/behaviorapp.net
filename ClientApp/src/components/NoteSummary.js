@@ -36,7 +36,12 @@ export class NoteSummary extends Component {
             '&caregivers=' + values.caregivers +
             '&activities=' + values.activities + 
             '&positiveResponse=' + values.positiveResponse +
-            '&behaviors=' + values.behaviors);
+            '&reinforcementsBefore=' + values.reinforcementsBefore +
+            '&reinforcementsAfter=' + values.reinforcementsAfter +
+            '&replacements=' + values.replacements +
+            '&behaviors=' + values.behaviors +
+            '&interventions=' + values.interventions);
+
         const note = await response.json();
         this.setState({
             summary: note.summary, 

@@ -9,14 +9,14 @@ export class NoteForm extends Component {
         step: 1,
         location: '',
         caregivers: '',
-        antecedent: '',
         activities: '',
         activityResponse: '',
-        behaviors: '',
         positiveResponse: '',
-        health: '',
-        familyFeedback: [],
-        caregiverCompetency: []
+        reinforcementsBefore: '',
+        reinforcementsAfter: '',
+        replacements: '',
+        interventions: '',
+        behaviors: ''
     };
 
     // proceed to next step
@@ -42,12 +42,16 @@ export class NoteForm extends Component {
             switch(value){
                 case 'positive':
                     this.setState({
-                        behaviors: ''
+                        behaviors: '',
+                        interventions: ''
                     });
                     break;
                 case 'negative':
                     this.setState({
-                        positiveResponse: ''
+                        positiveResponse: '',
+                        reinforcementsBefore: '',
+                        reinforcementsAfter: '',
+                        replacements: ''
                     });
                     break;
                 default:

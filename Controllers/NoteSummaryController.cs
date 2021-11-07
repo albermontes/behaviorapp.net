@@ -15,26 +15,22 @@ namespace behavior_app.Controllers
     {
         [HttpGet]
         public Note Get(string location, string caregivers, string activities,
-                string positiveResponse, string behaviors)
+                string positiveResponse, string reinforcementsBefore,
+                string reinforcementsAfter, string replacements,
+                string behaviors, string interventions)
         {
-            var beVerb = caregivers != null && (caregivers.Contains(",") || caregivers.Contains("and")) ? "were" : "was";
-            var aJoin = behaviors != null && behaviors.StartsWithVocal() ? "an" : "a";
-            return new Note 
+            return new Session
             {
-                Summary = (location != null 
-                                ? $"The session took place in the {location.RemoveStartCapitalLetter()}. " : "") +
-                    (caregivers != null 
-                                ? $"{caregivers.AddStartCapitalLetter()} {beVerb} present in the session. " : "") +
-                    (activities != null && (
-                        positiveResponse != null ||
-                         behaviors != null) 
-                                ? $"After {activities.RemoveStartCapitalLetter()} the child " : "") +
-                    (positiveResponse != null 
-                                ? $"{positiveResponse.RemoveStartCapitalLetter()}. " : "") +
-                    (behaviors != null 
-                                ? $"starts {aJoin} {behaviors.RemoveStartCapitalLetter()}. " : "") +
-                    $"This note summary was elaborated at {DateTime.Now.ToShortTimeString()} of {DateTime.Now.ToShortDateString()}."
-            };
+                location = location,
+                caregivers = caregivers,
+                activities = activities,
+                positiveResponse = positiveResponse,
+                reinforcementsBefore = reinforcementsBefore,
+                reinforcementsAfter = reinforcementsAfter,
+                replacements = replacements,
+                behaviors = behaviors,
+                interventions = interventions
+            }.CreateNote();
         }
 
         
