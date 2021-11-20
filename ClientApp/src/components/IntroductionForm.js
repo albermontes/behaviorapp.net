@@ -19,18 +19,24 @@ export class IntroductionForm extends Component {
             <MuiThemeProvider>
                 <React.Fragment>
                     <AppBar title="Introduction" />
-                    <h4>Location</h4>
                     <TextField
                         hintText="Enter a location"
                         onChange={handleChange('location')}
                         defaultValue={values.location}
                     />
-                    <h4>Caregivers</h4>
+                    <br/>
                     <TextField
                         hintText="Enter the caregivers"
                         onChange={handleChange('caregivers')}
                         defaultValue={values.caregivers}
                     />
+                    <br/>
+                    <TextField
+                        hintText="Antecedent"
+                        onChange={handleChange('antecedent')}
+                        defaultValue={values.antecedent}
+                    />
+                    <br/>
                     <br/>
                     <RaisedButton
                         label="Next"

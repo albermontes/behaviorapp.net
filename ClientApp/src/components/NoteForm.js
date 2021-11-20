@@ -10,10 +10,11 @@ export class NoteForm extends Component {
         step: 1,
         location: '',
         caregivers: '',
+        antecedent: '',
         health: '',
         family: '',
         competency: '',
-        activities: [{type: 'activity', description: '', response: {type:''}}]
+        activities: []
     };
 
     // proceed to next step
