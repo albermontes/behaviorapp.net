@@ -8,35 +8,44 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 
-export class IntroductionForm extends Component {
+export class ConclusionForm extends Component {
     nextStep = e => {
         e.preventDefault();
         this.props.nextStep();
+    }
+    prevStep = e => {
+        e.preventDefault();
+        this.props.prevStep();
     }
     render() {
         const { values, handleChange } = this.props;
         return (
             <MuiThemeProvider>
                 <React.Fragment>
-                    <AppBar title="Introduction" />
-                    <h4>Location</h4>
+                    <AppBar title="Conclusion" />
                     <TextField
-                        hintText="Enter a location"
-                        onChange={handleChange('location')}
-                        defaultValue={values.location}
-                    />
-                    <h4>Caregivers</h4>
-                    <TextField
-                        hintText="Enter the caregivers"
-                        onChange={handleChange('caregivers')}
-                        defaultValue={values.caregivers}
+                        hintText="Enter a health summary"
+                        onChange={handleChange('health')}
+                        defaultValue={values.health}
                     />
                     <br/>
+                    <TextField
+                        hintText="Enter family feedback"
+                        onChange={handleChange('family')}
+                        defaultValue={values.family}
+                    />
+                    <br/>
+                    <TextField
+                        hintText="Enter caregiver competency"
+                        onChange={handleChange('competency')}
+                        defaultValue={values.competency}
+                    />
+                    <br/>
+                    <br/>
                     <RaisedButton
-                        label="Next"
+                        label="Previous"
                         primary={true}
-                        styles={styles.button}
-                        onClick={this.nextStep}
+                        onClick={this.prevStep}
                     />
                 </React.Fragment>
             </MuiThemeProvider>
@@ -44,10 +53,4 @@ export class IntroductionForm extends Component {
     }
 }
 
-const styles = {
-    button: {
-        margin: 15
-    }
-}
-
-export default IntroductionForm
+export default ConclusionForm

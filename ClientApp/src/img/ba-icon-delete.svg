@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="62px" viewBox="0 0 45 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>delete</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="delete" transform="translate(3.000000, 0.000000)" stroke="#FFFFFF" stroke-width="5">
+            <path d="M1,20 L1,50.3333333 C1,55.4003588 4.98574342,59 9.88435036,59 L29.4785988,59 C34.3773851,59 39,55.4003588 39,50.3333333 L39,20.0626365 L1,20 Z" id="Path"></path>
+            <line x1="14.5" y1="30" x2="14.5" y2="47.5" id="Line-3" stroke-linecap="square"></line>
+            <line x1="25.5" y1="30" x2="25.5" y2="47.5" id="Line-3" stroke-linecap="square"></line>
+            <line x1="0" y1="9.5" x2="39" y2="9.5" id="Line-2" stroke-linecap="square"></line>
+            <path d="M24.0212723,2.5 L24.6284152,4.5 L14.3715848,4.5 L14.9787277,2.5 L24.0212723,2.5 Z" id="Rectangle"></path>
+        </g>
+    </g>
+</svg>

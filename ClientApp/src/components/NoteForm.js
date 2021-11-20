@@ -2,6 +2,7 @@
 import IntroductionForm from './IntroductionForm';
 import ProgressForm from './ProgressForm';
 import NoteSummary from './NoteSummary';
+import ConclusionForm from './ConclusionForm';
 
 export class NoteForm extends Component {
     
@@ -9,14 +10,10 @@ export class NoteForm extends Component {
         step: 1,
         location: '',
         caregivers: '',
-        activities: '',
-        activityResponse: '',
-        positiveResponse: '',
-        reinforcementsBefore: '',
-        reinforcementsAfter: '',
-        replacements: '',
-        interventions: '',
-        behaviors: ''
+        health: '',
+        family: '',
+        competency: '',
+        activities: [{type: 'activity', description: '', response: {type:''}}]
     };
 
     // proceed to next step
@@ -33,38 +30,96 @@ export class NoteForm extends Component {
             step: step - 1
         });
     };
-    // handle fields change
-    handleChange = input => (event, value) => {
+    handleChange = (property) => (event, value) => {
         this.setState({
-            [input]: value
-        });
-        if(input === 'activityResponse'){
-            switch(value){
-                case 'positive':
-                    this.setState({
-                        behaviors: '',
-                        interventions: ''
-                    });
-                    break;
-                case 'negative':
-                    this.setState({
-                        positiveResponse: '',
-                        reinforcementsBefore: '',
-                        reinforcementsAfter: '',
-                        replacements: ''
-                    });
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
-    handleDropDownChange = input => (event, index, value) => {
-        this.setState({
-            [input]: value
+            [property]: value
         });
     }
-   
+    handleSelectedActivityChanged = (i) => (event, index, value) => {
+        let activities = [...this.state.activities];
+        activities[i] = {
+            type: activities.at(i).type,
+            description: value,
+            response: {
+                type: ''
+            }
+        }
+        this.setState({
+            activities: activities
+        });
+    }
+    handleSelectedActivityResponseChanged = (i) => (event, value) => {
+        let activities = [...this.state.activities];
+        activities.at(i).response = { type: value };
+        this.setState({
+            activities: activities
+        });
+    }
+    handleNewActivity = () => {
+        this.setState(prevState => ({
+            activities: [
+                ...prevState.activities,
+                { type: 'activity', description: '', response : { type: '' } }
+            ]
+        }));
+    }
+    handleNewIntervention = () => {
+        this.setState(prevState => ({
+            activities: [
+                ...prevState.activities,
+                { type: 'intervention', description: '', response : { type: '' } }
+            ]
+        }));
+    }
+    handleRemoveActivity = (i) => {
+        let activities = [...this.state.activities];
+        activities.splice(i, 1);
+        this.setState({
+            activities: activities
+        });
+    }
+    handleSelectedBehaviorChanged = (i) => (event, index, value) => {
+        let activities = [...this.state.activities];
+        activities.at(i).response.behavior = value;
+        this.setState({
+            activities: activities
+        });
+    }
+    handlePositiveResponseDescriptionChanged = (i) => (event, value) => {
+        let activities = [...this.state.activities];
+        activities.at(i).response.positive = value;
+        this.setState({
+            activities: activities
+        });
+    }
+    handleReinforceBeforeChanged = (i) => (event, index, value) => {
+        let activities = [...this.state.activities];
+        activities.at(i).response.reinforceBefore = value;
+        this.setState({
+            activities: activities
+        });
+    }
+    handleReplacementChanged = (i) => (event, index, value) => {
+        let activities = [...this.state.activities];
+        activities.at(i).response.replacement = value;
+        this.setState({
+            activities: activities
+        });
+    }
+    handleReinforceAfterChanged = (i) => (event, index, value) => {
+        let activities = [...this.state.activities];
+        activities.at(i).response.reinforceAfter = value;
+        this.setState({
+            activities: activities
+        });
+    }
+    handleInterventionChanged = (i) => (event, index, value) => {
+        let activities = [...this.state.activities];
+        activities.at(i).response.intervention.description = value;
+        this.setState({
+            activities: activities
+        });
+    }
     render() {
         let currentStep;
         switch(this.state.step){
@@ -82,46 +137,47 @@ export class NoteForm extends Component {
                     <ProgressForm
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
-                        handleChange={this.handleChange}
-                        handleDropDownChange={this.handleDropDownChange}
-                        values={this.state}
+                        session={this.state}
+                        newActivity={this.handleNewActivity}
+                        removeActivity={this.handleRemoveActivity}
+                        activityChanged={this.handleSelectedActivityChanged}
+                        activityResponseChanged={this.handleSelectedActivityResponseChanged}
+                        behaviorChanged={this.handleSelectedBehaviorChanged}
+                        interventionChanged={this.handleInterventionChanged}
+                        positiveResponseDescriptionChanged={this.handlePositiveResponseDescriptionChanged}
+                        reinforceBeforeChanged={this.handleReinforceBeforeChanged}
+                        replacementChanged={this.handleReplacementChanged}
+                        reinforceAfterChanged={this.handleReinforceAfterChanged}
+                        newIntervention={this.handleNewIntervention}
                     />
                 )
                 break;
             case 3:
-                currentStep = <h1>ConclusionForm</h1>
-                break;
-            case 4:
-                currentStep = <h1>Success</h1>
+                currentStep = (
+                    <ConclusionForm
+                        prevStep={this.prevStep}
+                        handleChange={this.handleChange}
+                        values={this.state}
+                    />
+                )
                 break;
             default:
-                console.log('multi-step built with react');
                 break;
         }
         
         return (
             <React.Fragment>
-                <td width={styles.column.width} 
-                        align={styles.column.align}>
+                 <td>
+                    {currentStep}
+                </td>
+                <td width="50px"></td>
+                <td>
                     <NoteSummary 
                         values={this.state}/>
-                </td>
-                <td width={styles.splitWidth}></td>
-                <td width={styles.column.width} 
-                        align={styles.column.align}>
-                    {currentStep}
                 </td>
             </React.Fragment>
         );
     }
 }
-
-const styles = {
-    column: {
-        width: '200px',
-        align: 'center'
-    },
-    splitWidth: '20%'
-} 
 
 export default NoteForm;

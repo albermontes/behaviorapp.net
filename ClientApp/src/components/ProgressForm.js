@@ -1,15 +1,8 @@
 import React, { Component } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton'; 
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import ActivityResponse from './ActivityResponse';
+import Activity from './Activity';
 export class ProgressForm extends Component {
     nextStep = e => {
         e.preventDefault();
@@ -18,6 +11,22 @@ export class ProgressForm extends Component {
     prevStep = e => {
         e.preventDefault();
         this.props.prevStep();
+    }
+    newActivity = e => {
+        e.preventDefault();
+        this.props.newActivity();
+    }
+    removeActivity = i => e => {
+        e.preventDefault();
+        this.props.removeActivity(i);
+    }
+    newIntervention = e => {
+        e.preventDefault();
+        this.props.newIntervention();
+    }
+    removeIntervention = i => e => {
+        e.preventDefault();
+        this.props.removeIntervention(i);
     }
     activities = [
         "Playing simples and structured didactic activities",
@@ -31,58 +40,100 @@ export class ProgressForm extends Component {
         "Playing some boards game",
         "Playing video games"
     ];
-    
+    interventions = [
+        "DRA (Differential reinforcement alternative behavior)",
+        "DRO (Differential reinforcement other behavior)",
+        "DRI (Differential reinforcement of incompatible behavior)",
+        "Planned ignoring",
+        "Response block (Blocked the client for a few seconds, without restraint)",
+        "Redirection to escape from demands",
+        "Redirection to request for tangible",
+        "Redirection to attention seeking",
+        "Escape extinction",
+        "Attention independent response delivery",
+        "Environmental / Antecedent manipulations",
+        "Incidental teaching",
+        "Modeling",
+        "Shaping",
+        "Provides choices",
+        "Premack Principle",
+        "Task modification",
+        "Alternative sensory-stimulation",
+        "Non-contingent attention"
+    ];
     render(){
-        const { values, handleDropDownChange, handleChange } = this.props;
+        const { 
+            session, 
+            activityChanged,
+            activityResponseChanged,
+            behaviorChanged,
+            interventionChanged,
+            positiveResponseDescriptionChanged,
+            reinforceBeforeChanged,
+            replacementChanged,
+            reinforceAfterChanged
+        } = this.props;
         return (
             <MuiThemeProvider>
                 <React.Fragment>
                     <AppBar title="Progress" />
-                    <h4>Activity</h4>
-                    <DropDownMenu 
-                            floatingLabelText="Activity"
-                            value={values.activities} 
-                            onChange={handleDropDownChange('activities')}>
-                        {this.activities.map(activity => 
-                            <MenuItem value={activity}
-                                    primaryText={activity} />    
-                            )}
-                    </DropDownMenu>
                     <br/>
-                    <FormControl component="fieldset">
-                        <RadioGroup row
-                                value={values.activityResponse} 
-                                onChange={handleChange('activityResponse')}> 
-                            <FormControlLabel value="positive"
-                                disabled={values.activities === ''} 
-                                control={<Radio />} label="POSITIVE" />
-                            <FormControlLabel value="negative" 
-                                disabled={values.activities === ''}
-                                control={<Radio />} label="NEGATIVE" />
-                        </RadioGroup>
-                    </FormControl>
+                    {session.activities.map(x => 
+                        <Activity
+                            activityNumber={session.activities.indexOf(x) + 1}
+                            activities={this.activities}
+                            interventions={this.interventions}
+                            activity={x}
+                            activityChanged={activityChanged(session.activities.indexOf(x))}
+                            activityResponseChanged={activityResponseChanged(session.activities.indexOf(x))}
+                            removeActivity={this.removeActivity(session.activities.indexOf(x))}
+                            removeIntervention={this.removeActivity(session.activities.indexOf(x))}
+                            behaviorChanged={behaviorChanged(session.activities.indexOf(x))}
+                            positiveResponseDescriptionChanged={positiveResponseDescriptionChanged(session.activities.indexOf(x))}
+                            reinforceBeforeChanged={reinforceBeforeChanged(session.activities.indexOf(x))}
+                            replacementChanged={replacementChanged(session.activities.indexOf(x))}
+                            reinforceAfterChanged={reinforceAfterChanged(session.activities.indexOf(x))}
+                        />
+                    )}
+                    <React.Fragment>
+                        <td>
+                            <RaisedButton
+                                label="New Activity"
+                                primary={false}
+                                onClick={this.newActivity}
+                            />
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>
+                            <RaisedButton
+                                label="New Intervention"
+                                primary={false}
+                                onClick={this.newIntervention}
+                            />
+                        </td>
+                    </React.Fragment>
                     <br/>
-                    <ActivityResponse
-                        handleChange={handleChange}
-                        handleDropDownChange={handleDropDownChange}
-                        values={values}
-                    />
                     <br/>
-                    <RaisedButton
-                        label="Previous"
-                        primary={true}
-                        styles={styles.button}
-                        onClick={this.prevStep}
-                    />
+                    <React.Fragment>
+                        <td>
+                            <RaisedButton
+                                label="Previous"
+                                primary={true}
+                                onClick={this.prevStep}
+                            />
+                        </td>
+                        <td>&nbsp;&nbsp;</td>
+                        <td>
+                            <RaisedButton
+                                label="Next"
+                                primary={true}
+                                onClick={this.nextStep}
+                            />
+                        </td>
+                    </React.Fragment>
                 </React.Fragment>
             </MuiThemeProvider>
         );
-    }
-}
-
-const styles = {
-    button: {
-        margin: 15
     }
 }
 

@@ -18,7 +18,9 @@ export class NoteSummary extends Component {
     render() {
         let contents = this.state.loading
         ? <p></p>
-        : <p>{this.state.summary}</p>;
+        : <pre>
+            {this.state.summary}
+        </pre>;
 
         return (
             <div>
@@ -31,7 +33,13 @@ export class NoteSummary extends Component {
     }
 
     async getSummary(values){
-        const response = await fetch(
+
+        this.setState({
+            summary: JSON.stringify(values, null, 2),
+            loading: false
+        });
+
+        /*const response = await fetch(
             'notesummary?location=' + values.location +
             '&caregivers=' + values.caregivers +
             '&activities=' + values.activities + 
@@ -47,6 +55,7 @@ export class NoteSummary extends Component {
             summary: note.summary, 
             loading: false
         });
+        */
     }
 }
 
