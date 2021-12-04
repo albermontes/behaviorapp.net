@@ -36,7 +36,8 @@ namespace behavior_app.Models
                 caregivers += myNote.detailInfo.caregivers[i].RemoveStartCapitalLetter() + ", ";
             }
             if(myNote.detailInfo.caregivers.Count > 1)
-                caregivers += $"and {myNote.detailInfo.caregivers[myNote.detailInfo.caregivers.Count-1].RemoveStartCapitalLetter()}";
+                caregivers += $"{myNote.detailInfo.caregivers[myNote.detailInfo.caregivers.Count - 2].RemoveStartCapitalLetter()}" +
+                    $" and {myNote.detailInfo.caregivers[myNote.detailInfo.caregivers.Count - 1].RemoveStartCapitalLetter()}";
             else
             {
                 if(myNote.detailInfo.caregivers.Count > 0)
