@@ -334,7 +334,8 @@ function MyNote(){
                                     <input className="required valid" 
                                             type="checkbox" 
                                             value={x}
-                                            onChange={setCaregiver}/>
+                                            onChange={setCaregiver}
+                                            checked={detailInfo.caregivers.indexOf(x) > -1}/>
                                     <span className="checkmark"></span>
                                 </label>
                             )}
