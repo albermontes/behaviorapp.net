@@ -14,25 +14,12 @@ namespace behavior_app.Controllers
     public class NoteSummaryController : ControllerBase
     {
         [HttpGet]
-        public Note Get(string location, string caregivers, string activities,
-                string positiveResponse, string reinforcementsBefore,
-                string reinforcementsAfter, string replacements,
-                string behaviors, string interventions)
+        public Note Get(string note)
         {
             return new Session
             {
-                location = location,
-                caregivers = caregivers,
-                activities = activities,
-                positiveResponse = positiveResponse,
-                reinforcementsBefore = reinforcementsBefore,
-                reinforcementsAfter = reinforcementsAfter,
-                replacements = replacements,
-                behaviors = behaviors,
-                interventions = interventions
+                note = note
             }.CreateNote();
         }
-
-        
     }
 }

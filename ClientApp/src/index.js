@@ -3,17 +3,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import Note from './components/Note';
 //import registerServiceWorker from './registerServiceWorker';
 
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');
 
-ReactDOM.render(
+/*ReactDOM.render(
   <BrowserRouter basename={baseUrl}>
     <App />
   </BrowserRouter>,
   rootElement);
-
+*/
+ReactDOM.render(
+  <Note/>,
+  rootElement
+);
 // Uncomment the line above that imports the registerServiceWorker function
 // and the line below to register the generated service worker.
 // By default create-react-app includes a service worker to improve the
