@@ -2282,7 +2282,7 @@ Author URI: http://albermontes.com
 		user-select: none;
 		white-space: nowrap;
 		width: auto;
-		color: #6c757d;
+		color: #EFEFEF;
 	}
 	.nice-select:active, .nice-select.open, .nice-select:focus {
 		border-color: #434bdf;
