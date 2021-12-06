@@ -317,7 +317,7 @@ function MyNote(){
                         </h3>
                         <div className="form-group">
                             <div className="styled-select clearfix">
-                                <select className="wide required" 
+                                <select className="nice-select wide required" 
                                         value={detailInfo.location}
                                         onChange={setLocation}>
                                     {locations.map(x => 
@@ -580,7 +580,7 @@ function MyIntervention(props){
             />
              <div className="form-group">
                 <div className="styled-select clearfix">
-                    <select className="wide required" 
+                    <select className="nice-select wide required" 
                             onChange={onDescriptionChange} 
                             value={description}>
                         {interventionDescriptions.map(a =>
@@ -700,7 +700,7 @@ function MyActivity(props){
             {/* all selects are rendering wrong */}
             <div className="form-group">
                 <div className="styled-select clearfix">
-                    <select className="wide required"
+                    <select className="nice-select wide required"
                             value={description}
                             onChange={onDescriptionChange} >
                         {activityDescriptions.map(a =>
@@ -733,7 +733,7 @@ function MyPositiveResponse(props){
             </div>
             <div class="form-group mt-5">
                 <div class="styled-select clearfix">
-                    <select className="wide required"
+                    <select className="nice-select wide required"
                             value={reinforceBefore}
                             onChange={onReinforceBeforeChange} >
                         {reinforceDescriptions.map(x =>
@@ -744,7 +744,7 @@ function MyPositiveResponse(props){
             </div>
             <div class="form-group">
                 <div class="styled-select clearfix">
-                    <select className="wide required"
+                    <select className="nice-select wide required"
                             value={replacement}
                             onChange={onReplacementChange} >
                         {replacementDescriptions.map(x =>
@@ -755,7 +755,7 @@ function MyPositiveResponse(props){
             </div>
             <div class="form-group">
                 <div class="styled-select clearfix">
-                    <select className="wide required"
+                    <select className="nice-select wide required"
                             value={reinforceAfter}
                             onChange={onReinforceAfterChange} >
                         {reinforceDescriptions.map(x =>
@@ -827,7 +827,7 @@ function MyBehavior(props){
     return (
         <div className="form-group">
             <div className="styled-select clearfix">
-                <select className="wide required" 
+                <select className="nice-select wide required" 
                         onChange={onBehaviorChange} 
                         value={behavior}>
                     {behaviorDescriptions.map(x =>
