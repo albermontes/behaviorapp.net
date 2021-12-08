@@ -120,6 +120,14 @@ Author URI: http://albermontes.com
 			color: #CE3C3C;
 		}
 
+	.gnx-bck-conclusion {
+		background: blanchedalmond;
+	}
+
+		.gnx-color-conclusion {
+			color: blanchedalmond;
+		}
+
 /*-------- CUSTOM 1.5 Custom CSS --------*/
 	.container-fluid {
 			padding-right: 0;

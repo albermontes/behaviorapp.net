@@ -110,7 +110,9 @@ function MyNoteSummary(props){
             })
     }, [note])
 
-    return summary;
+    return <p className="gnx-color-lightgray" 
+                dangerouslySetInnerHTML={{ __html: summary }}>
+            </p>
 }
 
 function MyNote(){
@@ -480,12 +482,10 @@ function MyNote(){
                         </div>
                         <div className="d-flex">
                             <div className="p-3">
-                                <p className="gnx-color-lightgray">
-                                   <MyNoteSummary note={JSON.stringify({
-                                            detailInfo: detailInfo,
-                                            activities: activities
-                                        })}/>
-                                </p>
+                                <MyNoteSummary note={JSON.stringify({
+                                        detailInfo: detailInfo,
+                                        activities: activities
+                                    })}/>
                                 {/*
                                 <pre className="gnx-color-lightgray">
                                     {JSON.stringify({
@@ -495,6 +495,45 @@ function MyNote(){
                                        }, null, 2)}
                                 </pre>
                                 */}
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <div class="d-flex flex-wrap px-3 py-2">
+                                <div class="pr-3 pb-2 text-truncate">
+                                    <span class="text-uppercase">Legend</span>
+                                </div>
+                                <div class="pr-3 pb-2 text-truncate">
+                                    <div class="gnx-square gnx-bck-introduction"></div>
+                                    <span>&nbsp;Introduction</span>
+                                </div>
+                                <div class="pr-3 pb-2 text-truncate">
+                                    <div class="gnx-square gnx-bck-activities"></div>
+                                    <span>&nbsp;Activities</span>
+                                </div>
+                                <div class="pr-3 pb-2 text-truncate">
+                                    <div class="gnx-square gnx-bck-behaviors"></div>
+                                    <span>&nbsp;Behaviors</span>
+                                </div>
+                                <div class="pr-3 pb-2 text-truncate">
+                                    <div class="gnx-square gnx-bck-interventions"></div>
+                                    <span>&nbsp;Interventions</span>
+                                </div>
+                                <div class="pr-3 pb-2 text-truncate">
+                                    <div class="gnx-square gnx-bck-transitions"></div>
+                                    <span>&nbsp;Transitions</span>
+                                </div>
+                                <div class="pr-3 pb-2 text-truncate">
+                                    <div class="gnx-square gnx-bck-replacements"></div>
+                                    <span>&nbsp;Replacements</span>
+                                </div>
+                                <div class="pr-3 pb-2 text-truncate">
+                                    <div class="gnx-square gnx-bck-reinforcements"></div>
+                                    <span>&nbsp;Reinforcement</span>
+                                </div>
+                                <div class="pr-3 pb-2 text-truncate">
+                                    <div class="gnx-square gnx-bck-conclusion"></div>
+                                    <span>&nbsp;Conclusion</span>
+                                </div>
                             </div>
                         </div>
                     </div>

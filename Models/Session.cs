@@ -46,51 +46,78 @@ namespace behavior_app.Models
 
             var introductionSummary = 
                 (!string.IsNullOrWhiteSpace(myNote.detailInfo.location)
-                    ? ($"The session took place " +
-                        $"{myNote.detailInfo.location.RemoveStartCapitalLetter()}. ")
+                    ? "<mark class=\"gnx-bck-introduction\">" + 
+                        $"The session took place " +
+                        $"{myNote.detailInfo.location.RemoveStartCapitalLetter()}. " +
+                        "</mark>"
                     : ""
                 ) +
                 (myNote.detailInfo.caregivers.Count > 0
-                    ? $"The {caregivers} " + (myNote.detailInfo.caregivers.Count > 1 ? "were" : "was") + " present in the session. "
+                    ? "<mark class=\"gnx-bck-introduction\">" + 
+                        $"The {caregivers} " + 
+                        (myNote.detailInfo.caregivers.Count > 1 ? "were" : "was") + 
+                        " present in the session. " +
+                        "</mark>"
                     : "") +
                 (!string.IsNullOrWhiteSpace(myNote.detailInfo.antecedent)
-                    ? $"The client has an antecedent of " +
-                        $"{myNote.detailInfo.antecedent.RemoveStartCapitalLetter()}. "
+                    ? "<mark class=\"gnx-bck-introduction\">" +  
+                        $"The client has an antecedent of " +
+                        $"{myNote.detailInfo.antecedent.RemoveStartCapitalLetter()}. " +
+                        "</mark>"
                     : "");
 
-            var conclusionSummary = 
+            var conclusionSummary =
+
                 (!string.IsNullOrWhiteSpace(myNote.detailInfo.healthSummary)
-                    ? $"{myNote.detailInfo.healthSummary.AddStartCapitalLetter()}. "
+                    ? "<mark class=\"gnx-bck-conclusion\">" +
+                        $"{myNote.detailInfo.healthSummary.AddStartCapitalLetter()}. " +
+                        "</mark>"
                     : "") +
                 (!string.IsNullOrWhiteSpace(myNote.detailInfo.familyFeedback)
-                    ? $"{myNote.detailInfo.familyFeedback.AddStartCapitalLetter()}. "
-                    : "") + 
+                    ? "<mark class=\"gnx-bck-conclusion\">" +
+                    $"{myNote.detailInfo.familyFeedback.AddStartCapitalLetter()}. "
+                    + "</mark>"
+                    : "") +
                 (!string.IsNullOrWhiteSpace(myNote.detailInfo.caregiverCompetency)
-                    ? $"{myNote.detailInfo.caregiverCompetency.AddStartCapitalLetter()}. "
+                    ? "<mark class=\"gnx-bck-conclusion\">" +
+                        $"{myNote.detailInfo.caregiverCompetency.AddStartCapitalLetter()}. " +
+                        "</mark>"
                     : "");
 
             var activitiesSummary = "";
             foreach (var act in myNote.activities)
             {
-                var activity = $"After {act.description.RemoveStartCapitalLetter()} the client ";
+                var activity = "<mark class=\"gnx-bck-activities\">" +
+                    $"After {act.description.RemoveStartCapitalLetter()} the client " + 
+                    "</mark>";
                 if (!string.IsNullOrWhiteSpace(act.response.label))
                 {
                     switch (act.response.label)
                     {
                         case "POSITIVE":
-                            activity += (!string.IsNullOrWhiteSpace(act.response.description)
-                                ? $"{act.response.description}. " + 
+                            activity +=
+                                (!string.IsNullOrWhiteSpace(act.response.description)
+                                ? "<mark class=\"gnx-bck-transitions\">" + 
+                                    $"{act.response.description}. " + 
+                                    "</mark>" +
                                     (!string.IsNullOrWhiteSpace(act.response.reinforceBefore)
-                                        ? $"We reinforce this positive response with " +
-                                            $"{act.response.reinforceBefore.RemoveStartCapitalLetter()}. "
+                                        ? "<mark class=\"gnx-bck-reinforcements\">" + 
+                                            $"We reinforce this positive response with " +
+                                            $"{act.response.reinforceBefore.RemoveStartCapitalLetter()}. " +
+                                            "</mark>"
                                         : "") +
+                                
                                     (!string.IsNullOrWhiteSpace(act.response.replacement)
-                                        ? $"We apply a " +
-                                            $"{act.response.replacement.RemoveStartCapitalLetter()}. "
+                                        ? "<mark class=\"gnx-bck-replacements\">" + 
+                                            $"We apply a " +
+                                            $"{act.response.replacement.RemoveStartCapitalLetter()}. " +
+                                            "</mark>"
                                         : "") +
+                                
                                     (!string.IsNullOrWhiteSpace(act.response.reinforceAfter)
-                                        ? $"We finally give the child " +
-                                            $"{act.response.reinforceAfter.RemoveStartCapitalLetter()}. "
+                                        ? "<mark class=\"gnx-bck-reinforcements\">" +  $"We finally give the child " +
+                                            $"{act.response.reinforceAfter.RemoveStartCapitalLetter()}. " +
+                                            "</mark>"
                                         : "")
                                 : "");
                             break;
@@ -103,10 +130,14 @@ namespace behavior_app.Models
                                                    intervention.behavior.StartsWithVocal()
                                                ? "an"
                                                : "a";
-                                    activity += $"starts {aJoin} {intervention.behavior.RemoveStartCapitalLetter()}. " +
+                                    activity += "<mark class=\"gnx-bck-behaviors\">" +
+                                                $"starts {aJoin} {intervention.behavior.RemoveStartCapitalLetter()}. " +
+                                                "</mark>" +
                                                     (!string.IsNullOrWhiteSpace(intervention.description)
-                                                        ? $"We applied {intervention.description.RemoveStartCapitalLetter()} " +
-                                                            $"to intervene the behavior and the client "
+                                                        ? "<mark class=\"gnx-bck-interventions\">" + 
+                                                            $"We applied {intervention.description.RemoveStartCapitalLetter()} " +
+                                                            $"to intervene the behavior and the client " +
+                                                            "</mark>"
                                                         : "");
 
                                     if (!string.IsNullOrWhiteSpace(intervention.response.label))
@@ -114,18 +145,24 @@ namespace behavior_app.Models
                                         if(intervention.response.label == "POSITIVE")
                                         {
                                             activity += (!string.IsNullOrWhiteSpace(intervention.response.description)
-                                                            ? $"{intervention.response.description}. " +
+                                                            ? "<mark class=\"gnx-bck-transitions\">" + 
+                                                                $"{intervention.response.description}. " +
+                                                                "</mark>" +
                                                                 (!string.IsNullOrWhiteSpace(intervention.response.reinforceBefore)
-                                                                    ? $"We reinforce this positive response with " +
-                                                                        $"{intervention.response.reinforceBefore.RemoveStartCapitalLetter()}. "
+                                                                    ? "<mark class=\"gnx-bck-reinforcements\">" + 
+                                                                        $"We reinforce this positive response with " +
+                                                                        $"{intervention.response.reinforceBefore.RemoveStartCapitalLetter()}. " +
+                                                                        "</mark>"
                                                                     : "") +
                                                                 (!string.IsNullOrWhiteSpace(intervention.response.replacement)
-                                                                    ? $"We apply a " +
-                                                                        $"{intervention.response.replacement.RemoveStartCapitalLetter()}. "
+                                                                    ? "<mark class=\"gnx-bck-replacements\">" + $"We apply a " +
+                                                                        $"{intervention.response.replacement.RemoveStartCapitalLetter()}. " +
+                                                                        "</mark>"
                                                                     : "") +
                                                                 (!string.IsNullOrWhiteSpace(intervention.response.reinforceAfter)
-                                                                    ? $"We finally give the child " +
-                                                                        $"{intervention.response.reinforceAfter.RemoveStartCapitalLetter()}. "
+                                                                    ? "<mark class=\"gnx-bck-reinforcements\">" + $"We finally give the child " +
+                                                                        $"{intervention.response.reinforceAfter.RemoveStartCapitalLetter()}. " +
+                                                                        "</mark>"
                                                                     : "")
                                                             : "");
                                         }
