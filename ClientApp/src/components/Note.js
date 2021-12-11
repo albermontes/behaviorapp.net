@@ -769,11 +769,11 @@ function MyActivity(props){
                 : ''
 
     return (
-        <div  className="shadow p-3 mb-3 gnx-bck-darkgray ba-hover-darkgray">
+        <div  className="shadow p-4 mb-3 gnx-bck-darkgray ba-hover-darkgray">
             <div>
                 <div className="d-flex justify-content-between">
                     <div>
-                        <h4>{(index + 1) + (description == '' 
+                        <h4 class="font-weight-bold">{(index + 1) + (description == '' 
                             ? ' Activity' 
                             : ' ' + description) }
                         </h4>
@@ -781,8 +781,8 @@ function MyActivity(props){
                             {response.label}
                         </div>
                     </div>
-                    <div className="pt-2">
-                        <button className="pt-2 ba-button ba-button ba-button-action"
+                    <div>
+                        <button className="ba-button ba-button ba-button-action"
                                 onClick={onRemove}>
                             <img src={deleteIcon} 
                                     alt="" 
