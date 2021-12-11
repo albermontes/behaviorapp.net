@@ -758,8 +758,8 @@ function MyActivity(props){
                             {response.label}
                         </div>
                     </div>
-                    <div className="pt-2">
-                        <button className="pt-2 ba-button ba-button ba-button-action"
+                    <div>
+                        <button className="ba-button ba-button ba-button-action"
                                 onClick={onRemove}>
                             <img src={deleteIcon} 
                                     alt="" 
