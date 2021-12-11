@@ -21,6 +21,7 @@ const activityDescriptions = [
     "Playing some boards game",
     "Playing video games"
 ];
+
 const interventionsTest = [
     {value:'DRA (Differential reinforcement alternative behavior)', label:'DRA (Differential reinforcement alternative behavior)'},
     {value:'DRO (Differential reinforcement other behavior)', label:'DRO (Differential reinforcement other behavior)'},
