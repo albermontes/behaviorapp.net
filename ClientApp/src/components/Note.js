@@ -750,10 +750,10 @@ function MyActivity(props){
             <div>
                 <div className="d-flex justify-content-between">
                     <div>
-                        <h5>{(index + 1) + (description == '' 
+                        <h4>{(index + 1) + (description == '' 
                             ? ' Activity' 
                             : ' ' + description) }
-                        </h5>
+                        </h4>
                         <div className="pl-4">
                             {response.label}
                         </div>
