@@ -4,6 +4,10 @@ import deleteIcon from '../img/ba-icon-delete.svg';
 import logo from '../img/logo.png';
 import left from '../img/ba-arrow-left.svg';
 import right from '../img/ba-arrow-right.svg';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+
+const animatedComponents = makeAnimated();
 
 const activityDescriptions = [
     "",
@@ -17,6 +21,11 @@ const activityDescriptions = [
     "Coloring and drawing",
     "Playing some boards game",
     "Playing video games"
+];
+const interventionsTest = [
+    {value:'DRA (Differential reinforcement alternative behavior)', label:'DRA (Differential reinforcement alternative behavior)'},
+    {value:'DRO (Differential reinforcement other behavior)', label:'DRO (Differential reinforcement other behavior)'},
+    {value:'Planned ignoring', label:'Planned ignoring', isDisabled: false},
 ];
 const interventionDescriptions = [
     "",
@@ -353,10 +362,14 @@ function MyNote(){
                         <div className="form-group">
                             <div className="styled-select clearfix">
                                 <select className="nice-select wide required" 
+                                        placeholder="Select a location"
                                         value={detailInfo.location}
                                         onChange={setLocation}>
                                     {locations.map(x => 
-                                        <option value={x}>{x}</option>    
+                                        <option value={x}
+                                                hidden={x == ''}>
+                                            {x == '' ? 'Select a Location' : x}
+                                        </option>    
                                     )}
                                 </select>
                             </div>
@@ -652,11 +665,21 @@ function MyIntervention(props){
             />
              <div className="form-group">
                 <div className="styled-select clearfix">
-                    <select className="nice-select wide required" 
+                    {/*<Select
+                        closeMenuOnSelect={false}
+                        components={animatedComponents}
+                        isMulti
+                        options={interventionsTest}/>
+                    */}
+                    <select 
+                            className="nice-select wide required" 
                             onChange={onDescriptionChange} 
                             value={description}>
-                        {interventionDescriptions.map(a =>
-                            <option value={a}>{a}</option>
+                        {interventionDescriptions.map(x =>
+                             <option value={x}
+                                    hidden={x == ''}>
+                                {x == '' ? 'Select an Intervention' : x}
+                            </option>  
                         )}
                     </select>
                 </div>
@@ -750,10 +773,10 @@ function MyActivity(props){
             <div>
                 <div className="d-flex justify-content-between">
                     <div>
-                        <h5>{(index + 1) + (description == '' 
+                        <h4>{(index + 1) + (description == '' 
                             ? ' Activity' 
                             : ' ' + description) }
-                        </h5>
+                        </h4>
                         <div className="pl-4">
                             {response.label}
                         </div>
@@ -775,8 +798,11 @@ function MyActivity(props){
                     <select className="nice-select wide required"
                             value={description}
                             onChange={onDescriptionChange} >
-                        {activityDescriptions.map(a =>
-                            <option value={a}>{a}</option>
+                        {activityDescriptions.map(x =>
+                             <option value={x}
+                                    hidden={x == ''}>
+                                {x == '' ? 'Select an Activity' : x}
+                            </option>  
                         )}
                     </select>
                 </div>
@@ -809,7 +835,10 @@ function MyPositiveResponse(props){
                             value={reinforceBefore}
                             onChange={onReinforceBeforeChange} >
                         {reinforceDescriptions.map(x =>
-                            <option value={x}>{x}</option>
+                             <option value={x}
+                                    hidden={x == ''}>
+                                {x == '' ? 'Select a Reinforce before Replacement' : x}
+                            </option>  
                         )}
                     </select>
                 </div>
@@ -820,7 +849,10 @@ function MyPositiveResponse(props){
                             value={replacement}
                             onChange={onReplacementChange} >
                         {replacementDescriptions.map(x =>
-                            <option value={x}>{x}</option>
+                             <option value={x}
+                                    hidden={x == ''}>
+                                {x == '' ? 'Select a Replacement' : x}
+                            </option>  
                         )}
                     </select>
                 </div>
@@ -831,7 +863,10 @@ function MyPositiveResponse(props){
                             value={reinforceAfter}
                             onChange={onReinforceAfterChange} >
                         {reinforceDescriptions.map(x =>
-                            <option value={x}>{x}</option>
+                             <option value={x}
+                                    hidden={x == ''}>
+                                {x == '' ? 'Select a Reinforce after Replacement' : x}
+                            </option>  
                         )}
                     </select>
                 </div>
@@ -903,7 +938,10 @@ function MyBehavior(props){
                         onChange={onBehaviorChange} 
                         value={behavior}>
                     {behaviorDescriptions.map(x =>
-                        <option value={x}>{x}</option>
+                         <option value={x}
+                                hidden={x == ''}>
+                            {x == '' ? 'Select a Behavior' : x}
+                        </option>  
                     )}
                 </select>
             </div>
