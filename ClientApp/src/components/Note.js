@@ -750,7 +750,7 @@ function MyActivity(props){
             <div>
                 <div className="d-flex justify-content-between">
                     <div>
-                        <h4>{(index + 1) + (description == '' 
+                        <h4 class="font-weight-bold">{(index + 1) + (description == '' 
                             ? ' Activity' 
                             : ' ' + description) }
                         </h4>
