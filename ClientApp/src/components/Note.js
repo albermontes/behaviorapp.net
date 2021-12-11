@@ -746,7 +746,7 @@ function MyActivity(props){
                 : ''
 
     return (
-        <div  className="shadow p-3 mb-3 gnx-bck-darkgray ba-hover-darkgray">
+        <div  className="shadow p-4 mb-3 gnx-bck-darkgray ba-hover-darkgray">
             <div>
                 <div className="d-flex justify-content-between">
                     <div>
