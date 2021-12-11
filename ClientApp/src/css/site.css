@@ -1248,7 +1248,7 @@ Author URI: http://albermontes.com
 	}
 
 	#wizard_container {
-		width: 75%;
+		width: 85%;
 	}
 	@media (max-width: 767px) {
 		#wizard_container {
