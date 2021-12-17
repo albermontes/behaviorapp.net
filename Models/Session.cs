@@ -61,8 +61,7 @@ namespace behavior_app.Models
                     : "") +
                 (!string.IsNullOrWhiteSpace(myNote.detailInfo.antecedent)
                     ? "<mark class=\"gnx-bck-introduction\">" +  
-                        $"The client has an antecedent of " +
-                        $"{myNote.detailInfo.antecedent.RemoveStartCapitalLetter()}. " +
+                        $"{myNote.detailInfo.antecedent.AddStartCapitalLetter()}. " +
                         "</mark>"
                     : "");
 
@@ -102,21 +101,19 @@ namespace behavior_app.Models
                                     "</mark>" +
                                     (!string.IsNullOrWhiteSpace(act.response.reinforceBefore)
                                         ? "<mark class=\"gnx-bck-reinforcements\">" + 
-                                            $"We reinforce this positive response with " +
-                                            $"{act.response.reinforceBefore.RemoveStartCapitalLetter()}. " +
+                                            $"{act.response.reinforceBefore.AddStartCapitalLetter()}. " +
                                             "</mark>"
                                         : "") +
                                 
                                     (!string.IsNullOrWhiteSpace(act.response.replacement)
                                         ? "<mark class=\"gnx-bck-replacements\">" + 
-                                            $"We apply a " +
-                                            $"{act.response.replacement.RemoveStartCapitalLetter()}. " +
+                                            $"{act.response.replacement.AddStartCapitalLetter()} was used as replacement. " +
                                             "</mark>"
                                         : "") +
                                 
                                     (!string.IsNullOrWhiteSpace(act.response.reinforceAfter)
-                                        ? "<mark class=\"gnx-bck-reinforcements\">" +  $"We finally give the child " +
-                                            $"{act.response.reinforceAfter.RemoveStartCapitalLetter()}. " +
+                                        ? "<mark class=\"gnx-bck-reinforcements\">" +  
+                                            $"{act.response.reinforceAfter.AddStartCapitalLetter()}. " +
                                             "</mark>"
                                         : "")
                                 : "");
@@ -135,7 +132,7 @@ namespace behavior_app.Models
                                                 "</mark>" +
                                                     (!string.IsNullOrWhiteSpace(intervention.description)
                                                         ? "<mark class=\"gnx-bck-interventions\">" + 
-                                                            $"We applied {intervention.description.RemoveStartCapitalLetter()} " +
+                                                            $"{intervention.description.AddStartCapitalLetter()} " +
                                                             $"to intervene the behavior and the client " +
                                                             "</mark>"
                                                         : "");
@@ -150,17 +147,16 @@ namespace behavior_app.Models
                                                                 "</mark>" +
                                                                 (!string.IsNullOrWhiteSpace(intervention.response.reinforceBefore)
                                                                     ? "<mark class=\"gnx-bck-reinforcements\">" + 
-                                                                        $"We reinforce this positive response with " +
-                                                                        $"{intervention.response.reinforceBefore.RemoveStartCapitalLetter()}. " +
+                                                                        $"{intervention.response.reinforceBefore.AddStartCapitalLetter()}. " +
                                                                         "</mark>"
                                                                     : "") +
                                                                 (!string.IsNullOrWhiteSpace(intervention.response.replacement)
-                                                                    ? "<mark class=\"gnx-bck-replacements\">" + $"We apply a " +
-                                                                        $"{intervention.response.replacement.RemoveStartCapitalLetter()}. " +
+                                                                    ? "<mark class=\"gnx-bck-replacements\">" + 
+                                                                        $"{intervention.response.replacement.AddStartCapitalLetter()} was used as replacement. " +
                                                                         "</mark>"
                                                                     : "") +
                                                                 (!string.IsNullOrWhiteSpace(intervention.response.reinforceAfter)
-                                                                    ? "<mark class=\"gnx-bck-reinforcements\">" + $"We finally give the child " +
+                                                                    ? "<mark class=\"gnx-bck-reinforcements\">" + 
                                                                         $"{intervention.response.reinforceAfter.RemoveStartCapitalLetter()}. " +
                                                                         "</mark>"
                                                                     : "")

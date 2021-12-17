@@ -176,6 +176,9 @@ function MyNote(){
             }
         ])
     }
+    const addOtherEvent = () => {
+        alert('Not implemented yet');
+    }
     const removeActivity = i => e => {
         e.preventDefault();
         const activitiesCopy = [...activities];
@@ -436,7 +439,13 @@ function MyNote(){
                         <div class="text-right">
                             <button class="ba-button ba-button-transparent"
                                     onClick={addActivity}>
-                                ADD ACTIVITY
+                                ADD SCHED. ACTIVITY
+                            </button>
+                        </div>   
+                        <div class="text-right">
+                            <button class="ba-button ba-button-transparent"
+                                    onClick={addOtherEvent}>
+                                ADD OTHER EVENT
                             </button>
                         </div>    
                     </div>
