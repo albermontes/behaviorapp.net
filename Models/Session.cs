@@ -86,8 +86,11 @@ namespace behavior_app.Models
             var activitiesSummary = "";
             foreach (var act in myNote.activities)
             {
-                var activity = "<mark class=\"gnx-bck-activities\">" +
-                    $"After {act.description.RemoveStartCapitalLetter()} the client " + 
+                var activity = 
+                    "<mark class=\"gnx-bck-activities\">" +
+                    (act.description == "other" 
+                    ? ""
+                    : $"After {act.description.RemoveStartCapitalLetter()} the client ") + 
                     "</mark>";
                 if (!string.IsNullOrWhiteSpace(act.response.label))
                 {
@@ -96,8 +99,10 @@ namespace behavior_app.Models
                         case "POSITIVE":
                             activity +=
                                 (!string.IsNullOrWhiteSpace(act.response.description)
-                                ? "<mark class=\"gnx-bck-transitions\">" + 
-                                    $"{act.response.description}. " + 
+                                ? "<mark class=\"gnx-bck-transitions\">" +
+                                    (act.description == "other" 
+                                    ? $"{act.response.description.AddStartCapitalLetter()}. " 
+                                    : $"{act.response.description}. ") + 
                                     "</mark>" +
                                     (!string.IsNullOrWhiteSpace(act.response.reinforceBefore)
                                         ? "<mark class=\"gnx-bck-reinforcements\">" + 
@@ -128,7 +133,10 @@ namespace behavior_app.Models
                                                ? "an"
                                                : "a";
                                     activity += "<mark class=\"gnx-bck-behaviors\">" +
-                                                $"starts {aJoin} {intervention.behavior.RemoveStartCapitalLetter()}. " +
+                                                (act.description == "other" 
+                                                ? $"{intervention.behavior.RemoveStartCapitalLetter()}. "
+                                                : $"starts {aJoin} {intervention.behavior.RemoveStartCapitalLetter()}. ") +
+                                                $"{intervention.behaviorDescription.AddStartCapitalLetter()}. " +
                                                 "</mark>" +
                                                     (!string.IsNullOrWhiteSpace(intervention.description)
                                                         ? "<mark class=\"gnx-bck-interventions\">" + 
@@ -205,6 +213,7 @@ namespace behavior_app.Models
         public string description { get; set; }
         public MyResponse response { get; set; }
         public string behavior { get; set; }
+        public string behaviorDescription { get; set; }
     }
     public class MyResponse
     {

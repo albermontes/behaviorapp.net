@@ -1,164 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../css/site.css';
-import deleteIcon from '../img/ba-icon-delete.svg';
 import logo from '../img/logo.png';
 import left from '../img/ba-arrow-left.svg';
 import right from '../img/ba-arrow-right.svg';
+import MyNoteSummary from './MyNoteSummary.js';
+import MyActivity from './MyActivity';
+import { locations, caregivers, BAD_TAG } from './data';
+
 {/*
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 const animatedComponents = makeAnimated();
 */}
-const activityDescriptions = [
-    "",
-    "Playing simples and structured didactic activities",
-    "Doing some exercises for the focus of attention on the RBT’s" ,
-    "Making some designs using the Legos’ set",
-    "Playing and making figures and forms with play dough",
-    "Playing with puzzles",
-    "Playing with mazes",
-    "Playing matching activities (Word-pictures-numbers)",
-    "Coloring and drawing",
-    "Playing some boards game",
-    "Playing video games"
-];
 
-const interventionsTest = [
-    {value:'DRA (Differential reinforcement alternative behavior)', label:'DRA (Differential reinforcement alternative behavior)'},
-    {value:'DRO (Differential reinforcement other behavior)', label:'DRO (Differential reinforcement other behavior)'},
-    {value:'Planned ignoring', label:'Planned ignoring', isDisabled: false},
-];
-const interventionDescriptions = [
-    "",
-    "DRA (Differential reinforcement alternative behavior)",
-    "DRO (Differential reinforcement other behavior)",
-    "DRI (Differential reinforcement of incompatible behavior)",
-    "Planned ignoring",
-    "Response block (Blocked the client for a few seconds, without restraint)",
-    "Redirection to escape from demands",
-    "Redirection to request for tangible",
-    "Redirection to attention seeking",
-    "Escape extinction",
-    "Attention independent response delivery",
-    "Environmental / Antecedent manipulations",
-    "Incidental teaching",
-    "Modeling",
-    "Shaping",
-    "Provides choices",
-    "Premack Principle",
-    "Task modification",
-    "Alternative sensory-stimulation",
-    "Non-contingent attention"
-];
-const behaviorDescriptions = [
-    "",
-    "Tantrum", 
-    "Disruption behavior",
-    "Repetitive stereotyped behaviors",
-    "Climbing",
-    "Inappropriate play",
-    "Property destruction", 
-    "Physical aggression",
-    "Verbal aggression",
-    "Off task non-disruptive behavior",
-    "Stereotypy behavior",
-    "Onychophagia",
-    "Self-injurious behavior", 
-    "Task refusal",
-    "Onychophagy",
-    "Inappropriate social interactions",
-    "Excessive motor activities"
-];
-const reinforceDescriptions = [
-    "",
-    "Praises",
-    "Edibles items",
-    "A give me five",
-    "Time to play a video game",
-    "Time to play outside in the yard",
-    "Time to play in the common areas of the condo",
-    "Time to play a favorite board game or toy"
-];
-const replacementDescriptions = [
-    "",
-    "Accepting delay of attention",
-    "Escape training",
-    "Appropriate attention seeking",
-    "Appropriate asking for tangible",
-    "Accepting no response",
-    "Tact training",
-    "Turn-Taking skills", 
-    "Social skills training",
-    "Task completion"
-];
-
-const locations = [
-    '',
-    'At home',
-    'At school',
-    'In the park'
-];
-
-const caregivers = [
-    'Mother',
-    'Father',
-    'Grandmother'    
-]
-
-const BAD_TAG = 'NEGATIVE';
-const OK_TAG = 'POSITIVE';
-
-function MyNoteSummary(props){
-    const { note } = props;
-    const [summary, setSummary] = useState('');
-    const [editableSummary, setEditableSummary] = useState('');
-
-    useEffect(() => {
-        fetch('notesummary?note=' + note)
-            .then(response => response.json())
-            .then(responseJson => {
-                setSummary(responseJson.summary)
-            })
-    }, [note])
-
-    const copySummary = () => {
-        var summary2 = summary;
-        summary2 = summary2.replaceAll('</mark>', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-introduction\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-conclusion\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-activities\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-transitions\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-replacements\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-behaviors\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-reinforcements\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-interventions\">', '');
-        setEditableSummary(summary2);
-    }
-
-    const setNewEditableSummary = e => {
-        setEditableSummary(e.target.value);
-    }
-
-    return  (   <div>
-                    <div className="gnx-color-lightgray" 
-                        dangerouslySetInnerHTML={{ __html: summary }}>
-                    </div>
-                    <div class="text-right">
-                        <button class="ba-button ba-button-transparent"
-                                onClick={copySummary}>
-                            COPY SUMMARY
-                        </button>
-                    </div>
-                    <div className="gnx-color-lightgray" >
-                        <textarea className="form-control"
-                                    value={editableSummary}
-                                    onChange={setNewEditableSummary}/>
-                    </div>
-                </div>
-            )
-}
-
-function MyNote(){
+export default function MyNote(){
     const [activities, setActivities] = useState([]);
     const [step, setStep] = useState(1);
     const [detailInfo, setDetailInfo] = useState({
@@ -177,7 +32,14 @@ function MyNote(){
         ])
     }
     const addOtherEvent = () => {
-        alert('Not implemented yet');
+        setActivities([
+            ...activities,
+            { 
+                description: 'other',
+                response: { label: '' },
+                interventions: [] 
+            }
+        ])
     }
     const removeActivity = i => e => {
         e.preventDefault();
@@ -263,6 +125,11 @@ function MyNote(){
     const setResponseReplacement = i => e => {
         const activitiesCopy = [...activities];
         activitiesCopy.at(i).response.replacement = e.target.value;
+        setActivities(activitiesCopy);
+    }
+    const setInterventionNegativeResponse = i => int => e => {
+        const activitiesCopy = [...activities];
+        activitiesCopy.at(i).interventions.at(int).behaviorDescription = e.target.value;
         setActivities(activitiesCopy);
     }
     const setInterventionPositiveResponse = i => int => e => {
@@ -430,6 +297,7 @@ function MyNote(){
                                     onInterventionResponseChange={setInterventionResponse(i)}
                                     onInterventionDescriptionChange={setInterventionDescription(i)}
                                     onRemoveIntervention={removeIntervention(i)}
+                                    onInterventionNegativeResponseChange={setInterventionNegativeResponse(i)}
                                     onInterventionPositiveResponseChange={setInterventionPositiveResponse(i)}
                                     onInterventionReinforceBeforeChange={setInterventionReinforceBefore(i)}
                                     onInterventionReplacementChange={setInterventionReplacement(i)}
@@ -545,12 +413,11 @@ function MyNote(){
                                 {/*
                                 <pre className="gnx-color-lightgray">
                                     {JSON.stringify({
-                                            introduction: introduction,
-                                            activities: activities,
-                                            conclusion: conclusion
+                                            detailInfo: detailInfo,
+                                            activities: activities
                                        }, null, 2)}
-                                </pre>
-                                */}
+                                </pre>*/
+                                }
                             </div>
                         </div>
                         <div class="footer">
@@ -620,344 +487,3 @@ function MyNote(){
         </div>
     )
 }
-function MyIntervention(props){
-    const { index, actIndex, description, onDescriptionChange,
-            behavior, onBehaviorChange,
-            response, onResponseChange,
-            positiveResponse, onPositiveResponseChange,
-            reinforceBefore, onReinforceBeforeChange,
-            replacement, onReplacementChange,
-            reinforceAfter, onReinforceAfterChange
-    } = props;
-    
-    const positiveElement = response.label == OK_TAG
-        ? <MyPositiveResponse
-                positiveResponse={positiveResponse}
-                onPositiveResponseChange={onPositiveResponseChange}
-                reinforceBefore={reinforceBefore}
-                onReinforceBeforeChange={onReinforceBeforeChange}
-                replacement={replacement}
-                onReplacementChange={onReplacementChange}
-                reinforceAfter={reinforceAfter}
-                onReinforceAfterChange={onReinforceAfterChange}
-            />
-        : ''
-        const responseSelectionElement = description == ''
-        ? ''
-        :   <div className="form-group d-flex"   
-                    onChange={onResponseChange}
-                    hidden={description == ''}>
-                <label className="container_radio version_2">
-                    {OK_TAG}
-                    <input className="required valid"
-                            type="radio" 
-                            value={OK_TAG} 
-                            name={'act' + actIndex + '-int' + index} 
-                            checked={response.label == OK_TAG}/>
-                    <span className="checkmark"></span>
-                </label>
-                <label className="container_radio version_2 ml-5">
-                    {BAD_TAG}
-                    <input className="required valid"
-                            type="radio" 
-                            value={BAD_TAG} 
-                            name={'act' + actIndex + '-int' + index} 
-                            checked={response.label == BAD_TAG}/>
-                    <span className="checkmark"></span>
-                </label>
-            </div>
-
-    return (
-        <div>
-            <MyBehavior 
-                behavior={behavior}
-                onBehaviorChange={onBehaviorChange}
-            />
-             <div className="form-group">
-                <div className="styled-select clearfix">
-                    {/*<Select
-                        closeMenuOnSelect={false}
-                        components={animatedComponents}
-                        isMulti
-                        options={interventionsTest}/>
-                    */}
-                    <select 
-                            className="nice-select wide required" 
-                            onChange={onDescriptionChange} 
-                            value={description}>
-                        {interventionDescriptions.map(x =>
-                             <option value={x}
-                                    hidden={x == ''}>
-                                {x == '' ? 'Select an Intervention' : x}
-                            </option>  
-                        )}
-                    </select>
-                </div>
-            </div>
-            {responseSelectionElement}
-            {positiveElement}
-        </div>
-    )
-}
-function MyActivity(props){
-    const { index,
-            interventions, 
-            description, 
-            response, 
-            positiveResponse, 
-            reinforceBefore, 
-            replacement, 
-            reinforceAfter, 
-            onRemove,
-            onRemoveIntervention,
-            onInterventionDescriptionChange,
-            onBehaviorChange,
-            onInterventionResponseChange, 
-            onDescriptionChange,
-            onResponseChange,
-            onPositiveResponseChange,
-            onReinforceBeforeChange,
-            onReplacementChange,
-            onReinforceAfterChange,
-            onInterventionPositiveResponseChange,
-            onInterventionReinforceBeforeChange,
-            onInterventionReplacementChange,
-            onInterventionReinforceAfterChange
-    } = props;
-
-    const responseSelectionElement = description == ''
-        ? ''
-        :  <div className="form-group d-flex"   
-                    onChange={onResponseChange}
-                    hidden={description == ''}>
-                <label className="container_radio version_2">
-                    {OK_TAG}
-                    <input className="required valid"
-                            type="radio" 
-                            value={OK_TAG} 
-                            name={'act' + index} 
-                            checked={response.label == OK_TAG}/>
-                    <span className="checkmark"></span>
-                </label>
-                <label className="container_radio version_2 ml-5">
-                    {BAD_TAG}
-                    <input className="required valid"
-                            type="radio" 
-                            value={BAD_TAG} 
-                            name={'act' + index} 
-                            checked={response.label == BAD_TAG}/>
-                    <span className="checkmark"></span>
-                </label>
-            </div>
-
-    const responseActionsElement = description == ''
-        ? ''
-        :  response.label == OK_TAG 
-            ? <MyPositiveResponse 
-                positiveResponse={positiveResponse}
-                onPositiveResponseChange={onPositiveResponseChange}
-                reinforceBefore={reinforceBefore}
-                onReinforceBeforeChange={onReinforceBeforeChange}
-                replacement={replacement}
-                onReplacementChange={onReplacementChange}
-                reinforceAfter={reinforceAfter}
-                onReinforceAfterChange={onReinforceAfterChange}
-            />
-            : response.label == BAD_TAG
-                ? <MyNegativeResponse 
-                    actIndex={index}
-                    interventions={interventions}
-                    onRemove={onRemoveIntervention}
-                    onResponseChange={onInterventionResponseChange}
-                    onDescriptionChange={onInterventionDescriptionChange}
-                    onBehaviorChange={onBehaviorChange}
-                    onPositiveResponseChange={onInterventionPositiveResponseChange}
-                    onReinforceBeforeChange={onInterventionReinforceBeforeChange}
-                    onReplacementChange={onInterventionReplacementChange}
-                    onReinforceAfterChange={onInterventionReinforceAfterChange}
-                />
-                : ''
-
-    return (
-        <div  className="shadow p-4 mb-3 gnx-bck-darkgray ba-hover-darkgray">
-            <div>
-                <div className="d-flex justify-content-between">
-                    <div>
-                        <h4 class="font-weight-bold">{(index + 1) + (description == '' 
-                            ? ' Activity' 
-                            : ' ' + description) }
-                        </h4>
-                        <div className="pl-4">
-                            {response.label}
-                        </div>
-                    </div>
-                    <div>
-                        <button className="ba-button ba-button ba-button-action"
-                                onClick={onRemove}>
-                            <img src={deleteIcon} 
-                                    alt="" 
-                                    width="13"/>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            {/* all selects are rendering wrong */}
-            <div className="form-group">
-                <div className="styled-select clearfix">
-                    <select className="nice-select wide required"
-                            value={description}
-                            onChange={onDescriptionChange} >
-                        {activityDescriptions.map(x =>
-                             <option value={x}
-                                    hidden={x == ''}>
-                                {x == '' ? 'Select an Activity' : x}
-                            </option>  
-                        )}
-                    </select>
-                </div>
-            </div>
-            <div>
-                {responseSelectionElement}
-                {responseActionsElement}
-            </div>
-        </div>
-    )
-}
-function MyPositiveResponse(props){
-    const { positiveResponse, onPositiveResponseChange,
-            reinforceBefore, onReinforceBeforeChange,
-            replacement, onReplacementChange,
-            reinforceAfter, onReinforceAfterChange
-    } = props; 
-    return (
-        <div>
-            <div className="form-group">
-                <label>Response description</label>
-                <textarea className="form-control"
-                        placeholder="Description of what is this..."
-                        value={positiveResponse}
-                        onChange={onPositiveResponseChange}/>
-            </div>
-            <div class="form-group mt-5">
-                <div class="styled-select clearfix">
-                    <select className="nice-select wide required"
-                            value={reinforceBefore}
-                            onChange={onReinforceBeforeChange} >
-                        {reinforceDescriptions.map(x =>
-                             <option value={x}
-                                    hidden={x == ''}>
-                                {x == '' ? 'Select a Reinforce before Replacement' : x}
-                            </option>  
-                        )}
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="styled-select clearfix">
-                    <select className="nice-select wide required"
-                            value={replacement}
-                            onChange={onReplacementChange} >
-                        {replacementDescriptions.map(x =>
-                             <option value={x}
-                                    hidden={x == ''}>
-                                {x == '' ? 'Select a Replacement' : x}
-                            </option>  
-                        )}
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="styled-select clearfix">
-                    <select className="nice-select wide required"
-                            value={reinforceAfter}
-                            onChange={onReinforceAfterChange} >
-                        {reinforceDescriptions.map(x =>
-                             <option value={x}
-                                    hidden={x == ''}>
-                                {x == '' ? 'Select a Reinforce after Replacement' : x}
-                            </option>  
-                        )}
-                    </select>
-                </div>
-            </div>
-        </div>
-    )
-}
-function MyNegativeResponse(props){
-    const { actIndex,
-            interventions, 
-            onRemove,
-            onResponseChange, 
-            onDescriptionChange, 
-            onBehaviorChange, 
-            onPositiveResponseChange,
-            onReinforceBeforeChange,
-            onReplacementChange,
-            onReinforceAfterChange 
-    } = props;
-    
-    return (
-        <div>
-            { interventions.map((a, i) => (
-                    <div>
-                        <div className="d-flex justify-content-between">
-                            <div>
-                                <h5>{a.behavior}</h5>
-                            </div>
-                            <div className="pt-2">
-                                <button className="pt-2 ba-button ba-button ba-button-action"
-                                        onClick={onRemove(i)}>
-                                    <img src={deleteIcon} 
-                                            alt="" 
-                                            width="13"/>
-                                </button>
-                            </div>
-                        </div>
-                        <MyIntervention
-                            actIndex={actIndex}
-                            index={i}
-                            response={a.response}
-                            onResponseChange={onResponseChange(i)}
-                            behavior={a.behavior}
-                            onBehaviorChange={onBehaviorChange(i)}
-                            description={a.description}
-                            onDescriptionChange={onDescriptionChange(i)}
-                            positiveResponse={a.response.description}
-                            onPositiveResponseChange={onPositiveResponseChange(i)}
-                            reinforceBefore={a.response.reinforceBefore}
-                            onReinforceBeforeChange={onReinforceBeforeChange(i)}
-                            replacement={a.response.replacement}
-                            onReplacementChange={onReplacementChange(i)}
-                            reinforceAfter={a.response.reinforceAfter}
-                            onReinforceAfterChange={onReinforceAfterChange(i)}
-                        />
-                    </div>
-                )
-            )}
-        </div>
-    )
-}
-
-function MyBehavior(props){
-    const { behavior, onBehaviorChange } = props;
-    return (
-        <div className="form-group">
-            <div className="styled-select clearfix">
-                <select className="nice-select wide required" 
-                        onChange={onBehaviorChange} 
-                        value={behavior}>
-                    {behaviorDescriptions.map(x =>
-                         <option value={x}
-                                hidden={x == ''}>
-                            {x == '' ? 'Select a Behavior' : x}
-                        </option>  
-                    )}
-                </select>
-            </div>
-        </div>
-    )
-}
-
-
-export default MyNote;
