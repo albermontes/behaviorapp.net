@@ -108,7 +108,7 @@ namespace behavior_app.Models
                                     ? $"{act.response.reinforceBefore.Format("gnx-bck-reinforcements")}."
                                     : "") +
                                 (act.response.replacement != null 
-                                    ? $"{act.response.replacement.Format("gnx-bck-replacements")}." +
+                                    ? $"{act.response.replacement.Format("gnx-bck-replacements")}" +
                                     (act.response.replacement.Count() > 1 ? " were applied." : " was applied.")
                                     : "") +
                                 (act.response.reinforceAfter != null 
@@ -153,7 +153,7 @@ namespace behavior_app.Models
                                                             ? $"{intervention.response.reinforceBefore.Format("gnx-bck-reinforcements")}."
                                                             : "") +
                                                         (intervention.response.replacement != null
-                                                            ? $"{intervention.response.replacement.Format("gnx-bck-replacements")}." +
+                                                            ? $"{intervention.response.replacement.Format("gnx-bck-replacements")}" +
                                                             (intervention.response.replacement.Count() > 1 ? " were applied." : " was applied.")
                                                             : "") +
                                                         (intervention.response.reinforceAfter != null
