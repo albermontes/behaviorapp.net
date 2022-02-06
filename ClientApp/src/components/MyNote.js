@@ -429,32 +429,13 @@ export default function MyNote(){
                                         detailInfo: detailInfo,
                                         activities: activities
                                     })}/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
+                              {/*
                                <pre className="gnx-color-lightgray">
                                     {JSON.stringify({
                                             detailInfo: detailInfo,
                                             activities: activities
                                        }, null, 2)}
-                                </pre>
+                                </pre> */}
                             </div>
                         </div>
                         <div class="footer">
