@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+import CreatableSelect from 'react-select/creatable';
 import MyBehavior from './MyBehavior';
 import MyPositiveResponse from './MyPositiveResponse';
 import { OK_TAG, BAD_TAG, interventionDescriptions } from './data';
+
 
 export default function MyIntervention(props){
     const { index, actIndex, description, onDescriptionChange,
@@ -11,8 +13,24 @@ export default function MyIntervention(props){
             negativeResponse, onNegativeResponseChange,
             reinforceBefore, onReinforceBeforeChange,
             replacement, onReplacementChange,
-            reinforceAfter, onReinforceAfterChange
+            reinforceAfter, onReinforceAfterChange,
+            reinforceResponse, onReinforceResponseChange,
+            onReinforceDescriptionChange
     } = props;
+
+    const customOptionStyle = {
+        option: (provided, state) => ({
+            ...provided,
+            color : 'black'
+        })
+    }
+
+    const [interventionOption, setOption] = useState(description);
+
+    const setInterventionOption = x => {
+        setOption(x);
+        onDescriptionChange(x);
+    }
     
     const positiveElement = response.label == OK_TAG
         ? <MyPositiveResponse
@@ -24,9 +42,12 @@ export default function MyIntervention(props){
                 onReplacementChange={onReplacementChange}
                 reinforceAfter={reinforceAfter}
                 onReinforceAfterChange={onReinforceAfterChange}
+                reinforceResponse={reinforceResponse}
+                onReinforceDescriptionChange={onReinforceDescriptionChange}
+                onReinforceResponseChange={onReinforceResponseChange}
             />
         : ''
-        const responseSelectionElement = description == ''
+        const responseSelectionElement = description == null
         ? ''
         :   <div className="form-group d-flex"   
                     onChange={onResponseChange}
@@ -62,13 +83,15 @@ export default function MyIntervention(props){
              <div className="form-group">
                 <label>What intervention did you apply?</label>
                 <div className="styled-select clearfix">
-                    {/*<Select
-                        closeMenuOnSelect={false}
-                        components={animatedComponents}
+                    <CreatableSelect
+                        styles={customOptionStyle}
+                        defaultValue={interventionOption}
+                        onChange={setInterventionOption}
                         isMulti
-                        options={interventionsTest}/>
-                    */}
-                    <select 
+                        placeholder="Select the Interventions used"
+                        options={interventionDescriptions}
+                    />
+                    {/* <select 
                             className="nice-select wide required" 
                             onChange={onDescriptionChange} 
                             value={description}>
@@ -78,7 +101,7 @@ export default function MyIntervention(props){
                                 {x == '' ? 'Select an Intervention' : x}
                             </option>  
                         )}
-                    </select>
+                    </select> */}
                 </div>
             </div>
             {responseSelectionElement}

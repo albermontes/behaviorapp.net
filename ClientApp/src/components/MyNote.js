@@ -7,12 +7,6 @@ import MyNoteSummary from './MyNoteSummary.js';
 import MyActivity from './MyActivity';
 import { locations, caregivers, BAD_TAG } from './data';
 
-{/*
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
-const animatedComponents = makeAnimated();
-*/}
-
 export default function MyNote(){
     const [activities, setActivities] = useState([]);
     const [step, setStep] = useState(1);
@@ -26,7 +20,7 @@ export default function MyNote(){
             ...activities,
             { 
                 description: '',
-                response: { label: '' },
+                response: { label: '', reinforceResponse: { label: '', description: '' } },
                 interventions: [] 
             }
         ])
@@ -36,7 +30,7 @@ export default function MyNote(){
             ...activities,
             { 
                 description: 'other',
-                response: { label: '' },
+                response: { label: '', reinforceResponse: { label: '', description: '' } },
                 interventions: [] 
             }
         ])
@@ -52,19 +46,20 @@ export default function MyNote(){
         const activitiesCopy = [...activities];
         activitiesCopy.at(i).interventions.splice(int);
         if(int > 0)
-            activitiesCopy.at(i).interventions.at(int-1).response = { label: '' };
+            activitiesCopy.at(i).interventions.at(int-1).response = { label: '', reinforceResponse: { label: '', description: '' } };
         else
-            activitiesCopy.at(i).response = { label: '' };
+            activitiesCopy.at(i).response = { label: '', reinforceResponse: { label: '', description: '' } };
         setActivities(activitiesCopy);
     }
     const setResponse = i => e => {
         const activitiesCopy = [...activities];
-        activitiesCopy.at(i).response = { label: e.target.value };
+        activitiesCopy.at(i).response.label = e.target.value;
         if(e.target.value == BAD_TAG){
             activitiesCopy.at(i).interventions.splice(0,
                 0,{
-                    description: '',
-                    response: { label: '' }
+                    behavior: [],
+                    description: [],
+                    response: { label: '', reinforceResponse: { label: '', description: '' } }
             });
         }else{
             activitiesCopy.at(i).interventions.splice(0);
@@ -73,13 +68,13 @@ export default function MyNote(){
     }
     const setInterventionResponse = i => int => e => {
         const activitiesCopy = [...activities];
-        activitiesCopy.at(i).interventions.at(int).response = { 
-            label: e.target.value };
+        activitiesCopy.at(i).interventions.at(int).response.label = e.target.value;
         if(e.target.value == BAD_TAG){
             activitiesCopy.at(i).interventions.splice(int+1,
                 activitiesCopy.at(i).interventions.length,{
-                    description: '',
-                    response: { label: '' }
+                    behavior: [],
+                    description: [],
+                    response: { label: '', reinforceResponse: { label: '', description: '' } }
             });
         }else{
             activitiesCopy.at(i).interventions.splice(int+1);
@@ -89,21 +84,20 @@ export default function MyNote(){
     const setDescription = i => e => {
         const activitiesCopy = [...activities];
         activitiesCopy.at(i).description = e.target.value;
-        activitiesCopy.at(i).response = { label: '', interventions: [] }
+        activitiesCopy.at(i).response = { label: '', interventions: [], reinforceResponse: { label: '', description: '' } }
         setActivities(activitiesCopy);
     }
     const setInterventionDescription = i => int => e => {
         const activitiesCopy = [...activities];
-        activitiesCopy.at(i).interventions.at(int).description = e.target.value;
-        activitiesCopy.at(i).interventions.at(int).response = { label: '' };
+        activitiesCopy.at(i).interventions.at(int).description = e;
+        activitiesCopy.at(i).interventions.at(int).response = { label: '', reinforceResponse: { label: '', description: '' } };
         activitiesCopy.at(i).interventions.splice(int+1);
         setActivities(activitiesCopy);
     }
     const setInterventionBehavior = i => int => e => {
         const activitiesCopy = [...activities];
-        activitiesCopy.at(i).interventions.at(int).behavior = e.target.value;
-        activitiesCopy.at(i).interventions.at(int).response = { label: '' };
-        activitiesCopy.at(i).interventions.at(int).description = '';
+        activitiesCopy.at(i).interventions.at(int).behavior = e;
+        activitiesCopy.at(i).interventions.at(int).response = { label: '', reinforceResponse: { label: '', description: '' } };
         activitiesCopy.at(i).interventions.splice(int+1);
         setActivities(activitiesCopy);
     }
@@ -114,17 +108,27 @@ export default function MyNote(){
     }
     const setResponseReinforceBefore = i => e => {
         const activitiesCopy = [...activities];
-        activitiesCopy.at(i).response.reinforceBefore = e.target.value;
+        activitiesCopy.at(i).response.reinforceBefore = e;
         setActivities(activitiesCopy);
     }
     const setResponseReinforceAfter = i => e => {
         const activitiesCopy = [...activities];
-        activitiesCopy.at(i).response.reinforceAfter = e.target.value;
+        activitiesCopy.at(i).response.reinforceAfter = e;
+        setActivities(activitiesCopy);
+    }
+    const setReinforceResponse = i => e => {
+        const activitiesCopy = [...activities];
+        activitiesCopy.at(i).response.reinforceResponse.label = e.target.value;
+        setActivities(activitiesCopy);
+    }
+    const setReinforceDescription = i => e => {
+        const activitiesCopy = [...activities];
+        activitiesCopy.at(i).response.reinforceResponse.description = e.target.value;
         setActivities(activitiesCopy);
     }
     const setResponseReplacement = i => e => {
         const activitiesCopy = [...activities];
-        activitiesCopy.at(i).response.replacement = e.target.value;
+        activitiesCopy.at(i).response.replacement = e;
         setActivities(activitiesCopy);
     }
     const setInterventionNegativeResponse = i => int => e => {
@@ -139,17 +143,27 @@ export default function MyNote(){
     }
     const setInterventionReinforceBefore = i => int => e => {
         const activitiesCopy = [...activities];
-        activitiesCopy.at(i).interventions.at(int).response.reinforceBefore = e.target.value;
+        activitiesCopy.at(i).interventions.at(int).response.reinforceBefore = e;
+        setActivities(activitiesCopy);
+    }
+    const setInterventionReinforceResponse = i => int => e => {
+        const activitiesCopy = [...activities];
+        activitiesCopy.at(i).interventions.at(int).response.reinforceResponse.label = e.target.value;
+        setActivities(activitiesCopy);
+    }
+    const setInterventionReinforceDescription = i => int => e => {
+        const activitiesCopy = [...activities];
+        activitiesCopy.at(i).interventions.at(int).response.reinforceResponse.description = e.target.value;
         setActivities(activitiesCopy);
     }
     const setInterventionReplacement = i => int => e => {
         const activitiesCopy = [...activities];
-        activitiesCopy.at(i).interventions.at(int).response.replacement = e.target.value;
+        activitiesCopy.at(i).interventions.at(int).response.replacement = e;
         setActivities(activitiesCopy);
     }
     const setInterventionReinforceAfter = i => int => e => {
         const activitiesCopy = [...activities];
-        activitiesCopy.at(i).interventions.at(int).response.reinforceAfter = e.target.value;
+        activitiesCopy.at(i).interventions.at(int).response.reinforceAfter = e;
         setActivities(activitiesCopy);
     }
     const setLocation = e => {
@@ -302,6 +316,11 @@ export default function MyNote(){
                                     onInterventionReinforceBeforeChange={setInterventionReinforceBefore(i)}
                                     onInterventionReplacementChange={setInterventionReplacement(i)}
                                     onInterventionReinforceAfterChange={setInterventionReinforceAfter(i)}
+                                    reinforceResponse={a.response.reinforceResponse}
+                                    onReinforceResponseChange={setReinforceResponse(i)}
+                                    onReinforceDescriptionChange={setReinforceDescription(i)}
+                                    onInterventionReinforceResponseChange={setInterventionReinforceResponse(i)}
+                                    onInterventionReinforceDescriptionChange={setInterventionReinforceDescription(i)}
                                 />
                             ))}
                         <div class="text-right">
@@ -410,14 +429,32 @@ export default function MyNote(){
                                         detailInfo: detailInfo,
                                         activities: activities
                                     })}/>
-                                {/*
-                                <pre className="gnx-color-lightgray">
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                               <pre className="gnx-color-lightgray">
                                     {JSON.stringify({
                                             detailInfo: detailInfo,
                                             activities: activities
                                        }, null, 2)}
-                                </pre>*/
-                                }
+                                </pre>
                             </div>
                         </div>
                         <div class="footer">

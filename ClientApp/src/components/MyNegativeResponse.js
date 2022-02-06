@@ -13,7 +13,9 @@ export default function MyNegativeResponse(props){
             onNegativeResponseChange,
             onReinforceBeforeChange,
             onReplacementChange,
-            onReinforceAfterChange 
+            onReinforceAfterChange,
+            onReinforceResponseChange,
+            onReinforceDescriptionChange
     } = props;
     
     return (
@@ -22,7 +24,7 @@ export default function MyNegativeResponse(props){
                     <div>
                         <div className="d-flex justify-content-between">
                             <div>
-                                <h5>{a.behavior}</h5>
+                                <h5>{i+1} Behavior</h5>
                             </div>
                             <div className="pt-2">
                                 <button className="pt-2 ba-button ba-button ba-button-action"
@@ -52,6 +54,9 @@ export default function MyNegativeResponse(props){
                             onReplacementChange={onReplacementChange(i)}
                             reinforceAfter={a.response.reinforceAfter}
                             onReinforceAfterChange={onReinforceAfterChange(i)}
+                            reinforceResponse={a.response.reinforceResponse}
+                            onReinforceResponseChange={onReinforceResponseChange(i)}
+                            onReinforceDescriptionChange={onReinforceDescriptionChange(i)}
                         />
                     </div>
                 )

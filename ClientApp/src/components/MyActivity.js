@@ -28,7 +28,12 @@ export default function MyActivity(props){
             onInterventionPositiveResponseChange,
             onInterventionReinforceBeforeChange,
             onInterventionReplacementChange,
-            onInterventionReinforceAfterChange
+            onInterventionReinforceAfterChange,
+            reinforceResponse, 
+            onReinforceResponseChange,
+            onReinforceDescriptionChange,
+            onInterventionReinforceResponseChange,
+            onInterventionReinforceDescriptionChange
     } = props;
 
     const responseSelectionElement = 
@@ -74,6 +79,9 @@ export default function MyActivity(props){
                 onReplacementChange={onReplacementChange}
                 reinforceAfter={reinforceAfter}
                 onReinforceAfterChange={onReinforceAfterChange}
+                reinforceResponse={reinforceResponse}
+                onReinforceDescriptionChange={onReinforceDescriptionChange}
+                onReinforceResponseChange={onReinforceResponseChange}
             />
             : response.label == BAD_TAG
                 ? <MyNegativeResponse 
@@ -88,6 +96,8 @@ export default function MyActivity(props){
                     onReinforceBeforeChange={onInterventionReinforceBeforeChange}
                     onReplacementChange={onInterventionReplacementChange}
                     onReinforceAfterChange={onInterventionReinforceAfterChange}
+                    onReinforceResponseChange={onInterventionReinforceResponseChange}
+                    onReinforceDescriptionChange={onInterventionReinforceDescriptionChange}
                 />
                 : ''
 

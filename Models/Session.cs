@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -86,12 +85,12 @@ namespace behavior_app.Models
             var activitiesSummary = "";
             foreach (var act in myNote.activities)
             {
-                var activity = 
-                    "<mark class=\"gnx-bck-activities\">" +
-                    (act.description == "other" 
-                    ? ""
-                    : $"After {act.description.RemoveStartCapitalLetter()} the client ") + 
-                    "</mark>";
+                var activity =
+                     (act.description == "other"
+                            ? ""
+                            :   "<mark class=\"gnx-bck-activities\">" +
+                                $"After {act.description.RemoveStartCapitalLetter()} " + 
+                                "</mark>");
                 if (!string.IsNullOrWhiteSpace(act.response.label))
                 {
                     switch (act.response.label)
@@ -99,76 +98,72 @@ namespace behavior_app.Models
                         case "POSITIVE":
                             activity +=
                                 (!string.IsNullOrWhiteSpace(act.response.description)
-                                ? "<mark class=\"gnx-bck-transitions\">" +
-                                    (act.description == "other" 
-                                    ? $"{act.response.description.AddStartCapitalLetter()}. " 
-                                    : $"{act.response.description}. ") + 
-                                    "</mark>" +
-                                    (!string.IsNullOrWhiteSpace(act.response.reinforceBefore)
-                                        ? "<mark class=\"gnx-bck-reinforcements\">" + 
-                                            $"{act.response.reinforceBefore.AddStartCapitalLetter()}. " +
-                                            "</mark>"
-                                        : "") +
-                                
-                                    (!string.IsNullOrWhiteSpace(act.response.replacement)
-                                        ? "<mark class=\"gnx-bck-replacements\">" + 
-                                            $"{act.response.replacement.AddStartCapitalLetter()} was used as replacement. " +
-                                            "</mark>"
-                                        : "") +
-                                
-                                    (!string.IsNullOrWhiteSpace(act.response.reinforceAfter)
-                                        ? "<mark class=\"gnx-bck-reinforcements\">" +  
-                                            $"{act.response.reinforceAfter.AddStartCapitalLetter()}. " +
-                                            "</mark>"
-                                        : "")
-                                : "");
+                                    ?   "<mark class=\"gnx-bck-transitions\">" +
+                                            (act.description == "other"
+                                                ? $"{act.response.description.AddStartCapitalLetter()}. "
+                                                : $"{act.response.description}. ") +
+                                        "</mark>"
+                                    : "" ) +
+                                (act.response.reinforceBefore != null
+                                    ? $"{act.response.reinforceBefore.Format("gnx-bck-reinforcements")}."
+                                    : "") +
+                                (act.response.replacement != null 
+                                    ? $"{act.response.replacement.Format("gnx-bck-replacements")}." +
+                                    (act.response.replacement.Count() > 1 ? " were applied." : " was applied.")
+                                    : "") +
+                                (act.response.reinforceAfter != null 
+                                    ? $"{act.response.reinforceAfter.Format("gnx-bck-reinforcements")}." 
+                                    : "") +
+                                (act.response.reinforceResponse != null
+                                                        && !string.IsNullOrWhiteSpace(act.response.reinforceResponse.label)
+                                                        && !string.IsNullOrWhiteSpace(act.response.reinforceResponse.description)
+                                                            ? $"{act.response.reinforceResponse.description.AddStartCapitalLetter()}."
+                                                            : "");
                             break;
                         case "NEGATIVE":
                             if (act.interventions.Any())
                             {
                                 foreach (var intervention in act.interventions)
                                 {
-                                    var aJoin = !string.IsNullOrWhiteSpace(intervention.behavior) &&
-                                                   intervention.behavior.StartsWithVocal()
-                                               ? "an"
-                                               : "a";
                                     activity += "<mark class=\"gnx-bck-behaviors\">" +
-                                                (act.description == "other" 
-                                                ? $"{intervention.behavior.RemoveStartCapitalLetter()}. "
-                                                : $"starts {aJoin} {intervention.behavior.RemoveStartCapitalLetter()}. ") +
-                                                $"{intervention.behaviorDescription.AddStartCapitalLetter()}. " +
+                                                (string.IsNullOrWhiteSpace(intervention.behaviorDescription) && intervention.behavior != null
+                                                    ? (act.description == "other"
+                                                        ? $"The client shows {intervention.behavior.Format(null, false)}."
+                                                        : $"the client starts {intervention.behavior.Format(null, false)}. ")
+                                                    : "") +
+                                                (!string.IsNullOrWhiteSpace(intervention.behaviorDescription)
+                                                    ? $"{intervention.behaviorDescription.AddStartCapitalLetter()}. "
+                                                    : "") +
                                                 "</mark>" +
-                                                    (!string.IsNullOrWhiteSpace(intervention.description)
-                                                        ? "<mark class=\"gnx-bck-interventions\">" + 
-                                                            $"{intervention.description.AddStartCapitalLetter()} " +
-                                                            $"to intervene the behavior and the client " +
-                                                            "</mark>"
-                                                        : "");
+                                                (intervention.description != null && intervention.description.Any()
+                                                    ? intervention.description.Format("gnx-bck-interventions") +
+                                                        (intervention.description.Count() > 1 ? " were applied." : " was applied.")
+                                                    : "");
 
                                     if (!string.IsNullOrWhiteSpace(intervention.response.label))
                                     {
                                         if(intervention.response.label == "POSITIVE")
                                         {
                                             activity += (!string.IsNullOrWhiteSpace(intervention.response.description)
-                                                            ? "<mark class=\"gnx-bck-transitions\">" + 
+                                                            ? "<mark class=\"gnx-bck-transitions\">" +
                                                                 $"{intervention.response.description}. " +
-                                                                "</mark>" +
-                                                                (!string.IsNullOrWhiteSpace(intervention.response.reinforceBefore)
-                                                                    ? "<mark class=\"gnx-bck-reinforcements\">" + 
-                                                                        $"{intervention.response.reinforceBefore.AddStartCapitalLetter()}. " +
-                                                                        "</mark>"
-                                                                    : "") +
-                                                                (!string.IsNullOrWhiteSpace(intervention.response.replacement)
-                                                                    ? "<mark class=\"gnx-bck-replacements\">" + 
-                                                                        $"{intervention.response.replacement.AddStartCapitalLetter()} was used as replacement. " +
-                                                                        "</mark>"
-                                                                    : "") +
-                                                                (!string.IsNullOrWhiteSpace(intervention.response.reinforceAfter)
-                                                                    ? "<mark class=\"gnx-bck-reinforcements\">" + 
-                                                                        $"{intervention.response.reinforceAfter.RemoveStartCapitalLetter()}. " +
-                                                                        "</mark>"
-                                                                    : "")
-                                                            : "");
+                                                                "</mark>"
+                                                            : "") +
+                                                        (intervention.response.reinforceBefore != null
+                                                            ? $"{intervention.response.reinforceBefore.Format("gnx-bck-reinforcements")}."
+                                                            : "") +
+                                                        (intervention.response.replacement != null
+                                                            ? $"{intervention.response.replacement.Format("gnx-bck-replacements")}." +
+                                                            (intervention.response.replacement.Count() > 1 ? " were applied." : " was applied.")
+                                                            : "") +
+                                                        (intervention.response.reinforceAfter != null
+                                                            ? $"{intervention.response.reinforceAfter.Format("gnx-bck-reinforcements")}."
+                                                            : "") + 
+                                                        (intervention.response.reinforceResponse != null 
+                                                            && !string.IsNullOrWhiteSpace(intervention.response.reinforceResponse.label) 
+                                                            && !string.IsNullOrWhiteSpace(intervention.response.reinforceResponse.description)
+                                                                ? $"{intervention.response.reinforceResponse.description.AddStartCapitalLetter()}."
+                                                                : "");
                                         }
                                     }
                                 }
@@ -187,40 +182,5 @@ namespace behavior_app.Models
             };
         }
     }
-    public class MyNote
-    {
-        public MyDetailInfo detailInfo{ get; set; }
-        public List<MyActivity> activities { get; set; }
 
-    }
-    public class MyDetailInfo
-    {
-        public string location { get; set; }
-        public List<string> caregivers { get; set; }
-        public string antecedent { get; set; }
-        public string healthSummary { get; set; }
-        public string familyFeedback { get; set; }
-        public string caregiverCompetency { get; set; }
-    }
-    public class MyActivity
-    {
-        public string description { get; set; }
-        public MyResponse response { get; set; }
-        public List<MyIntervention> interventions { get; set; }
-    }
-    public class MyIntervention
-    {
-        public string description { get; set; }
-        public MyResponse response { get; set; }
-        public string behavior { get; set; }
-        public string behaviorDescription { get; set; }
-    }
-    public class MyResponse
-    {
-        public string label { get; set; }
-        public string description { get; set; }
-        public string reinforceBefore { get; set; }
-        public string replacement { get; set; }
-        public string reinforceAfter { get; set; }
-    }
 }

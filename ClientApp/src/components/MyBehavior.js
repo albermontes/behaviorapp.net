@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import CreatableSelect from 'react-select/creatable';
 import { behaviorDescriptions } from './data';
 
 export default function MyBehavior(props){
     const { behavior, onBehaviorChange,
             negativeResponse, onNegativeResponseChange } = props;
+    
+    const [behaviorOption, setOption] = useState(behavior);
+    const setBehaviorOption = x => {
+        setOption(x);
+        onBehaviorChange(x);
+    }
+    const customOptionStyle = {
+        option: (provided, state) => ({
+            ...provided,
+            color : 'black'
+        })
+    }
     return (
         <div>
             <div className="form-group">
                 <label>What behavior the client shows?</label>
                 <div className="styled-select clearfix">
-                    <select className="nice-select wide required" 
+                    <CreatableSelect
+                        styles={customOptionStyle}
+                        defaultValue={behaviorOption}
+                        onChange={setBehaviorOption}
+                        isMulti
+                        placeholder="Select the Behaviors shown"
+                        options={behaviorDescriptions}
+                    />
+                    {/*<select className="nice-select wide required" 
                             onChange={onBehaviorChange} 
                             value={behavior}>
                         {behaviorDescriptions.map(x =>
@@ -18,7 +39,7 @@ export default function MyBehavior(props){
                                 {x == '' ? 'Select a Behavior' : x}
                             </option>  
                         )}
-                    </select>
+                    </select>*/}
                 </div>
             </div>
             <div className="form-group">
