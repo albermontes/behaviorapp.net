@@ -439,12 +439,12 @@ export default function MyNote(){
                                         activities: activities
                                     })}/>
                               
-                               <pre className="gnx-color-lightgray">
+                                {/*<pre className="gnx-color-lightgray">
                                     {JSON.stringify({
                                             detailInfo: detailInfo,
                                             activities: activities
                                        }, null, 2)}
-                                </pre>
+                                </pre>*/}
                             </div>
                         </div>
                         <div class="footer">
