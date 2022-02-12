@@ -111,8 +111,8 @@ namespace behavior_app.Models
                                 (act.response.reinforceBefore != null
                                     ? act.response.reinforceBefore.Format("gnx-bck-reinforcements", "",
                                         (act.response.reinforceBefore.Count() > 1 
-                                            ? " were used as reinforces." 
-                                            : " was used as reinforces."))
+                                            ? " were used as reinforcers." 
+                                            : " was used as reinforcers."))
                                     : "") +
                                 (act.response.replacement != null 
                                     ? act.response.replacement.Format("gnx-bck-replacements", "",
@@ -123,8 +123,8 @@ namespace behavior_app.Models
                                 (act.response.reinforceAfter != null 
                                     ? act.response.reinforceAfter.Format("gnx-bck-reinforcements", "",
                                         (act.response.reinforceAfter.Count() > 1 
-                                            ? " were used as reinforces." 
-                                            : " was used as reinforces."))
+                                            ? " were used as reinforcers." 
+                                            : " was used as reinforcers."))
                                     : "") +
                                 (act.response.reinforceResponse != null
                                                         && !string.IsNullOrWhiteSpace(act.response.reinforceResponse.label)
@@ -165,8 +165,8 @@ namespace behavior_app.Models
                                                             ? intervention.response.reinforceBefore.Format(
                                                                     "gnx-bck-reinforcements", "",
                                                                     (intervention.response.reinforceBefore.Count() > 1 
-                                                                        ? " were used as reinforces." 
-                                                                        : " was used as reinforces."))
+                                                                        ? " were used as reinforcers." 
+                                                                        : " was used as reinforcers."))
                                                             : "") +
                                                         (intervention.response.replacement != null
                                                             ? intervention.response.replacement.Format("gnx-bck-replacements", "",
@@ -176,8 +176,8 @@ namespace behavior_app.Models
                                                         (intervention.response.reinforceAfter != null
                                                             ? intervention.response.reinforceAfter.Format("gnx-bck-reinforcements", "",
                                                                  (intervention.response.reinforceAfter.Count() > 1 
-                                                                    ? " were used as reinforces." 
-                                                                    : " was used as reinforces."))
+                                                                    ? " were used as reinforcers." 
+                                                                    : " was used as reinforcers."))
                                                             : "") + 
                                                         (intervention.response.reinforceResponse != null 
                                                             && !string.IsNullOrWhiteSpace(intervention.response.reinforceResponse.label) 
