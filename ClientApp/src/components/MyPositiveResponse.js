@@ -54,17 +54,6 @@ export default function MyPositiveResponse(props){
                         placeholder="Select the Reinforces used"
                         options={reinforceDescriptions}
                     />
-                    {/*
-                    <select className="nice-select wide required"
-                            value={reinforceBefore}
-                            onChange={onReinforceBeforeChange} >
-                        {reinforceDescriptions.map(x =>
-                             <option value={x}
-                                    hidden={x == ''}>
-                                {x == '' ? 'Select a Reinforce before Replacement' : x}
-                            </option>  
-                        )}
-                        </select>*/}
                 </div>
             </div>
             <div class="form-group">
@@ -78,17 +67,6 @@ export default function MyPositiveResponse(props){
                         placeholder="Select the Replacements used"
                         options={replacementDescriptions}
                     />
-                    {/*
-                    <select className="nice-select wide required"
-                            value={replacement}
-                            onChange={onReplacementChange} >
-                        {replacementDescriptions.map(x =>
-                             <option value={x}
-                                    hidden={x == ''}>
-                                {x == '' ? 'Select a Replacement' : x}
-                            </option>  
-                        )}
-                    </select>*/}
                 </div>
             </div>
             <div class="form-group">
@@ -102,24 +80,13 @@ export default function MyPositiveResponse(props){
                         placeholder="Select the Reinforces used"
                         options={reinforceDescriptions}
                     />
-                    {/*
-                    <select className="nice-select wide required"
-                            value={reinforceAfter}
-                            onChange={onReinforceAfterChange} >
-                        {reinforceDescriptions.map(x =>
-                             <option value={x}
-                                    hidden={x == ''}>
-                                {x == '' ? 'Select a Reinforce after Replacement' : x}
-                            </option>  
-                        )}
-                    </select>*/}
                 </div>
             </div>
-            <div class="form-group">
+            <div class="mt-3 ml-4">
                 <label>How was the response to the reinforces applied?</label>
                 <div className="form-group d-flex"   
                         onChange={onReinforceResponseChange}>
-                    <label className="container_radio version_2">
+                    <label className="container_radio version_1">
                         {OK_TAG}
                         <input className="required valid"
                                 type="radio" 
@@ -127,7 +94,7 @@ export default function MyPositiveResponse(props){
                                 checked={reinforceResponse.label == OK_TAG}/>
                         <span className="checkmark"></span>
                     </label>
-                    <label className="container_radio version_2 ml-5">
+                    <label className="container_radio version_1 ml-5">
                         {BAD_TAG}
                         <input className="required valid"
                                 type="radio" 

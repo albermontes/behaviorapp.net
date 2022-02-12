@@ -42,7 +42,7 @@ namespace behavior_app.Models
 
             return formattedString;
         }
-        public static string Format(this List<Pair> list, string markClass = null, bool startWithCapital = true)
+        public static string Format(this List<Pair> list, string markClass = null, string startText = "", string endText = "", bool startWithCapital = true)
         {
             var text = list.Select(x => x.label).ToList().Format();
             text = startWithCapital
@@ -51,7 +51,7 @@ namespace behavior_app.Models
 
             return (list.Any()
                         ? (markClass != null ? $"<mark class=\"{markClass}\">" : "") +
-                            $"{text}" +
+                            $"{startText}{text}{endText}" +
                            (markClass != null ? "</mark>" : "")
                         : "");
         }

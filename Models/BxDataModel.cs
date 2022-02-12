@@ -20,6 +20,7 @@ namespace behavior_app.Models
     public class MyActivity
     {
         public string description { get; set; }
+        public string eventTrigger { get; set; }
         public MyResponse response { get; set; }
         public List<MyIntervention> interventions { get; set; }
     }

@@ -7,7 +7,9 @@ import MyNegativeResponse from "./MyNegativeResponse";
 export default function MyActivity(props){
     const { index,
             interventions, 
-            description, 
+            description,
+            eventTrigger,
+            onEventTriggerChanged, 
             response, 
             positiveResponse, 
             reinforceBefore, 
@@ -45,7 +47,6 @@ export default function MyActivity(props){
                 : <label>How was the response?</label>}
                 <div className="form-group d-flex"   
                         onChange={onResponseChange}>
-                    
                     <label className="container_radio version_2">
                         {OK_TAG}
                         <input className="required valid"
@@ -102,7 +103,13 @@ export default function MyActivity(props){
                 : ''
 
     const activityElement = description == 'other'
-        ? ''
+        ?   <div className="form-group">
+                <label>Describe what triggers the event</label>
+                <textarea className="form-control"
+                        placeholder="Description of what is this..."
+                        value={eventTrigger}
+                        onChange={onEventTriggerChanged}/>
+            </div>
         :  <div className="form-group">
                 <label>What Activity was scheduled?</label>
                 <div className="styled-select clearfix">
@@ -147,7 +154,6 @@ export default function MyActivity(props){
             <br/>
             {activityElement}
             <div>
-                
                 {responseSelectionElement}
                 {responseActionsElement}
             </div>

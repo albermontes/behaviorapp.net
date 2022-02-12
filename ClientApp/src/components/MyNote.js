@@ -30,6 +30,7 @@ export default function MyNote(){
             ...activities,
             { 
                 description: 'other',
+                eventTrigger: '',
                 response: { label: '', reinforceResponse: { label: '', description: '' } },
                 interventions: [] 
             }
@@ -84,6 +85,12 @@ export default function MyNote(){
     const setDescription = i => e => {
         const activitiesCopy = [...activities];
         activitiesCopy.at(i).description = e.target.value;
+        activitiesCopy.at(i).response = { label: '', interventions: [], reinforceResponse: { label: '', description: '' } }
+        setActivities(activitiesCopy);
+    }
+    const setEventTrigger = i => e => {
+        const activitiesCopy = [...activities];
+        activitiesCopy.at(i).eventTrigger = e.target.value;
         activitiesCopy.at(i).response = { label: '', interventions: [], reinforceResponse: { label: '', description: '' } }
         setActivities(activitiesCopy);
     }
@@ -295,6 +302,8 @@ export default function MyNote(){
                                     index={i}
                                     response={a.response}
                                     description={a.description}
+                                    eventTrigger={a.eventTrigger}
+                                    onEventTriggerChanged={setEventTrigger(i)}
                                     positiveResponse={a.response.description}
                                     reinforceBefore={a.response.reinforceBefore}
                                     replacement={a.response.replacement}
@@ -429,13 +438,13 @@ export default function MyNote(){
                                         detailInfo: detailInfo,
                                         activities: activities
                                     })}/>
-                              {/*
+                              
                                <pre className="gnx-color-lightgray">
                                     {JSON.stringify({
                                             detailInfo: detailInfo,
                                             activities: activities
                                        }, null, 2)}
-                                </pre> */}
+                                </pre>
                             </div>
                         </div>
                         <div class="footer">
