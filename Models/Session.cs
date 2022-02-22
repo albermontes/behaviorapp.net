@@ -55,7 +55,7 @@ namespace behavior_app.Models
                     ? "<mark class=\"gnx-bck-introduction\">" + 
                         $"The {caregivers} " + 
                         (myNote.detailInfo.caregivers.Count > 1 ? "were" : "was") + 
-                        " present in the session. " +
+                        " present too. " +
                         "</mark>"
                     : "") +
                 (!string.IsNullOrWhiteSpace(myNote.detailInfo.antecedent)
@@ -93,7 +93,7 @@ namespace behavior_app.Models
                                     "</mark>"
                                 : "")
                             :   "<mark class=\"gnx-bck-activities\">" +
-                                $"After {act.description.RemoveStartCapitalLetter()} " + 
+                                $"{act.description.AddStartCapitalLetter()}. " + 
                                 "</mark>");
                 if (!string.IsNullOrWhiteSpace(act.response.label))
                 {
@@ -111,20 +111,20 @@ namespace behavior_app.Models
                                 (act.response.reinforceBefore != null
                                     ? act.response.reinforceBefore.Format("gnx-bck-reinforcements", "",
                                         (act.response.reinforceBefore.Count() > 1 
-                                            ? " were used as reinforcers." 
-                                            : " was used as reinforcers."))
+                                            ? " were used as reinforcer." 
+                                            : " was used as reinforcer."))
                                     : "") +
                                 (act.response.replacement != null 
                                     ? act.response.replacement.Format("gnx-bck-replacements", "",
                                         (act.response.replacement.Count() > 1 
-                                            ? " were applied." 
-                                            : " was applied."))
+                                            ? " were applied as replacement." 
+                                            : " was applied as replacement."), true, true)
                                     : "") +
                                 (act.response.reinforceAfter != null 
                                     ? act.response.reinforceAfter.Format("gnx-bck-reinforcements", "",
                                         (act.response.reinforceAfter.Count() > 1 
-                                            ? " were used as reinforcers." 
-                                            : " was used as reinforcers."))
+                                            ? " were used as reinforcer." 
+                                            : " was used as reinforcer."))
                                     : "") +
                                 (act.response.reinforceResponse != null
                                                         && !string.IsNullOrWhiteSpace(act.response.reinforceResponse.label)
@@ -139,9 +139,7 @@ namespace behavior_app.Models
                                 {
                                     activity += "<mark class=\"gnx-bck-behaviors\">" +
                                                 (string.IsNullOrWhiteSpace(intervention.behaviorDescription) && intervention.behavior != null
-                                                    ? (act.description == "other"
-                                                        ? $"{intervention.behavior.Format(null, "The client shows ", "", false)}."
-                                                        : $"{intervention.behavior.Format(null, "the client starts ", "", false)}. ")
+                                                    ? $"{intervention.behavior.Format(null, "The client shows ", "", false)}."
                                                     : "") +
                                                 (!string.IsNullOrWhiteSpace(intervention.behaviorDescription)
                                                     ? $"{intervention.behaviorDescription.AddStartCapitalLetter()}. "
@@ -149,7 +147,9 @@ namespace behavior_app.Models
                                                 "</mark>" +
                                                 (intervention.description != null && intervention.description.Any()
                                                     ? intervention.description.Format("gnx-bck-interventions", "",
-                                                        (intervention.description.Count() > 1 ? " were applied." : " was applied."))
+                                                        (intervention.description.Count() > 1 
+                                                            ? " were applied as intervention." 
+                                                            : " was applied as intervention."))
                                                     : "");
 
                                     if (!string.IsNullOrWhiteSpace(intervention.response.label))
@@ -165,19 +165,20 @@ namespace behavior_app.Models
                                                             ? intervention.response.reinforceBefore.Format(
                                                                     "gnx-bck-reinforcements", "",
                                                                     (intervention.response.reinforceBefore.Count() > 1 
-                                                                        ? " were used as reinforcers." 
-                                                                        : " was used as reinforcers."))
+                                                                        ? " were used as reinforcer." 
+                                                                        : " was used as reinforcer."))
                                                             : "") +
                                                         (intervention.response.replacement != null
                                                             ? intervention.response.replacement.Format("gnx-bck-replacements", "",
                                                                 (intervention.response.replacement.Count() > 1 
-                                                                    ? " were applied." : " was applied."))
+                                                                    ? " were applied as replacement." 
+                                                                    : " was applied as replacement."), true, true)
                                                             : "") +
                                                         (intervention.response.reinforceAfter != null
                                                             ? intervention.response.reinforceAfter.Format("gnx-bck-reinforcements", "",
                                                                  (intervention.response.reinforceAfter.Count() > 1 
-                                                                    ? " were used as reinforcers." 
-                                                                    : " was used as reinforcers."))
+                                                                    ? " were used as reinforcer." 
+                                                                    : " was used as reinforcer."))
                                                             : "") + 
                                                         (intervention.response.reinforceResponse != null 
                                                             && !string.IsNullOrWhiteSpace(intervention.response.reinforceResponse.label) 
@@ -196,10 +197,12 @@ namespace behavior_app.Models
                 activitiesSummary += activity;
             }
 
-            return new Note
+            var resultNote = new Note
             {
                 Summary = introductionSummary + activitiesSummary + conclusionSummary
             };
+
+            return resultNote;
         }
     }
 

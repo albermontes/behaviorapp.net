@@ -4,6 +4,17 @@ namespace behavior_app.Models
 {
     public class Note
     {
-        public string Summary { get; set; }
+        private string _summary;
+        public string Summary 
+        {
+            get 
+            {
+                return _summary;
+            }
+            set
+            {
+                _summary = value.RemoveDuplicateSpacesAndDots();
+            } 
+        }
     }
 }
