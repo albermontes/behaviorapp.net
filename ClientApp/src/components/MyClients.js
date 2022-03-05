@@ -59,20 +59,6 @@ export default function MyClients(){
             })
     }
 
-    const getClient = i => {
-        console.log('getting client ' + i);
-        fetch('clients/' + i, {
-            method: 'GET',
-            headers:{ 'Content-Type':'application/json' }
-        }) 
-            .then(client => {
-                return client;
-            })
-            .catch(error => {
-                console.log('error getting client ' + i + ' -> ' + JSON.stringify(error));
-            })
-    }
-
     const getClients = () => {
         console.log('getting clients');
         fetch('clients',{
@@ -190,16 +176,16 @@ export default function MyClients(){
                         </thead>
                         <tbody>
                             {clients.map(x =>
-                                <tr onClick={onClientClick(x.id)}>
-                                    <th scope="row">{x.number}</th>
-                                    <td>
+                                <tr>
+                                    <th onClick={onClientClick(x.id)} scope="row">{x.number}</th>
+                                    <td onClick={onClientClick(x.id)}>
                                         <a className="text-capitalize">
                                             {x.name}
                                         </a>
                                     </td>
-                                    <td>{getAge(x.birthDate)}</td>
-                                    <td>{x.verbal ? 'YES' : 'NO'}</td>
-                                    <td>{x.comments}</td>
+                                    <td onClick={onClientClick(x.id)}>{getAge(x.birthDate)}</td>
+                                    <td onClick={onClientClick(x.id)}>{x.verbal ? 'YES' : 'NO'}</td>
+                                    <td onClick={onClientClick(x.id)}>{x.comments}</td>
                                     <td className="text-right">
                                         {/*  <button className="ba-button ba-button-sm ba-button-action-2">
                                             EDIT
