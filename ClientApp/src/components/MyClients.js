@@ -119,6 +119,12 @@ export default function MyClients(){
         return Math.floor((new Date() - new Date(date).getTime()) / 3.15576e+10)
     }
 
+    const pad = (num, size) => {
+        num = num.toString();
+        while (num.length < size) num = "0" + num;
+        return num;
+    }
+
     return (
         <div className="container-fluid full-height gnx-bck-dark">
             <div>
@@ -182,7 +188,9 @@ export default function MyClients(){
                         <tbody>
                             {clients.map(x =>
                                 <tr>
-                                    <th onClick={onClientClick(x.id)} scope="row">{x.number}</th>
+                                    <th onClick={onClientClick(x.id)} scope="row">
+                                        {pad(x.number, 4)}
+                                    </th>
                                     <td onClick={onClientClick(x.id)}>
                                         <a className="text-capitalize">
                                             {x.name}
