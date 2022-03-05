@@ -9,16 +9,16 @@ import MyNote from './components/MyNote';
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');
 
-/*ReactDOM.render(
+ReactDOM.render(
   <BrowserRouter basename={baseUrl}>
     <App/>
   </BrowserRouter>,
-  rootElement);*/
+  rootElement);
 
-ReactDOM.render(
+/* ReactDOM.render(
   <MyNote/>,
   rootElement
-);
+); */
 // Uncomment the line above that imports the registerServiceWorker function
 // and the line below to register the generated service worker.
 // By default create-react-app includes a service worker to improve the

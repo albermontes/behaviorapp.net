@@ -14,7 +14,7 @@ export default class App extends Component {
     return (
       <Layout>
             <Route exact path='/' component={MyClients} />
-            <Route path='/notes' component={MyNote} />
+            <Route path='/notes/:id' component={MyNote} />
             {/* <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} /> */}
       </Layout>
     );

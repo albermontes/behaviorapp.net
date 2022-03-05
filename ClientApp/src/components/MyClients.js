@@ -1,106 +1,220 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react';
 import logo from '../img/logo.png';
+import deleteIcon from '../img/ba-icon-delete.svg';
+import { useHistory } from 'react-router-dom';
 
-export class MyClients extends Component {
-  render() {
+export default function MyClients(){
+
+    const [clients, setClients] = useState([]);
+    const [clientName, setClientName] = useState();
+    const [comments, setComments] = useState();
+    const [birthDate, setDate] = useState();
+    const [verbal, setVerbal] = useState();
+
+    const clearData = () => {
+        setClientName("");
+        setDate("");
+        setVerbal(false);
+        setComments("");
+    }
+
+    useEffect(() => {
+        getClients()
+    }, [])
+
+    const onClientNameChange = e => {
+        setClientName(e.target.value);
+    }
+
+    const onCommentsChange = e => {
+        setComments(e.target.value);
+    }
+
+    const onBirthDateChange = e => {
+        setDate(e.target.value);
+    }
+
+    const onVerbalChange = e => {
+        setVerbal(e.target.value == 'Verbal');
+    }
+
+    const onDeleteClient = i => e => {
+        if(e){
+            console.log('id -> ' + i);
+            removeClient(i);
+        }
+    }
+
+    const removeClient = i => {
+        console.log('removing client ' + i);
+        fetch('clients/' + i, {
+            method: 'DELETE',
+            headers:{ 'Content-Type':'application/json' }
+        }) 
+            .then(client => {
+                getClients();
+            })
+            .catch(error => {
+                console.log('error removing client ' + i + ' -> ' + JSON.stringify(error));
+            })
+    }
+
+    const getClient = i => {
+        console.log('getting client ' + i);
+        fetch('clients/' + i, {
+            method: 'GET',
+            headers:{ 'Content-Type':'application/json' }
+        }) 
+            .then(client => {
+                return client;
+            })
+            .catch(error => {
+                console.log('error getting client ' + i + ' -> ' + JSON.stringify(error));
+            })
+    }
+
+    const getClients = () => {
+        console.log('getting clients');
+        fetch('clients',{
+            method: 'GET',
+            headers:{ 'Content-Type':'application/json' }
+        })
+            .then(r => r.json())
+            .then(clients => {
+                setClients(clients);
+                clearData();
+            })
+            .catch(error => {
+                console.log('error getting clients -> ' + JSON.stringify(error));
+            })
+    }
+
+    const addClient = () => {
+        fetch('clients',{
+            method: 'POST',
+            headers:{ 'Content-Type':'application/json' },
+            body: JSON.stringify({
+                name: clientName,
+                birthDate: birthDate,
+                verbal: verbal,
+                comments: comments
+            })
+        })
+            .then(r => r.json())
+            .then(client => {
+               getClients();
+            })
+            .catch(error => {
+                console.log('error creating new client -> ' + JSON.stringify(error));
+            })
+    }
+
+    const history = useHistory();
+    const onClientClick = i => e => {
+        if(e){
+            console.log('client ' + i);
+            history.push('/notes/' + i);
+        }
+    }
+
+    const isEmptyOrWhitespace = str => {
+        return !str || !str.trim();
+    }
+
+    const getAge = (date) => {
+        return Math.floor((new Date() - new Date(date).getTime()) / 3.15576e+10)
+    }
+
     return (
-        <div className="container-fluid full-height">
-            <div className="gnx-bck-dark">
-                <div>
-                    <div className="d-flex justify-content-between p-3">
-                        <div>
-                            <a id="logo" href="/">
-                                <img src={logo} alt="" width="49" height="35"/>
-                            </a>
-                        </div>
+        <div className="container-fluid full-height gnx-bck-dark">
+            <div>
+                <div className="d-flex justify-content-between p-3">
+                    <div>
+                        <a id="logo" href="/">
+                            <img src={logo} alt="" width="49" height="35"/>
+                        </a>
                     </div>
-                    <div class="d-flex justify-content-between gnx-bck-lightgray ba-add-client py-2">
-                        <h3>ADD CLIENT</h3>
-                        <div>
-                            <input type="text" name="clientName" class="form-control required"
-                                placeholder="Insert client name"/>
-                        </div>
-                        <div>
-                            <input class="form-control required" type="date" name="dateOfBirth"
-                                placeholder="Select DOB"/>
-                        </div>
-                        <div class="d-flex radio_input">
-                            <label class="container_radio">
-                                Verbal
-                                <input type="radio" name="gender" value="Verbal" class="required"/>
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container_radio">
-                                No verbal
-                                <input type="radio" name="gender" value="No verbal" class="required"/>
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-
-                        <div>
-                            <input type="text" name="additionalComments" class="form-control"
-                                placeholder="Comments" />
-                        </div>
-
-                        <div class="pr-3">
-                            <button class="ba-button ba-button-sm" type="submit">
-                                ADD
-                            </button>
-                        </div>
+                </div>
+                <div className="d-flex justify-content-between gnx-bck-lightgray ba-add-client py-2">
+                    <h3>ADD CLIENT</h3>
+                    <div>
+                        <input type="text" name="clientName" className="form-control required"
+                            placeholder="Insert client name"  value={clientName} onChange={onClientNameChange}/>
+                    </div>
+                    <div>
+                        <input className="form-control required" type="date" name="dateOfBirth"
+                            placeholder="Select DOB" value={birthDate} onChange={onBirthDateChange}/>
+                    </div>
+                    <div class="d-flex radio_input">
+                        <label class="container_radio">
+                            Verbal
+                            <input type="radio" name="gender" value="Verbal" className="required"
+                                onChange={onVerbalChange}/>
+                            <span className="checkmark"></span>
+                        </label>
+                        <label class="container_radio">
+                            No verbal
+                            <input type="radio" name="gender" value="No verbal" className="required"
+                                checked="true"
+                                onChange={onVerbalChange}/>
+                            <span className="checkmark"></span>
+                        </label>
                     </div>
 
-                    <div class="ba-client-table table-responsive">
-                        <table class="table table-dark table-sm table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">NAME</th>
-                                    <th scope="col">AGE</th>
-                                    <th scope="col">VERBAL</th>
-                                    <th scope="col">COMMENTS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {/*  @foreach (var client in Model)
-                                {
-                                    var verbal = client.Verbal ? "YES" : "NO";
-                                <tr>
-                                    <th scope="row">@client.Number.ToString("000#")</th>
+                    <div>
+                        <input type="text" name="additionalComments" className="form-control"
+                            placeholder="Comments" value={comments} onChange={onCommentsChange}/>
+                    </div>
+
+                    <div class="pr-3">
+                        <button className="ba-button ba-button-sm" type="submit" 
+                                onClick={addClient} disabled={
+                                    isEmptyOrWhitespace(clientName) || 
+                                    isEmptyOrWhitespace(birthDate)
+                                }>
+                            ADD
+                        </button>
+                    </div>
+                </div>
+
+                <div className="ba-client-table table-responsive">
+                    <table className="table table-dark table-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">NAME</th>
+                                <th scope="col">AGE</th>
+                                <th scope="col">VERBAL</th>
+                                <th scope="col">COMMENTS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {clients.map(x =>
+                                <tr onClick={onClientClick(x.id)}>
+                                    <th scope="row">{x.number}</th>
                                     <td>
-                                        <a class="text-capitalize"
-                                        asp-controller="Notes"
-                                        asp-action="Index"
-                                        asp-route-id="@client.Id">
-                                            @client.Name
+                                        <a className="text-capitalize">
+                                            {x.name}
                                         </a>
                                     </td>
-                                    <td>@client.DateOfBirth.ToShortDateString()</td>
-                                    <td>@verbal</td>
-                                    <td>@client.Comments</td>
-                                    <td class="text-right">
-                                        <button class="ba-button ba-button-sm ba-button-action-2"
-                                                asp-controller="Profiles"
-                                                asp-action="Index"
-                                                asp-route-id="@client.Id">
+                                    <td>{getAge(x.birthDate)}</td>
+                                    <td>{x.verbal ? 'YES' : 'NO'}</td>
+                                    <td>{x.comments}</td>
+                                    <td className="text-right">
+                                        {/*  <button className="ba-button ba-button-sm ba-button-action-2">
                                             EDIT
-                                        </button>
-                                        <button class="ba-button ba-button-sm ba-button-action"
-                                                asp-controller="Clients"
-                                                asp-action="Delete"
-                                                asp-route-id="@client.Id">
-                                            <img src="img/ba-icon-delete.svg" alt="" width="13" />
+                                        </button> */}
+                                        <button className="ba-button ba-button-sm ba-button-action"
+                                                onClick={onDeleteClient(x.id)}>
+                                            <img src={deleteIcon} alt="" width="13" />
                                         </button>
                                     </td>
                                 </tr>
-                                } */}
-                            </tbody>
-                        </table>
-                    </div>
+                            )}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     )
-  }
 }
-
-export default MyClients

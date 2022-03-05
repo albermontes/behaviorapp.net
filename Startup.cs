@@ -30,6 +30,11 @@ namespace behavior_app
                 options.UseNpgsql(
                     Configuration.GetConnectionString("AuthenticationConnection")));
 
+            services.AddDbContext<BxDataContext>(options =>
+                options.UseNpgsql(
+                    Configuration.GetConnectionString(
+                        "DataConnection")));
+
             services.AddDefaultIdentity<ApplicationUser>(
                     options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

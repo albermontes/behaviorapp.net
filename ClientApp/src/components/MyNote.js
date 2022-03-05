@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/site.css';
 import logo from '../img/logo.png';
 import left from '../img/ba-arrow-left.svg';
@@ -6,6 +6,7 @@ import right from '../img/ba-arrow-right.svg';
 import MyNoteSummary from './MyNoteSummary.js';
 import MyActivity from './MyActivity';
 import { locations, caregivers, BAD_TAG } from './data';
+import { useHistory, useParams } from 'react-router-dom';
 
 export default function MyNote(){
     const [activities, setActivities] = useState([]);
@@ -14,6 +15,38 @@ export default function MyNote(){
         location: '', caregivers: [], antecedent: '', 
         healthSummary: '', familyFeedback: '', caregiverCompetency: '' 
     });
+
+    const getClient = i => {
+        console.log('getting client ' + i);
+        fetch('clients/' + i, {
+            method: 'GET',
+            headers:{ 'Content-Type':'application/json' }
+        }) 
+            .then(r => r.json())
+            .then(res => {
+                setClient(res);
+            })
+            .catch(error => {
+                console.log('error getting client ' + i + ' -> ' + JSON.stringify(error));
+            })
+    }
+
+    const { id } = useParams();
+    const [client, setClient] = useState(); 
+    useEffect(() => {
+        getClient(id);
+    }, [])
+
+    const history = useHistory();
+    const onNavigationBack = () => {
+        history.push('/');
+    }
+
+    const onDownloadPdf = e => {
+        if(e){
+            alert('Not implemented yet')
+        }
+    }
 
     const addActivity = () => {
         setActivities([
@@ -393,19 +426,20 @@ export default function MyNote(){
                         </div>
                         <div className="d-flex justify-content-between p-2 gnx-bck-darkgray border-bottom">
                             <h3 className="p-3">
-                                <a className="ba-home-icon pr-3">
+                                <a className="ba-home-icon pr-3"
+                                        onClick={onNavigationBack}>
                                     <img src={left} width="16" />
                                 </a>
-                                Jhon
+                                {client ? client.name : ''}
                             </h3>
                             <div className="px-2 py-3">
-                                <a href="#" className="ba-arrow-r">
-                                    <span className="pr-2">Download PDF</span>
+                                <span className="pr-2">Download PDF</span>
+                                <a className="ba-arrow-r" onClick={onDownloadPdf}>
                                     <img src={right} width="20" />
                                 </a>
                             </div>
                         </div>
-                        <div class="d-flex flex-wrap py-1 gnx-bck-darkgray">
+                       {/*  <div class="d-flex flex-wrap py-1 gnx-bck-darkgray">
                             <div class="px-3 py-2">
                                 Daily Progress Notes<br/>
                                 <span class="font-weight-bold">DEC 2021</span>
@@ -426,10 +460,12 @@ export default function MyNote(){
                                 RBT #<br/>
                                 <span class="font-weight-bold">Mercedes Sosa</span>
                             </div>
-                        </div>
+                        </div> */}
                         <div class="d-flex py-2 gnx-bck-lightgray gnx-bb-dark">
                             <div class="px-3">
-                                DEC 3, 2021
+                                {new Date().toLocaleDateString("en-US", {
+                                    month: 'short', year: 'numeric', day: 'numeric'
+                                }).toUpperCase()}
                             </div>
                         </div>
                         <div>
