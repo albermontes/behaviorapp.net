@@ -76,6 +76,14 @@ export default function MyClients(){
     }
 
     const addClient = () => {
+
+        if(isEmptyOrWhitespace(clientName) || 
+                isEmptyOrWhitespace(birthDate) ||
+                new Date(birthDate).getFullYear() >= new Date().getFullYear()){
+            alert('You must provide a Name for the Client and the Birth Date must be maximum from last year.')
+            return;
+        }
+
         fetch('clients',{
             method: 'POST',
             headers:{ 'Content-Type':'application/json' },
@@ -154,10 +162,7 @@ export default function MyClients(){
 
                     <div class="pr-3">
                         <button className="ba-button ba-button-sm" type="submit" 
-                                onClick={addClient} disabled={
-                                    isEmptyOrWhitespace(clientName) || 
-                                    isEmptyOrWhitespace(birthDate)
-                                }>
+                                onClick={addClient}>
                             ADD
                         </button>
                     </div>
