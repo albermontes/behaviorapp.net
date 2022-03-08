@@ -207,9 +207,14 @@ export default function MyNote(){
         setActivities(activitiesCopy);
     }
     const setLocation = e => {
-        setDetailInfo(prev => ({
-            ...prev, location: e.target.value 
-        }))
+        setDetailInfo({
+            location: e.target.value,
+            caregivers: detailInfo.caregivers,
+            antecedent: detailInfo.antecedent,
+            healthSummary: detailInfo.healthSummary,
+            familyFeedback: detailInfo.familyFeedback,
+            caregiverCompetency: detailInfo.caregiverCompetency
+        })
     }
     const setAntecedent = e => {
         setDetailInfo({
@@ -474,13 +479,6 @@ export default function MyNote(){
                                         detailInfo: detailInfo,
                                         activities: activities
                                     })}/>
-                              
-                                {/*<pre className="gnx-color-lightgray">
-                                    {JSON.stringify({
-                                            detailInfo: detailInfo,
-                                            activities: activities
-                                       }, null, 2)}
-                                </pre>*/}
                             </div>
                         </div>
                         <div class="footer">
