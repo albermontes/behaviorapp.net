@@ -31,7 +31,9 @@ namespace behavior_app
                     Configuration.GetConnectionString("AuthenticationConnection")));
 
             services.AddDbContext<BxDataContext>(options =>
-                options.UseNpgsql(
+                options
+                .UseLazyLoadingProxies()
+                .UseNpgsql(
                     Configuration.GetConnectionString(
                         "DataConnection")));
 

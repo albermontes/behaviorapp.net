@@ -47,7 +47,7 @@ export default function MyClients(){
 
     const removeClient = i => {
         console.log('removing client ' + i);
-        fetch('clients/' + i, {
+        fetch('api/clients/' + i, {
             method: 'DELETE',
             headers:{ 'Content-Type':'application/json' }
         }) 
@@ -61,7 +61,7 @@ export default function MyClients(){
 
     const getClients = () => {
         console.log('getting clients');
-        fetch('clients',{
+        fetch('api/clients',{
             method: 'GET',
             headers:{ 'Content-Type':'application/json' }
         })
@@ -84,7 +84,7 @@ export default function MyClients(){
             return;
         }
 
-        fetch('clients',{
+        fetch('api/clients',{
             method: 'POST',
             headers:{ 'Content-Type':'application/json' },
             body: JSON.stringify({
@@ -145,14 +145,14 @@ export default function MyClients(){
                         <input className="form-control required" type="date" name="dateOfBirth"
                             placeholder="Select DOB" value={birthDate} onChange={onBirthDateChange}/>
                     </div>
-                    <div class="d-flex radio_input">
-                        <label class="container_radio">
+                    <div className="d-flex radio_input">
+                        <label className="container_radio">
                             Verbal
                             <input type="radio" name="gender" value="Verbal" className="required"
                                 onChange={onVerbalChange}/>
                             <span className="checkmark"></span>
                         </label>
-                        <label class="container_radio">
+                        <label className="container_radio">
                             No verbal
                             <input type="radio" name="gender" value="No verbal" className="required"
                                 checked="true"
@@ -166,7 +166,7 @@ export default function MyClients(){
                             placeholder="Comments" value={comments} onChange={onCommentsChange}/>
                     </div>
 
-                    <div class="pr-3">
+                    <div className="pr-3">
                         <button className="ba-button ba-button-sm" type="submit" 
                                 onClick={addClient}>
                             ADD
@@ -187,7 +187,7 @@ export default function MyClients(){
                         </thead>
                         <tbody>
                             {clients.map(x =>
-                                <tr>
+                                <tr className="pointer">
                                     <th onClick={onClientClick(x.id)} scope="row">
                                         {pad(x.number, 4)}
                                     </th>

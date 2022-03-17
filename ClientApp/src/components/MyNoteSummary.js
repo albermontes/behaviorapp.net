@@ -1,20 +1,89 @@
 import React, { useState, useEffect } from 'react';
+import deleteIcon from '../img/ba-icon-delete.svg';
 
 export default function MyNoteSummary(props){
-    const { note } = props;
+    const { jsonNote, onClearNote } = props;
     const [summary, setSummary] = useState('');
-    /* const [editableSummary, setEditableSummary] = useState(''); */
+    const [ note, setNote ] = useState(JSON.parse(jsonNote));
+    const [ notes, setNotes ] = useState([]);
 
     useEffect(() => {
-        fetch('notesummary?note=' + note)
+        setNote(JSON.parse(jsonNote));
+        fetch('api/notesummary?note=' + jsonNote)
             .then(response => response.json())
-            .then(responseJson => {
-                setSummary(responseJson.summary)
+            .then(responseWrapper => {
+                setSummary(responseWrapper.summary);
             })
-    }, [note])
+    }, [jsonNote])
 
-  /*   const copySummary = () => {
-        var summary2 = summary;
+    useEffect(() => {
+        getNotes();
+    }, [])
+
+ 
+    const onRemove = i => e => {
+        if(e)
+            fetch('api/notes/' + i,{
+                method: 'DELETE',
+                headers:{ 'Content-Type':'application/json' },
+            }).then(() => {
+                getNotes();
+                alert('Note successfully removed');
+            }).catch(e => {
+                console.log('error removing note ' + i + ' -> ' + JSON.stringify(e));
+            })
+    }
+
+    const getNotes = async () => {
+        const response = await fetch('api/clients/' + note.clientId + '/notes');
+        const notesResponse = await response.json();
+        setNotes(await Promise.all(
+            notesResponse.map(
+                async x => { return { 
+                    ...x,
+                    summary: await getUnformattedSummary(x)
+                }
+            })
+        ));
+    }
+ 
+    const saveNote = e => {
+        if(e){
+            console.log('posting -> ' + jsonNote);
+            fetch('api/notes',{
+                method: 'POST',
+                headers:{ 'Content-Type':'application/json' },
+                body: JSON.stringify({
+                    date: note.date,
+                    detailInfo: note.detailInfo,
+                    activities: note.activities,
+                    clientId: parseInt(note.clientId)
+                })
+            })
+                .then(r => r.json())
+                    .then(n => {
+                        alert('Note was successfully inserted');
+                        // do something after saveing note successfully
+                        // TODO: clear current note
+                        getNotes();
+                        onClearNote();
+                    })
+                    .catch(error => {
+                        console.log('error saving note -> ' + JSON.stringify(error));
+                    })
+                .catch(error => {
+                    console.log('error saving note -> ' + JSON.stringify(error));
+                })
+        }
+    }
+
+   const getUnformattedSummary = async (n) => {
+        
+        const response = await fetch('api/notesummary?note=' + JSON.stringify(n));
+        const summaryResponse = await response.json();
+        
+        let summary2 = summaryResponse.summary;
+        
         summary2 = summary2.replaceAll('</mark>', '');
         summary2 = summary2.replaceAll('<mark class=\"gnx-bck-introduction\">', '');
         summary2 = summary2.replaceAll('<mark class=\"gnx-bck-conclusion\">', '');
@@ -24,18 +93,52 @@ export default function MyNoteSummary(props){
         summary2 = summary2.replaceAll('<mark class=\"gnx-bck-behaviors\">', '');
         summary2 = summary2.replaceAll('<mark class=\"gnx-bck-reinforcements\">', '');
         summary2 = summary2.replaceAll('<mark class=\"gnx-bck-interventions\">', '');
-        setEditableSummary(summary2);
+        
+        return summary2;
     }
-
-    const setNewEditableSummary = e => {
-        setEditableSummary(e.target.value);
-    } */
 
     return  (   
                 <div>
+                     <div class="d-flex py-2 gnx-bck-lightgray gnx-bb-dark">
+                        <div class="px-3">
+                            {new Date(note.date + 'T00:00').toLocaleDateString("en-US", {
+                                    month: 'short', year: 'numeric', day: 'numeric'
+                                        }).toUpperCase()
+                            }
+                        </div>
+                    </div>
                     <div className="gnx-color-lightgray" 
                         dangerouslySetInnerHTML={{ __html: summary }}>
                     </div>
+                    <div className="text-right">
+                        <button className="ba-button ba-button-transparent"
+                                onClick={saveNote}>
+                            SAVE NOTE
+                        </button>
+                    </div>
+                    {notes.map(x => 
+                        <div>
+                            <div className="d-flex py-2 gnx-bck-lightgray gnx-bb-dark">
+                                <div className="px-3">
+                                    {new Date(x.date).toLocaleDateString("en-US", {
+                                            month: 'short', year: 'numeric', day: 'numeric'
+                                                }).toUpperCase()
+                                    }
+                                </div>
+                                <div style={{"width": "95%", "textAlign":"right", "position":"absolute"}}>
+                                    <button className="ba-button ba-button ba-button-action"
+                                            onClick={onRemove(x.id)}>
+                                        <img src={deleteIcon} 
+                                                alt="" 
+                                                width="13"/>
+                                    </button>
+                                </div>  
+                            </div>
+                            <div className="gnx-color-lightgray p-3 d-flex">
+                                {x.summary}
+                            </div>   
+                        </div>
+                    )}
                    {/*  <pre className="gnx-color-lightgray">
                         {JSON.stringify(note, null, 2)}
                     </pre> */}

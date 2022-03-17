@@ -6,20 +6,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using behavior_app.Models;
+using Newtonsoft.Json;
 
 namespace behavior_app.Controllers
 {
     [ApiController]
-    [Route("notesummary")]
+    [Route("api/notesummary")]
     public class NoteSummaryController : ControllerBase
     {
         [HttpGet]
-        public Note Get(string note)
+        public SummaryWrapper Get(string note)
         {
-            return new Session
-            {
-                note = note
-            }.CreateNote();
+            return new SummaryWrapper { Summary = JsonConvert.DeserializeObject<MyNote>(note).getSummary() };
         }
+    }
+
+    public class SummaryWrapper
+    {
+        public string Summary { get; set; }
     }
 }

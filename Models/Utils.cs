@@ -25,8 +25,10 @@ namespace behavior_app.Models
                 text.ToLower().StartsWith('o') ||
                 text.ToLower().StartsWith('u'));
         }
-        public static string Format(this List<string> list, bool allTextStartWithCapital = false)
+        public static string Format(this ICollection<string> col, bool allTextStartWithCapital = false)
         {
+            var list = col.ToList();
+
             var formattedString = "";
             if (list.Count == 0)
                 return formattedString;
@@ -44,7 +46,7 @@ namespace behavior_app.Models
 
             return formattedString;
         }
-        public static string Format(this List<Pair> list, 
+        public static string Format(this ICollection<Pair> list, 
             string markClass = null, 
             string startText = "", 
             string endText = "", 

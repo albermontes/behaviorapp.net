@@ -9,16 +9,47 @@ import { locations, caregivers, BAD_TAG } from './data';
 import { useHistory, useParams } from 'react-router-dom';
 
 export default function MyNote(){
+
     const [activities, setActivities] = useState([]);
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
     const [step, setStep] = useState(1);
     const [detailInfo, setDetailInfo] = useState({
-        location: '', caregivers: [], antecedent: '', 
-        healthSummary: '', familyFeedback: '', caregiverCompetency: '' 
+        location: '', 
+        caregivers: [], 
+        antecedent: '', 
+        healthSummary: '', 
+        familyFeedback: '', 
+        caregiverCompetency: '' 
     });
+
+    const handleClearNote = () => {
+        setDate(new Date().toISOString().split('T')[0]);
+        setDetailInfo({
+            location: '', 
+            caregivers: [], 
+            antecedent: '', 
+            healthSummary: '', 
+            familyFeedback: '', 
+            caregiverCompetency: '' 
+        });
+        setActivities([]);
+    }
+    
+    const { id } = useParams();
+    const [client, setClient] = useState(); 
+
+    const history = useHistory();
+    const onNavigationBack = () => {
+        history.push('/');
+    }
+
+    useEffect(()=>{
+        getClient(id);
+    },[])
 
     const getClient = i => {
         console.log('getting client ' + i);
-        fetch('clients/' + i, {
+        fetch('api/clients/' + i, {
             method: 'GET',
             headers:{ 'Content-Type':'application/json' }
         }) 
@@ -29,17 +60,6 @@ export default function MyNote(){
             .catch(error => {
                 console.log('error getting client ' + i + ' -> ' + JSON.stringify(error));
             })
-    }
-
-    const { id } = useParams();
-    const [client, setClient] = useState(); 
-    useEffect(() => {
-        getClient(id);
-    }, [])
-
-    const history = useHistory();
-    const onNavigationBack = () => {
-        history.push('/');
     }
 
     const onDownloadPdf = e => {
@@ -206,6 +226,10 @@ export default function MyNote(){
         activitiesCopy.at(i).interventions.at(int).response.reinforceAfter = e;
         setActivities(activitiesCopy);
     }
+    const setSessionDate = e => {
+        if(e)
+            setDate(e.target.value);
+    }
     const setLocation = e => {
         setDetailInfo({
             location: e.target.value,
@@ -289,6 +313,14 @@ export default function MyNote(){
                                 Introduction
                             </mark>
                         </h3>
+                        <div className="form-group">
+                            <label>Select the session date </label>
+                            <input  className="form-control"
+                                    placeholder="Select a date"
+                                    type="date"
+                                    value={date}
+                                    onChange={setSessionDate}/>
+                        </div>
                         <div className="form-group">
                             <div className="styled-select clearfix">
                                 <select className="nice-select wide required" 
@@ -431,7 +463,7 @@ export default function MyNote(){
                         </div>
                         <div className="d-flex justify-content-between p-2 gnx-bck-darkgray border-bottom">
                             <h3 className="p-3">
-                                <a className="ba-home-icon pr-3"
+                                <a className="ba-home-icon pr-3 pointer"
                                         onClick={onNavigationBack}>
                                     <img src={left} width="16" />
                                 </a>
@@ -439,7 +471,8 @@ export default function MyNote(){
                             </h3>
                             <div className="px-2 py-3">
                                 <span className="pr-2">Download PDF</span>
-                                <a className="ba-arrow-r" onClick={onDownloadPdf}>
+                                <a className="ba-arrow-r pointer" 
+                                        onClick={onDownloadPdf}>
                                     <img src={right} width="20" />
                                 </a>
                             </div>
@@ -466,18 +499,14 @@ export default function MyNote(){
                                 <span class="font-weight-bold">Mercedes Sosa</span>
                             </div>
                         </div> */}
-                        <div class="d-flex py-2 gnx-bck-lightgray gnx-bb-dark">
-                            <div class="px-3">
-                                {new Date().toLocaleDateString("en-US", {
-                                    month: 'short', year: 'numeric', day: 'numeric'
-                                }).toUpperCase()}
-                            </div>
-                        </div>
+                       
                         <div>
                             <div className="p-3">
-                                <MyNoteSummary note={JSON.stringify({
+                                <MyNoteSummary onClearNote={handleClearNote} jsonNote={JSON.stringify({
                                         detailInfo: detailInfo,
-                                        activities: activities
+                                        activities: activities,
+                                        date: date,
+                                        clientId: id
                                     })}/>
                             </div>
                         </div>

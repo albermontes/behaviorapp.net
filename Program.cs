@@ -17,7 +17,7 @@ namespace behavior_app
         {
             var host = CreateHostBuilder(args).Build();
 
-            CreateDbIfNotExists(host);
+            InitializeDatabase(host);
 
             host.Run();
         }
@@ -29,7 +29,7 @@ namespace behavior_app
                     webBuilder.UseStartup<Startup>();
                 });
 
-        private static void CreateDbIfNotExists(IHost host)
+        private static void InitializeDatabase(IHost host)
         {
             using (var scope = host.Services.CreateScope())
             {

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace behavior_app.Controllers
 {
     [ApiController]
-    [Route("clients")]
+    [Route("api/clients")]
     public class ClientsController : Controller
     {
         private BxDataContext _context;
@@ -20,13 +20,13 @@ namespace behavior_app.Controllers
 
         // GET: clients
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Client>>> GetClients()
+        public async Task<ActionResult<IEnumerable<MyClient>>> GetClients()
         {
             return await _context.Clients.ToListAsync();
         }
         // GET: clients/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Client>> GetClient(int id)
+        public async Task<ActionResult<MyClient>> GetClient(int id)
         {
             var client = await _context.Clients.FindAsync(id);
 
@@ -35,9 +35,26 @@ namespace behavior_app.Controllers
 
             return client;
         }
+        // GET: clients/5/notes
+        [HttpGet("{id}/notes")]
+        public async Task<ActionResult<IEnumerable<MyNote>>> GetClientNotes(int id)
+        {
+            var client = await _context.Clients.FindAsync(id);
+
+            if (client == null)
+                return NotFound();
+
+            var notes = await _context.Notes
+                .Where(x => x.ClientId == id)
+                .OrderByDescending(x => x.Date)
+                .ToListAsync();
+
+            return notes;
+        }
+
         // POST: clients
         [HttpPost]
-        public async Task<ActionResult<Client>> PostClient(Client client)
+        public async Task<ActionResult<MyClient>> PostClient(MyClient client)
         {
             var anyClient = await _context.Clients.AnyAsync();
 
@@ -53,9 +70,10 @@ namespace behavior_app.Controllers
 
             return CreatedAtAction(nameof(GetClient), new { id = client.Id }, client);
         }
+
         // PUT: clients/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClient(int id, Client client)
+        public async Task<IActionResult> PutClient(int id, MyClient client)
         {
             if (id != client.Id)
                 return BadRequest();
