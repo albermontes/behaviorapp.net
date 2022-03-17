@@ -110,12 +110,12 @@ export default function MyNoteSummary(props){
                     <div className="gnx-color-lightgray" 
                         dangerouslySetInnerHTML={{ __html: summary }}>
                     </div>
-                    <div className="text-right">
+                    {/*<div className="text-right">
                         <button className="ba-button ba-button-transparent"
                                 onClick={saveNote}>
                             SAVE NOTE
                         </button>
-                    </div>
+                    </div>*/}
                     {notes.map(x => 
                         <div>
                             <div className="d-flex py-2 gnx-bck-lightgray gnx-bb-dark">
