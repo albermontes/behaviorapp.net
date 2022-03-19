@@ -452,7 +452,7 @@ export default function MyNote(){
     return (
         <div className="container-fluid full-height">
             <div className="row no-gutters row-height">
-                <div className="col-lg-8 gnx-bck-dark content-left">
+                <div className="col-lg-7 gnx-bck-dark content-left">
                     <div className="content-left-wrapper">
                         <div className="d-flex justify-content-between p-3">
                             <div>
@@ -551,7 +551,7 @@ export default function MyNote(){
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-4 px-3 content-right" id="start">
+                <div className="col-lg-5 px-3 content-right" id="start">
                     <div id="wizard_container">
                         <div id="top-wizard">
                             <div id="progressbar"></div>
