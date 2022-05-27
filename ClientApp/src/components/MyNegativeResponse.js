@@ -10,7 +10,6 @@ export default function MyNegativeResponse(props){
             onDescriptionChange, 
             onBehaviorChange, 
             onPositiveResponseChange,
-            onNegativeResponseChange,
             onReinforceBeforeChange,
             onReplacementChange,
             onReinforceAfterChange,
@@ -44,8 +43,6 @@ export default function MyNegativeResponse(props){
                             onBehaviorChange={onBehaviorChange(i)}
                             description={a.description}
                             onDescriptionChange={onDescriptionChange(i)}
-                            negativeResponse={a.behaviorDescription}
-                            onNegativeResponseChange={onNegativeResponseChange(i)}
                             positiveResponse={a.response.description}
                             onPositiveResponseChange={onPositiveResponseChange(i)}
                             reinforceBefore={a.response.reinforceBefore}

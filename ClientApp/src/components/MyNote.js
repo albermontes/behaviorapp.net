@@ -191,11 +191,6 @@ export default function MyNote(){
         activitiesCopy.at(i).response.replacement = e;
         setActivities(activitiesCopy);
     }
-    const setInterventionNegativeResponse = i => int => e => {
-        const activitiesCopy = [...activities];
-        activitiesCopy.at(i).interventions.at(int).behaviorDescription = e.target.value;
-        setActivities(activitiesCopy);
-    }
     const setInterventionPositiveResponse = i => int => e => {
         const activitiesCopy = [...activities];
         activitiesCopy.at(i).interventions.at(int).response.description = e.target.value;
@@ -390,7 +385,6 @@ export default function MyNote(){
                                     onInterventionResponseChange={setInterventionResponse(i)}
                                     onInterventionDescriptionChange={setInterventionDescription(i)}
                                     onRemoveIntervention={removeIntervention(i)}
-                                    onInterventionNegativeResponseChange={setInterventionNegativeResponse(i)}
                                     onInterventionPositiveResponseChange={setInterventionPositiveResponse(i)}
                                     onInterventionReinforceBeforeChange={setInterventionReinforceBefore(i)}
                                     onInterventionReplacementChange={setInterventionReplacement(i)}

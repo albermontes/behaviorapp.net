@@ -28,49 +28,38 @@ namespace behavior_app.Models
             modelBuilder.Entity<MyClient>().ToTable("Client");
             modelBuilder.Entity<MyNote>().ToTable("Note");
             modelBuilder.Entity<MyDetailInfo>().ToTable("DetailInfo");
-            modelBuilder.Entity< MyActivity>().ToTable("Activity");
+            modelBuilder.Entity<MyActivity>().ToTable("Activity");
             modelBuilder.Entity<MyIntervention>().ToTable("Intervention");
             modelBuilder.Entity<MyResponse>().ToTable("Response");  
             modelBuilder.Entity<MyReinforceResponse>().ToTable("ReinforceResponse");
             modelBuilder.Entity<Pair>().ToTable("Pair");
 
-            modelBuilder.Entity<MyNote>()
-                .HasOne(n => n.detailInfo)
-                .WithOne()
-                .HasForeignKey<MyDetailInfo>(d => d.NoteForeignKey);
-            modelBuilder.Entity<MyNote>()
-                .HasMany(n => n.activities)
-                .WithOne();
-            modelBuilder.Entity<MyActivity>()
-                .HasOne(a => a.response)
-                .WithOne()
-                .HasForeignKey<MyResponse>(r => r.ActivityForeignKey);
-            modelBuilder.Entity<MyActivity>()
-                .HasMany(n => n.interventions)
-                .WithOne();
-            modelBuilder.Entity<MyIntervention>()
-                .HasOne(i => i.response)
-                .WithOne()
-                .HasForeignKey<MyResponse>(r => r.InterventionForeignKey);
             modelBuilder.Entity<MyIntervention>()
                 .HasMany(i => i.description)
-                .WithOne();
+                .WithOne()
+                .HasForeignKey(p => p.InterventionDescriptionId)
+                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<MyIntervention>()
                 .HasMany(i => i.behavior)
-                .WithOne();
+                .WithOne()
+                .HasForeignKey(p => p.InterventionBehaviorId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<MyResponse>()
                 .HasMany(r => r.reinforceBefore)
-                .WithOne();
+                .WithOne()
+                .HasForeignKey(p => p.ResponseReinforceBeforeId)
+                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<MyResponse>()
                 .HasMany(r => r.replacement)
-                .WithOne();
+                .WithOne()
+                .HasForeignKey(p => p.ResponseReplacementId)
+                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<MyResponse>()
                 .HasMany(r => r.reinforceAfter)
-                .WithOne();
-            modelBuilder.Entity<MyResponse>()
-                .HasOne(r => r.reinforceResponse)
                 .WithOne()
-                .HasForeignKey<MyReinforceResponse>(rr => rr.ResponseForeignKey);
+                .HasForeignKey(p => p.ResponseReinforceAfterId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

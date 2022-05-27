@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import deleteIcon from '../img/ba-icon-delete.svg';
+import { Oval } from 'react-loader-spinner';
 
 export default function MyNoteSummary(props){
     const { jsonNote, onClearNote } = props;
     const [summary, setSummary] = useState('');
     const [ note, setNote ] = useState(JSON.parse(jsonNote));
     const [ notes, setNotes ] = useState([]);
+    const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
         setNote(JSON.parse(jsonNote));
@@ -17,21 +19,27 @@ export default function MyNoteSummary(props){
     }, [jsonNote])
 
     useEffect(() => {
-        getNotes();
+        getNotes().then(() => {
+            setLoading(false)
+        });
     }, [])
 
  
     const onRemove = i => e => {
-        if(e)
+        if(e){
+            setLoading(true);
             fetch('api/notes/' + i,{
                 method: 'DELETE',
                 headers:{ 'Content-Type':'application/json' },
             }).then(() => {
-                getNotes();
-                alert('Note successfully removed');
+                getNotes().then(() => {
+                    setLoading(false)
+                });
             }).catch(e => {
                 console.log('error removing note ' + i + ' -> ' + JSON.stringify(e));
+                alert('error removing note ' + i + ' -> ' + JSON.stringify(e));
             })
+        }
     }
 
     const getNotes = async () => {
@@ -50,6 +58,7 @@ export default function MyNoteSummary(props){
     const saveNote = e => {
         if(e){
             console.log('posting -> ' + jsonNote);
+            setLoading(true);
             fetch('api/notes',{
                 method: 'POST',
                 headers:{ 'Content-Type':'application/json' },
@@ -65,14 +74,18 @@ export default function MyNoteSummary(props){
                         alert('Note was successfully inserted');
                         // do something after saveing note successfully
                         // TODO: clear current note
-                        getNotes();
-                        onClearNote();
+                        getNotes().then(() => {
+                            onClearNote();
+                            setLoading(false)
+                        });
                     })
                     .catch(error => {
                         console.log('error saving note -> ' + JSON.stringify(error));
+                        alert('error saving note -> ' + JSON.stringify(error));
                     })
                 .catch(error => {
                     console.log('error saving note -> ' + JSON.stringify(error));
+                    alert('error saving note -> ' + JSON.stringify(error));
                 })
         }
     }
@@ -99,8 +112,8 @@ export default function MyNoteSummary(props){
 
     return  (   
                 <div>
-                     <div class="d-flex py-2 gnx-bck-lightgray gnx-bb-dark">
-                        <div class="px-3">
+                     <div className="d-flex py-2 gnx-bck-lightgray gnx-bb-dark">
+                        <div className="px-3">
                             {new Date(note.date + 'T00:00').toLocaleDateString("en-US", {
                                     month: 'short', year: 'numeric', day: 'numeric'
                                         }).toUpperCase()
@@ -110,13 +123,15 @@ export default function MyNoteSummary(props){
                     <div className="gnx-color-lightgray" 
                         dangerouslySetInnerHTML={{ __html: summary }}>
                     </div>
-                    {/*<div className="text-right">
+                    {/* <div className="text-right">
                         <button className="ba-button ba-button-transparent"
                                 onClick={saveNote}>
                             SAVE NOTE
                         </button>
-                    </div>*/}
-                    {notes.map(x => 
+                    </div> */}
+                    {/* loading 
+                        ? <Oval color="#00BFFF" height={80} width={80}/>
+                        :  */notes.map(x => 
                         <div>
                             <div className="d-flex py-2 gnx-bck-lightgray gnx-bb-dark">
                                 <div className="px-3">
@@ -139,7 +154,7 @@ export default function MyNoteSummary(props){
                             </div>   
                         </div>
                     )}
-                   {/*  <pre className="gnx-color-lightgray">
+                    {/* <pre className="gnx-color-lightgray">
                         {JSON.stringify(note, null, 2)}
                     </pre> */}
                     {/* <div class="text-right">

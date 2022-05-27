@@ -7,11 +7,12 @@ namespace behavior_app.Models
 {
     public class MyNote
     {
-        public int ClientId { get; set; }
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public virtual MyDetailInfo detailInfo { get; set; }
         public virtual List<MyActivity> activities { get; set; }
+
+        public int ClientId { get; set; }
 
         public string getSummary()
         {
@@ -135,10 +136,7 @@ namespace behavior_app.Models
                                     {
                                         activity += "<mark class=\"gnx-bck-behaviors\">" +
                                                     (string.IsNullOrWhiteSpace(intervention.behaviorDescription) && intervention.behavior != null
-                                                        ? $"{intervention.behavior.Format(null, "The client shows ", "", false)}."
-                                                        : "") +
-                                                    (!string.IsNullOrWhiteSpace(intervention.behaviorDescription)
-                                                        ? $"{intervention.behaviorDescription.AddStartCapitalLetter()}. "
+                                                        ? $"{intervention.behavior.Format(null, "The client shows ", "", false)}"
                                                         : "") +
                                                     "</mark>" +
                                                     (intervention.description != null && intervention.description.Any()

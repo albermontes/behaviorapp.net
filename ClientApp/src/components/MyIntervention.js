@@ -10,7 +10,6 @@ export default function MyIntervention(props){
             behavior, onBehaviorChange,
             response, onResponseChange,
             positiveResponse, onPositiveResponseChange,
-            negativeResponse, onNegativeResponseChange,
             reinforceBefore, onReinforceBeforeChange,
             replacement, onReplacementChange,
             reinforceAfter, onReinforceAfterChange,
@@ -77,8 +76,6 @@ export default function MyIntervention(props){
             <MyBehavior 
                 behavior={behavior}
                 onBehaviorChange={onBehaviorChange}
-                negativeResponse={negativeResponse}
-                onNegativeResponseChange={onNegativeResponseChange}
             />
              <div className="form-group">
                 <label>What intervention did you apply?</label>
@@ -91,17 +88,6 @@ export default function MyIntervention(props){
                         placeholder="Select the Interventions used"
                         options={interventionDescriptions}
                     />
-                    {/* <select 
-                            className="nice-select wide required" 
-                            onChange={onDescriptionChange} 
-                            value={description}>
-                        {interventionDescriptions.map(x =>
-                             <option value={x}
-                                    hidden={x == ''}>
-                                {x == '' ? 'Select an Intervention' : x}
-                            </option>  
-                        )}
-                    </select> */}
                 </div>
             </div>
             {responseSelectionElement}

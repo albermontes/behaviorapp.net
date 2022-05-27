@@ -26,7 +26,6 @@ export default function MyActivity(props){
             onReinforceBeforeChange,
             onReplacementChange,
             onReinforceAfterChange,
-            onInterventionNegativeResponseChange,
             onInterventionPositiveResponseChange,
             onInterventionReinforceBeforeChange,
             onInterventionReplacementChange,
@@ -93,7 +92,6 @@ export default function MyActivity(props){
                     onDescriptionChange={onInterventionDescriptionChange}
                     onBehaviorChange={onBehaviorChange}
                     onPositiveResponseChange={onInterventionPositiveResponseChange}
-                    onNegativeResponseChange={onInterventionNegativeResponseChange}
                     onReinforceBeforeChange={onInterventionReinforceBeforeChange}
                     onReplacementChange={onInterventionReplacementChange}
                     onReinforceAfterChange={onInterventionReinforceAfterChange}
