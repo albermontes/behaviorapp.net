@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import deleteIcon from '../img/ba-icon-delete.svg';
-import { Oval } from 'react-loader-spinner';
 
 export default function MyNoteSummary(props){
     const { jsonNote, onClearNote } = props;
