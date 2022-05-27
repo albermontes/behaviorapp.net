@@ -106,7 +106,7 @@ namespace behavior_app.Models
                             $"{(detailsString != "" ? $"{detailsString}. " : "")}" +
                             $"{(descriptionsDetails != "" ? $"{descriptionsDetails}. " : "")}" +
                            (markClass != null ? "</mark>" : "")
-                        : ""); 
+                        : "");
         }
         public static string RemoveDuplicateSpacesAndDots(this string text)
         {
