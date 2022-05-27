@@ -96,6 +96,7 @@ export default function MyClients(){
         })
             .then(r => r.json())
             .then(client => {
+                console.log('client ' + client);
                getClients();
             })
             .catch(error => {

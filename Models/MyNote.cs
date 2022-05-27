@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +10,9 @@ namespace behavior_app.Models
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
+        [NotMapped]
         public virtual MyDetailInfo detailInfo { get; set; }
+        [NotMapped]
         public virtual List<MyActivity> activities { get; set; }
 
         public int ClientId { get; set; }
