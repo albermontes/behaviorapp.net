@@ -175,5 +175,5 @@ export const caregivers = [
     'Grandmother'    
 ]
 
-export const BAD_TAG = 'NEGATIVE';
-export const OK_TAG = 'POSITIVE';
+export const BAD_TAG = 'NO';
+export const OK_TAG = 'YES';
