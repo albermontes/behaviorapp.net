@@ -4,10 +4,12 @@ on:
   push:
     branches:
     - master
+    - qa
 
 env:
   HEROKU_API_KEY: ${{ 'd709b692-cdc4-466d-8f4e-ea3e2a1c2c5d' }}
-  APP_NAME: ${{ 'behavior-net' }}
+  APP_NAME_PROD: ${{ 'behavior-net' }}
+  APP_NAME_QA: ${{ 'behavior-net-qa' }}
 
 jobs:
   build:
@@ -23,8 +25,16 @@ jobs:
     - name: Docker build
       run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
 
-    # Push the Docker image to Heroku Container Registry
-    - name: Publish
+    # Push the Docker image to Heroku Container Registry (Prod)
+    - name: Publish to Prod
+      if: endsWith(github.ref, '/master')
       run: |
-        heroku container:push web -a $APP_NAME
-        heroku container:release web -a $APP_NAME
+        heroku container:push web -a $APP_NAME_PROD
+        heroku container:release web -a $APP_NAME_PROD
+
+    # Push the Docker image to Heroku Container Registry (QA)
+    - name: Publish to QA
+      if: endsWith(github.ref, '/qa')
+      run: |
+        heroku container:push web -a $APP_NAME_QA
+        heroku container:release web -a $APP_NAME_QA
