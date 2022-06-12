@@ -396,19 +396,19 @@ export default function MyNote(){
                                     onInterventionReinforceDescriptionChange={setInterventionReinforceDescription(i)}
                                 />
                             ))}
-                        <div class="d-flex justify-content-end">    
+                        <div class="d-flex justify-content-end">     
                             <div>
-                                <button class="ba-button ba-button-transparent"
-                                        onClick={addActivity}>
-                                    ADD SCHED. ACTIVITY
-                                </button>
-                            </div>   
-                            <div>
-                                <button class="ba-button ba-button-transparent"
+                                <button class="ba-button btn_2"
                                         onClick={addOtherEvent}>
                                     ADD EVENT
                                 </button>
                             </div> 
+                            <div class="pl-2">
+                                <button class="ba-button btn_2"
+                                        onClick={addActivity}>
+                                    ADD SCHED. ACTIVITY
+                                </button>
+                            </div>                              
                         </div>       
                     </div>
             break;
