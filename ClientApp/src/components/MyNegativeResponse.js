@@ -20,10 +20,10 @@ export default function MyNegativeResponse(props){
     return (
         <div>
             { interventions.map((a, i) => (
-                    <div>
+                    <div class="ml-3">
                         <div className="d-flex justify-content-between">
                             <div>
-                                <h5>{i+1} Behavior</h5>
+                                <h4>{i+1} Behavior</h4>
                             </div>
                             <div className="pt-2">
                                 <button className="pt-2 ba-button ba-button ba-button-action"
