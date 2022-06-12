@@ -356,12 +356,10 @@ export default function MyNote(){
             break;
         case 2:
             note =  <div className="step">
-                        <h3 class="main_question">
-                            <strong>2/3</strong>
-                            <mark class="gnx-bck-white">
-                                Activities
-                            </mark>
-                        </h3>
+                        <h2 class="main_question">
+                            <div>2/3</div>
+                            <mark>Activities</mark>
+                        </h2>
                         { activities.map((a, i) => (
                                 <MyActivity
                                     index={i}
@@ -414,12 +412,10 @@ export default function MyNote(){
             break;
         case 3:
             note =  <div className="step">
-                        <h3 class="main_question">
-                            <strong>3/3</strong>
-                            <mark class="gnx-bck-white">
-                                Conclusion
-                            </mark>
-                        </h3>
+                        <h2 class="main_question">
+                            <div>3/3</div>
+                            <mark>Conclusion</mark>
+                        </h2>
                         <div className="form-group">
                             <label>Health summary</label>
                             <textarea className="form-control"
