@@ -40,7 +40,7 @@ export default function MyActivity(props){
     const responseSelectionElement = 
         description == ''
         ? ''
-        :   <div>
+        :   <div class="pl-3">
                 {description == 'other' 
                 ? <label>What type of event was?</label>
                 : <label>How was the response?</label>}
@@ -125,7 +125,7 @@ export default function MyActivity(props){
             </div>
 
     return (
-        <div  className="shadow p-4 mb-3 gnx-bck-darkgray ba-hover-darkgray">
+        <div  className="shadow p-4 mb-3 gnx-bck-darkgray">
             <div>
                 <div className="d-flex justify-content-between">
                     <div>
