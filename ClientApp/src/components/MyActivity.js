@@ -111,7 +111,7 @@ export default function MyActivity(props){
         :  <div className="form-group">
                 <label>What Activity was scheduled?</label>
                 <div className="styled-select clearfix">
-                    <select className="nice-select wide required"
+                    <select className="nice-select nice-select_2 wide required"
                             value={description}
                             onChange={onDescriptionChange} >
                         {activityDescriptions.map(x =>
