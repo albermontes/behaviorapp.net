@@ -44,7 +44,7 @@ export default function MyBehavior(props){
                 </div>
             </div>
             {behaviorOption.map((option,i) => 
-                <div className="pl-4 border-left">
+                <div className="pl-3 border-left">
                      <div className="form-group">
                         <label>
                             <h3>{option.label}</h3>
