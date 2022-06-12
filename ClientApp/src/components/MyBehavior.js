@@ -46,7 +46,10 @@ export default function MyBehavior(props){
             {behaviorOption.map((option,i) => 
                 <div className="pl-4 border-left">
                      <div className="form-group">
-                        <label>Select the type of {option.label}</label>
+                        <label>
+                            <h3>{option.label}</h3>
+                            Select the type 
+                        </label>
                         <div className="styled-select clearfix">
                             <CreatableSelect
                                 styles={customOptionStyle}
