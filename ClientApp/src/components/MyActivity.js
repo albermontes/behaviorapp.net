@@ -126,7 +126,7 @@ export default function MyActivity(props){
 
     return (
         <div  className="shadow p-4 mb-3 gnx-bck-darkgray ba-hover-darkgray">
-            <div class="ml-3">
+            <div>
                 <div className="d-flex justify-content-between">
                     <div>
                         <h4 class="font-weight-bold">{(index + 1) + (description == '' 
