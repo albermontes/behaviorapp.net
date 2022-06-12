@@ -2303,6 +2303,15 @@ Author URI: http://albermontes.com
 		width: auto;
 		color: #EFEFEF;
 	}
+
+	.nice-select_2 {
+		background-color: transparent;
+		padding-left: inherit;
+		font-size: 1.15rem;
+		font-weight: 600;
+		border: none;
+	}
+
 	.nice-select:active, .nice-select.open, .nice-select:focus {
 		border-color: #434bdf;
 	}

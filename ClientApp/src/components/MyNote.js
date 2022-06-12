@@ -358,7 +358,9 @@ export default function MyNote(){
             note =  <div className="step">
                         <h2 class="main_question">
                             <div>2/3</div>
-                            <mark>Activities</mark>
+                            <div class="pt-3 pb-4">
+                                <mark>Activities</mark>
+                            </div>    
                         </h2>
                         { activities.map((a, i) => (
                                 <MyActivity
@@ -414,7 +416,9 @@ export default function MyNote(){
             note =  <div className="step">
                         <h2 class="main_question">
                             <div>3/3</div>
-                            <mark>Conclusion</mark>
+                            <div class="pt-3 pb-4">
+                                <mark>Conclusion</mark>
+                            </div>    
                         </h2>
                         <div className="form-group">
                             <label>Health summary</label>
@@ -462,10 +466,10 @@ export default function MyNote(){
                                 {client ? client.name : ''}
                             </h3>
                             <div className="px-2 py-3">
-                                <span className="pr-2">Download PDF</span>
                                 <a className="ba-arrow-r pointer" 
-                                        onClick={onDownloadPdf}>
-                                    <img src={right} width="20" />
+                                    onClick={onDownloadPdf}>
+                                    <span className="pr-2">Download PDF</span>
+                                    {/* <img src={right} width="20" /> */}
                                 </a>
                             </div>
                         </div>
