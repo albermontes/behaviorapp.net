@@ -129,12 +129,12 @@ export default function MyActivity(props){
             <div>
                 <div className="d-flex justify-content-between">
                     <div>
-                        <h4 class="font-weight-bold">{(index + 1) + (description == '' 
+                        <h3 class="font-weight-bold">{(index + 1) + (description == '' 
                             ? ' Activity' 
                             : description == 'other'
                                 ? ' Other Event'
                                 : ' ' + description) }
-                        </h4>
+                        </h3>
                         <div className="pl-4">
                             {response.label}
                         </div>
