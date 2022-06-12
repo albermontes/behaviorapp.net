@@ -151,6 +151,10 @@ Author URI: http://albermontes.com
 	  display: inline-block;
 	}
 
+	.h2, h2 {
+	    font-size: 1.5rem!important;
+	}
+
 	.h3, h3 {
 	    font-size: 1.15rem!important;
 	    margin: 0;
@@ -165,8 +169,13 @@ Author URI: http://albermontes.com
 		font-size: 1rem!important;		
 	}
 
+	/*border*/
 	.border-bottom {
 		border-bottom: 1px solid #606D89!important;
+	}
+
+	.border-left {
+		border-bottom: 1px solid #88898C!important;
 	}
 
 	/*table*/
