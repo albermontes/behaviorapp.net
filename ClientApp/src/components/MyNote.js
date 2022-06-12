@@ -302,12 +302,12 @@ export default function MyNote(){
     switch(step){
         case 1:
             note =  <div className="step">
-                        <h3 class="main_question">
-                            <strong>1/3</strong>
-                            <mark class="gnx-bck-white">
-                                Introduction
-                            </mark>
-                        </h3>
+                        <h2 class="main_question">
+                            <div>1/3</div>
+                            <div class="pt-3 pb-4">
+                                <mark>Introduction</mark>
+                            </div>    
+                        </h2>
                         <div className="form-group">
                             <label>Select the session date </label>
                             <input  className="form-control"
