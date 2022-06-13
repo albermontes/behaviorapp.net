@@ -458,7 +458,7 @@ export default function MyNote(){
                             </div>
                         </div>
                         <div className="d-flex justify-content-between p-2 gnx-bck-darkgray border-bottom">
-                            <h3 className="p-3">
+                            <h3 className="p-3 mb-0">
                                 <a className="ba-home-icon pr-3 pointer"
                                         onClick={onNavigationBack}>
                                     <img src={left} width="16" />
