@@ -35,7 +35,7 @@ export default function MyPositiveResponse(props){
     }
 
     return (
-        <div class="pl-3 border-left">
+        <div class="pl-3">
             <div className="form-group">
                 <label>Describe the response</label>
                 <textarea className="form-control"

@@ -78,6 +78,7 @@ export default function MyIntervention(props){
                 onBehaviorChange={onBehaviorChange}
             />
              <div className="form-group">
+                <h4 class="gnx-bck-interventions">Interventions</h4>
                 <label>What intervention did you apply?</label>
                 <div className="styled-select clearfix">
                     <CreatableSelect
