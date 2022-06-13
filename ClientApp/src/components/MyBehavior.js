@@ -47,7 +47,7 @@ export default function MyBehavior(props){
                 <div className="pl-3 border-left">
                      <div className="form-group">
                         <label>
-                            <h3>{option.label}</h3>
+                            <h4 class="ba-color-bx">{option.label}</h4>
                             Select the type 
                         </label>
                         <div className="styled-select clearfix">
