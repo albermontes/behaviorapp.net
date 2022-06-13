@@ -23,7 +23,8 @@ export default function MyNegativeResponse(props){
                     <div class="pl-3">
                         <div className="d-flex justify-content-between">
                             <div>
-                                <h4>{i+1}. Behavior</h4>
+                                <h3 class="gnx-color-behaviors">Behaviors</h3>
+                                {/*<h3>Behavior {i+1}</h3> TONY I REMOVED LA MUMERACION LO DEJO PARA DEJARTE SABER, QUITALO SI QUIERES*/}
                             </div>
                             <div className="pt-2">
                                 <button className="pt-2 ba-button ba-button ba-button-action"
