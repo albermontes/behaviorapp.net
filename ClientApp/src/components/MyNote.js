@@ -310,7 +310,7 @@ export default function MyNote(){
                         </h2>
                         <div class="d-flex">
                             <div className="form-group">
-                                <label>Select the session date </label>
+                                <label>Select the session date</label>
                                 <input  className="form-control"
                                         placeholder="Select a date"
                                         type="date"
@@ -319,7 +319,8 @@ export default function MyNote(){
                             </div>
                             <div className="form-group">
                                 <div className="styled-select clearfix">
-                                    <select className="nice-select wide required" 
+                                    <label>&nbsp;</label>
+                                    <select className="nice-select required" 
                                             placeholder="Select a location"
                                             value={detailInfo.location}
                                             onChange={setLocation}>
