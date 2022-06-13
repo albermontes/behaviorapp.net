@@ -568,6 +568,9 @@ export default function MyNote(){
                             </div> 
                         </div>                       
                     </div>
+                    <div class="button-test" style="width:100%; background:gray; position:absolute;">
+                        buttons at bottom
+                    </div>
                 </div>
             </div>
         </div>
