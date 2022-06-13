@@ -308,7 +308,7 @@ export default function MyNote(){
                                 <mark>Introduction</mark>
                             </div>    
                         </h2>
-                        <label>Select the session date and location</label>
+                        <label>Select the session date</label>
                         <div class="row no-gutters pb-4">
                             <div className="col-lg-6 pr-3">
                                 <input  className="form-control"
