@@ -308,7 +308,7 @@ export default function MyNote(){
                                 <mark>Introduction</mark>
                             </div>    
                         </h2>
-                        <label>Select the session date</label>
+                        <label>Select the session date and location</label>
                         <div class="row no-gutters pb-4">
                             <div className="col-lg-6 pr-3">
                                 <input  className="form-control"
@@ -554,20 +554,20 @@ export default function MyNote(){
                         </div>
                         <div id="middle-wizard">
                             {note}
-                        </div>                  
+                        </div>
+                        <div id="bottom-wizard">
+                            <button className="backward"
+                                    onClick={prevStep} 
+                                    hidden={step == 1}>
+                                PREV
+                            </button>
+                            <button className="forward"
+                                    onClick={nextStep} 
+                                    hidden={step == 3}>
+                                NEXT
+                            </button>
+                        </div>                        
                     </div>
-                    <div id="bottom-wizard">
-                        <button className="backward"
-                                onClick={prevStep} 
-                                hidden={step == 1}>
-                            PREV
-                        </button>
-                        <button className="forward"
-                                onClick={nextStep} 
-                                hidden={step == 3}>
-                            NEXT
-                        </button>
-                    </div>      
                 </div>
             </div>
         </div>
