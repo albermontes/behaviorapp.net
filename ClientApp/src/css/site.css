@@ -160,17 +160,17 @@ Author URI: http://albermontes.com
 	}
 
 	.h3, h3 {
-	    font-size: 1rem!important;
+	    font-size: 1.25rem!important;
 	    margin: 0;
 		text-transform: capitalize;
 	}
 
 	.h4, h4 {
-		font-size: 1.12rem!important;		
+		font-size: 1rem!important;		
 	}
 
 	.h5, h5 {
-		font-size: 1rem!important;		
+		font-size: .85rem!important;		
 	}
 
 	/*rounded*/
