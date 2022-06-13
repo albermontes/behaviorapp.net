@@ -318,20 +318,18 @@ export default function MyNote(){
                                         onChange={setSessionDate}/>
                             </div>
                             <div className="form-group">
-                                <div className="styled-select clearfix">
-                                    <label>&nbsp;</label>
-                                    <select className="nice-select required" 
-                                            placeholder="Select a location"
-                                            value={detailInfo.location}
-                                            onChange={setLocation}>
-                                        {locations.map(x => 
-                                            <option value={x}
-                                                    hidden={x == ''}>
-                                                {x == '' ? 'Select a Location' : x}
-                                            </option>    
-                                        )}
-                                    </select>
-                                </div>
+                                <br/>
+                                <select className="nice-select required" 
+                                        placeholder="Select a location"
+                                        value={detailInfo.location}
+                                        onChange={setLocation}>
+                                    {locations.map(x => 
+                                        <option value={x}
+                                                hidden={x == ''}>
+                                            {x == '' ? 'Select a Location' : x}
+                                        </option>    
+                                    )}
+                                </select>
                             </div>
                         </div>    
                         <div className="form-group">
