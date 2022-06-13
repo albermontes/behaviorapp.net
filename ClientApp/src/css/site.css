@@ -1348,7 +1348,7 @@ Author URI: http://albermontes.com
 
 	.backward:hover,
 	.forward:hover {
-		background: #d80075;
+		background: #2c33aa;
 		color: #fff;
 	}
 
@@ -1366,8 +1366,12 @@ Author URI: http://albermontes.com
 	}
 
 	#bottom-wizard {
-		border-top: 2px solid #6C757D;
-		padding-top: 20px;
+		position: absolute;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		border-top: 1px solid #6C757D;
+		padding: 20px;
 		text-align: right;
 		margin-top: 25px;
 	}
