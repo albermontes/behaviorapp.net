@@ -308,29 +308,31 @@ export default function MyNote(){
                                 <mark>Introduction</mark>
                             </div>    
                         </h2>
-                        <div className="form-group">
-                            <label>Select the session date </label>
-                            <input  className="form-control"
-                                    placeholder="Select a date"
-                                    type="date"
-                                    value={date}
-                                    onChange={setSessionDate}/>
-                        </div>
-                        <div className="form-group">
-                            <div className="styled-select clearfix">
-                                <select className="nice-select wide required" 
-                                        placeholder="Select a location"
-                                        value={detailInfo.location}
-                                        onChange={setLocation}>
-                                    {locations.map(x => 
-                                        <option value={x}
-                                                hidden={x == ''}>
-                                            {x == '' ? 'Select a Location' : x}
-                                        </option>    
-                                    )}
-                                </select>
+                        <div class="d-flex">
+                            <div className="form-group">
+                                <label>Select the session date </label>
+                                <input  className="form-control"
+                                        placeholder="Select a date"
+                                        type="date"
+                                        value={date}
+                                        onChange={setSessionDate}/>
                             </div>
-                        </div>
+                            <div className="form-group">
+                                <div className="styled-select clearfix">
+                                    <select className="nice-select wide required" 
+                                            placeholder="Select a location"
+                                            value={detailInfo.location}
+                                            onChange={setLocation}>
+                                        {locations.map(x => 
+                                            <option value={x}
+                                                    hidden={x == ''}>
+                                                {x == '' ? 'Select a Location' : x}
+                                            </option>    
+                                        )}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>    
                         <div className="form-group">
                             <label>Caregiver</label>
                             {caregivers.map(x => 
@@ -512,8 +514,8 @@ export default function MyNote(){
                                     <span class="text-uppercase">Legend</span>
                                 </div>
                                 <div class="pr-3 pb-2 text-truncate">
-                                    <div class="gnx-square gnx-bck-introduction"></div>
-                                    <span>&nbsp;Introduction</span>
+                                    <div class="gnx-square gnx-bck-introduction">I</div>
+                                    <span>ntroduction</span>
                                 </div>
                                 <div class="pr-3 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-activities"></div>
