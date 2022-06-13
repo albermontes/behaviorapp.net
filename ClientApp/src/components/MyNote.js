@@ -308,8 +308,8 @@ export default function MyNote(){
                                 <mark>Introduction</mark>
                             </div>    
                         </h2>
-                        <div class="d-flex">
-                            <div className="form-group">
+                        <div class="row no-gutters pb-4">
+                            <div className="col-lg-6">
                                 <label>Select the session date</label>
                                 <input  className="form-control"
                                         placeholder="Select a date"
@@ -317,8 +317,8 @@ export default function MyNote(){
                                         value={date}
                                         onChange={setSessionDate}/>
                             </div>
-                            <div className="form-group">
-                                <br/>
+                            <div className="col-lg-6">
+                                <label class="sr-only">Select location</label>
                                 <select className="nice-select required" 
                                         placeholder="Select a location"
                                         value={detailInfo.location}

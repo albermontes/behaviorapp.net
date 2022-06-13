@@ -1368,10 +1368,6 @@ Author URI: http://albermontes.com
 	}
 
 	#bottom-wizard {
-		position: absolute;
-		right: 0;
-		left: 0;
-		bottom: 0;
 		border-top: 1px solid #6C757D;
 		padding: 20px;
 		text-align: right;
