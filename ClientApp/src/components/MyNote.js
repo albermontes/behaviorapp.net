@@ -554,19 +554,19 @@ export default function MyNote(){
                         </div>
                         <div id="middle-wizard">
                             {note}
-                        </div>
-                        <div id="bottom-wizard">
-                            <button className="backward"
-                                    onClick={prevStep} 
-                                    hidden={step == 1}>
-                                PREV
-                            </button>
-                            <button className="forward"
-                                    onClick={nextStep} 
-                                    hidden={step == 3}>
-                                NEXT
-                            </button>
-                        </div>                        
+                            <div id="bottom-wizard">
+                                <button className="backward"
+                                        onClick={prevStep} 
+                                        hidden={step == 1}>
+                                    PREV
+                                </button>
+                                <button className="forward"
+                                        onClick={nextStep} 
+                                        hidden={step == 3}>
+                                    NEXT
+                                </button>
+                            </div> 
+                        </div>                       
                     </div>
                 </div>
             </div>
