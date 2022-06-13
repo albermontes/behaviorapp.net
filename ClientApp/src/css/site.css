@@ -169,6 +169,11 @@ Author URI: http://albermontes.com
 		font-size: 1rem!important;		
 	}
 
+	/*rounded*/
+	.rounded-4 {
+		border-radius: .75rem;
+	}
+
 	/*border*/
 	.border-bottom {
 		border-bottom: 1px solid #606D89!important;
