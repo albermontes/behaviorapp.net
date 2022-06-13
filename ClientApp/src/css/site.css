@@ -1358,6 +1358,8 @@ Author URI: http://albermontes.com
 
 	#middle-wizard {
 		min-height: 330px;
+		position: relative;
+		height: 100%;
 	}
 	@media (max-width: 991px) {
 		#middle-wizard {
@@ -1373,7 +1375,7 @@ Author URI: http://albermontes.com
 		border-top: 1px solid #6C757D;
 		padding: 20px;
 		text-align: right;
-		margin-top: 25px;
+		margin-top: 25px; 
 	}
 
 	.ui-widget-content {
