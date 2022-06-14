@@ -44,6 +44,7 @@ export default function MyPositiveResponse(props){
                         onChange={onPositiveResponseChange}/>
             </div>
             <div class="form-group mt-5">
+                <h3 class="gnx-color-reinforcements">Reinforce (before)</h3>
                 <label>What reinforce did you applied before replacement?</label>
                 <div class="styled-select clearfix">
                     <CreatableSelect
@@ -57,6 +58,7 @@ export default function MyPositiveResponse(props){
                 </div>
             </div>
             <div class="form-group">
+                <h3 class="gnx-color-replacements">Replacement</h3>
                 <label>What replacement did you apply?</label>
                 <div class="styled-select clearfix">
                     <CreatableSelect
@@ -70,6 +72,7 @@ export default function MyPositiveResponse(props){
                 </div>
             </div>
             <div class="form-group">
+                <h3 class="gnx-color-reinforcements">Reinforce (after)</h3>
                 <label>What reinforce did you applied after replacement?</label>
                 <div class="styled-select clearfix">
                     <CreatableSelect
