@@ -128,25 +128,12 @@ export default function MyActivity(props){
         <div  className="shadow p-4 mb-3 gnx-bck-darkgray ba-hover-darkgray">
             <div>
                 <div className="d-flex justify-content-between">
-                    <div>
-                        <h4 class="font-weight-bold">{(index + 1) + (description == '' 
-                            ? ' Activity' 
-                            : description == 'other'
-                                ? ' Other Event'
-                                : ' ' + description) }
-                        </h4>
-                        <div className="pl-4">
-                            {response.label}
-                        </div>
-                    </div>
-                    <div>
-                        <button className="ba-button ba-button ba-button-action"
-                                onClick={onRemove}>
-                            <img src={deleteIcon} 
-                                    alt="" 
-                                    width="13"/>
-                        </button>
-                    </div>
+                    <button className="ba-button ba-button ba-button-action"
+                            onClick={onRemove}>
+                        <img src={deleteIcon} 
+                                alt="" 
+                                width="13"/>
+                    </button>
                 </div>
             </div>
             <br/>
