@@ -547,7 +547,7 @@ export default function MyNote(){
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-5 content-left" id="start">
+                <div className="col-lg-5 pt-3 pb-5 content-left" id="start">
                     <div id="wizard_container">
                         {/*<div id="top-wizard">
                             <div id="progressbar"></div>
