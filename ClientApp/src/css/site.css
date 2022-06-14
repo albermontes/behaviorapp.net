@@ -39,21 +39,6 @@ Author URI: http://albermontes.com
 32px = 2rem
 */
 
-
-/**************************************
-*****************************TESTING */
-.button-test {
-    position: absolute;
-    background: red;
-    width: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-/**************************************
-*****************************TESTING */
-
-
 .pointer:hover{
 	cursor: pointer;
 }
@@ -1388,6 +1373,11 @@ Author URI: http://albermontes.com
 	}
 
 	#bottom-wizard {
+		position: absolute;
+		width: 100%;
+		left: 0;
+		right: 0;
+		bottom: 0;
 		border-top: 1px solid #6C757D;
 		padding: 20px;
 		text-align: right;
