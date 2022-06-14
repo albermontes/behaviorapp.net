@@ -400,13 +400,13 @@ export default function MyNote(){
                             <div>
                                 <button class="ba-button btn_2"
                                         onClick={addOtherEvent}>
-                                    ADD EVENT
+                                    + EVENT
                                 </button>
                             </div> 
                             <div class="pl-2">
                                 <button class="ba-button btn_2"
                                         onClick={addActivity}>
-                                    ADD SCHED. ACTIVITY
+                                    + SCHED. ACTIVITY
                                 </button>
                             </div>                              
                         </div>       
