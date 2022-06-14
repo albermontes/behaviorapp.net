@@ -547,12 +547,12 @@ export default function MyNote(){
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-5 content-left px-3" id="start">
+                <div className="col-lg-5 content-left" id="start">
                     <div id="wizard_container">
-                        <div id="top-wizard">
+                        {/*<div id="top-wizard">
                             <div id="progressbar"></div>
-                        </div>
-                        <div id="middle-wizard">
+                        </div>*/}
+                        <div class="px-4 py-5" id="middle-wizard">
                             {note}
                             <div id="bottom-wizard">
                                 <button className="backward"
