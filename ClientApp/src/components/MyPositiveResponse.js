@@ -38,7 +38,7 @@ export default function MyPositiveResponse(props){
         <div>
             <div className="form-group">
                 <label>Describe the response</label>
-                <textarea className="form-control"
+                <textarea className="form-control form-control-textarea"
                         placeholder="Description of what is this..."
                         value={positiveResponse}
                         onChange={onPositiveResponseChange}/>
@@ -104,7 +104,7 @@ export default function MyPositiveResponse(props){
                     </label>
                 </div>
                 <label>Describe the response</label>
-                <textarea className="form-control"
+                <textarea className="form-control form-control-textarea"
                         placeholder="Description of what is this..."
                         value={reinforceResponse.description}
                         onChange={onReinforceDescriptionChange}/>
