@@ -1117,8 +1117,9 @@ Author URI: http://albermontes.com
 
 	.content-left {
 	    display: block;
-	    height: 100%;
 	    overflow: auto;
+		min-height: 100%;
+    	height: 100%;
 	}
 
 	.content-left-wrapper {
@@ -1291,7 +1292,7 @@ Author URI: http://albermontes.com
 	}
 
 	#wizard_container {
-		width: 90%;
+		/*width: 90%;*/
 		height: 100%;
 		min-height: 100%;
 		overflow-y: scroll;
