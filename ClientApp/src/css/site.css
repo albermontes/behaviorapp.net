@@ -2342,6 +2342,8 @@ Author URI: http://albermontes.com
 	.nice-select_2 {
 		background-color: transparent;
 		padding-left: inherit;
+		padding-right: inherit;
+		height: 32px;
 		font-size: 1.15rem;
 		font-weight: 600;
 		border: none;
