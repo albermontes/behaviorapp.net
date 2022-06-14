@@ -132,7 +132,7 @@ export default function MyActivity(props){
                         <h3 class="font-weight-bold">{(index + 1) + (description == '' 
                             ? ' Activity' 
                             : description == 'other'
-                                ? ' Other Event'
+                                ? ' Event'
                                 : ' ' + description) }
                         </h3>
                         <div className="pl-4">
