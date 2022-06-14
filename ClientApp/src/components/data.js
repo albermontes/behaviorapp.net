@@ -1,6 +1,6 @@
 export const activityDescriptions = [
     "",
-    "111 Playing simples and structured didactic activities",
+    "Playing simples and structured didactic activities",
     "Doing some exercises for the focus of attention on the RBT’s" ,
     "Making some designs using the Legos’ set",
     "Playing and making figures and forms with play dough",
@@ -175,5 +175,5 @@ export const caregivers = [
     'Grandmother'    
 ]
 
-export const BAD_TAG = 'NO';
-export const OK_TAG = 'YES';
+export const BAD_TAG = 'NEGATIVE';
+export const OK_TAG = 'POSITIVE';
