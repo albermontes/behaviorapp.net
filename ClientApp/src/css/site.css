@@ -1864,6 +1864,10 @@ Author URI: http://albermontes.com
 		font-weight: 400 !important;
 	}
 
+		.form-control-textarea {
+			font-size: .875rem;
+		}
+
 	span.error {
 		-moz-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
