@@ -61,7 +61,7 @@ export default function MyBehavior(props){
                             />
                         </div>
                     </div>
-                    <div className="form-group form-group-textarea">
+                    <div className="form-group form-group-textarea"> 
                         <textarea className="form-control"
                                 placeholder={"Describe the " + option.label}
                                 value={option.description}
