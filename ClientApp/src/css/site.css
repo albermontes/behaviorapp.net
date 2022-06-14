@@ -1189,8 +1189,8 @@ Author URI: http://albermontes.com
 		padding: 60px;
 		height: 100%;
 		min-height: 100%;
-		/*overflow-y: scroll;
-		display: flex;
+		overflow-y: scroll;
+		/*display: flex;
 		justify-content: center;*/
 		background-color: #202734;
 	}
