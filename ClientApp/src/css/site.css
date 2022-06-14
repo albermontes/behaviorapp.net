@@ -39,6 +39,21 @@ Author URI: http://albermontes.com
 32px = 2rem
 */
 
+
+/**************************************
+*****************************TESTING */
+.button-test {
+    position: absolute;
+    background: red;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+/**************************************
+*****************************TESTING */
+
+
 .pointer:hover{
 	cursor: pointer;
 }
@@ -1174,9 +1189,9 @@ Author URI: http://albermontes.com
 		padding: 60px;
 		height: 100%;
 		min-height: 100%;
-		overflow-y: scroll;
+		/*overflow-y: scroll;
 		display: flex;
-		justify-content: center;
+		justify-content: center;*/
 		background-color: #202734;
 	}
 
@@ -1275,9 +1290,9 @@ Author URI: http://albermontes.com
 		display: none;
 	}
 
-	#wizard_container {
+	/*#wizard_container {
 		width: 90%;
-	}
+	}*/
 	@media (max-width: 767px) {
 		#wizard_container {
 			width: 100%;
