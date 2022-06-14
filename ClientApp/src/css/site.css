@@ -1185,15 +1185,15 @@ Author URI: http://albermontes.com
 		}
 	}
 
-	.content-right {
+	/*.content-right {
 		padding: 60px;
 		height: 100%;
 		min-height: 100%;
 		overflow-y: scroll;
 		/*display: flex;
-		justify-content: center;*/
+		justify-content: center;
 		background-color: #202734;
-	}
+	}*/
 
 	.content-right-form {
 		background-color: #202734;
@@ -1290,9 +1290,13 @@ Author URI: http://albermontes.com
 		display: none;
 	}
 
-	/*#wizard_container {
+	#wizard_container {
 		width: 90%;
-	}*/
+		height: 100%;
+		min-height: 100%;
+		overflow-y: scroll;
+	}
+	
 	@media (max-width: 767px) {
 		#wizard_container {
 			width: 100%;
