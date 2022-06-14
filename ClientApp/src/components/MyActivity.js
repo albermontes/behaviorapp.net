@@ -45,10 +45,10 @@ export default function MyActivity(props){
                 ? <label>What type of event was?</label>
                 : <label>How was the response?</label>}
 
-            <span class="switcher switcher-1">
-                <input type="checkbox" id="switcher-1" />
-                <label for="switcher-1"></label>
-            </span>
+                <span class="switcher switcher-1">
+                    <input type="checkbox" id="switcher-1" />
+                    <label for="switcher-1"></label>
+                </span>
 
                 <div className="form-group d-flex"   
                         onChange={onResponseChange}>
