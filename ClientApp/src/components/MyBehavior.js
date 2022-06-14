@@ -61,13 +61,8 @@ export default function MyBehavior(props){
                             />
                         </div>
                     </div>
-<<<<<<< Updated upstream
-                    <div className="form-group form-group-textarea"> 
-                        <textarea className="form-control"
-=======
                     <div className="form-group">
-                        <textarea className="form-control form-group-textarea"
->>>>>>> Stashed changes
+                        <textarea className="form-control"
                                 placeholder={"Describe the " + option.label}
                                 value={option.description}
                                 onChange={onBehaviorDescriptionChange(i)}
