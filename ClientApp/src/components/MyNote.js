@@ -507,39 +507,39 @@ export default function MyNote(){
                             </div>
                         </div>
                         <div class="footer">
-                            <div class="pr-1 pb-2 text-truncate">
-                                <span class="text-uppercase">Legend</span>
+                            <div class="pl-3 text-uppercase">
+                                <span>Legend</span>
                             </div>
                             <div class="d-flex flex-wrap px-3 py-2">
-                                <div class="pr-1 pb-2 text-truncate">
+                                <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-introduction"></div>
                                     <span>Introduction</span>
                                 </div>
-                                <div class="pr-1 pb-2 text-truncate">
+                                <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-activities"></div>
                                     <span>&nbsp;Activities</span>
                                 </div>
-                                <div class="pr-1 pb-2 text-truncate">
+                                <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-behaviors"></div>
                                     <span>&nbsp;Behaviors</span>
                                 </div>
-                                <div class="pr-1 pb-2 text-truncate">
+                                <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-interventions"></div>
                                     <span>&nbsp;Interventions</span>
                                 </div>
-                                <div class="pr-1 pb-2 text-truncate">
+                                <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-transitions"></div>
                                     <span>&nbsp;Transitions</span>
                                 </div>
-                                <div class="pr-1 pb-2 text-truncate">
+                                <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-replacements"></div>
                                     <span>&nbsp;Replacements</span>
                                 </div>
-                                <div class="pr-1 pb-2 text-truncate">
+                                <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-reinforcements"></div>
                                     <span>&nbsp;Reinforcement</span>
                                 </div>
-                                <div class="pr-1 pb-2 text-truncate">
+                                <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-conclusion"></div>
                                     <span>&nbsp;Conclusion</span>
                                 </div>

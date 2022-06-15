@@ -1255,6 +1255,8 @@ Author URI: http://albermontes.com
 		font-size: .75rem;
 		color: #A5A8AD;
 		background: #202634;
+		border-top: 1px solid #343a4b;
+		padding-top: .7rem;
 	}
 	@media (max-width: 991px) {
 		.footer {
