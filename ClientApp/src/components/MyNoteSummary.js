@@ -132,7 +132,7 @@ export default function MyNoteSummary(props){
                         ? <Oval color="#00BFFF" height={80} width={80}/>
                         :  */notes.map(x => 
                         <div>
-                            <div className="d-flex py-2 gnx-bck-lightgray gnx-bb-dark rounded">
+                            <div className="d-flex py-2 mb-2 gnx-bck-lightgray gnx-bb-dark rounded">
                                 <div className="px-3">
                                     {new Date(x.date).toLocaleDateString("en-US", {
                                             month: 'short', year: 'numeric', day: 'numeric'
