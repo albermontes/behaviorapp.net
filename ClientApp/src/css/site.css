@@ -523,6 +523,10 @@ Author URI: http://albermontes.com
 	}	
 	/* / Borders */
 
+	.ba-note {
+		font-size: .95rem;
+	}
+
 /*-------- CUSTOM 1.6 Profile Page --------*/
 	/*home icon*/
 	.ba-home-icon {
