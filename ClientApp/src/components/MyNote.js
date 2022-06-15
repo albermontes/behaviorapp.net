@@ -304,7 +304,7 @@ export default function MyNote(){
             note =  <div className="step">
                         <h2 class="main_question">
                             <div>1/3</div>
-                            <div class="pt-3 pb-4">
+                            <div class="pt-3 pb-3">
                                 <mark>Introduction</mark>
                             </div>    
                         </h2>
@@ -358,7 +358,7 @@ export default function MyNote(){
             note =  <div className="step">
                         <h2 class="main_question">
                             <div>2/3</div>
-                            <div class="pt-3 pb-4">
+                            <div class="pt-3 pb-3">
                                 <mark>Activities</mark>
                             </div>    
                         </h2>
@@ -416,7 +416,7 @@ export default function MyNote(){
             note =  <div className="step pb-5">
                         <h2 class="main_question">
                             <div>3/3</div>
-                            <div class="pt-3 pb-4">
+                            <div class="pt-3 pb-3">
                                 <mark>Conclusion</mark>
                             </div>    
                         </h2>
