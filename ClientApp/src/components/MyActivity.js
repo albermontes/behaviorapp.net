@@ -45,13 +45,6 @@ export default function MyActivity(props){
                 ? <label>What type of event was?</label>
                 : <label>How was the response?</label>}
 
-{/**** SWITCHER TESTING ****/}
-                <span class="switcher switcher-1">
-                    <input type="checkbox" id="switcher-1" />
-                    <label for="switcher-1"></label>
-                </span>
-{/**** /SWITCHER TESTING ****/}
-
                 <div className="form-group d-flex"   
                         onChange={onResponseChange}>
                     <label className="container_radio version_2">
@@ -73,9 +66,7 @@ export default function MyActivity(props){
                         <span className="checkmark"></span>
                     </label>
                 </div>
-            </div>
-            
-            
+            </div>      
 
     const responseActionsElement = 
             response.label == OK_TAG 
