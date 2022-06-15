@@ -45,12 +45,12 @@ export default function MyActivity(props){
                 ? <label>What type of event was?</label>
                 : <label>How was the response?</label>}
 
-                {/****SWITCHER TESTING ****/}
-                <div class="switcher switcher-1">
+{/**** SWITCHER TESTING ****/}
+                <span class="switcher switcher-1">
                     <input type="checkbox" id="switcher-1" />
                     <label for="switcher-1"></label>
-                </div>
-                 {/****SWITCHER TESTING ****/}
+                </span>
+{/**** /SWITCHER TESTING ****/}
 
                 <div className="form-group d-flex"   
                         onChange={onResponseChange}>
@@ -136,7 +136,7 @@ export default function MyActivity(props){
     return (
         <div  className="shadow p-4 mb-3 gnx-bck-darkgray rounded-4">
             <div>
-                <div className="d-flex justify-content-between">
+                <div className="float-right">
                     <button className="ba-button ba-button ba-button-action"
                             onClick={onRemove}>
                         <img src={deleteIcon} 
