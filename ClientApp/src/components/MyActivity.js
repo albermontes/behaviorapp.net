@@ -136,6 +136,7 @@ export default function MyActivity(props){
     return (
         <div  className="shadow p-4 mb-3 gnx-bck-darkgray rounded-4">
             <div>
+<<<<<<< Updated upstream
                 <div className="d-flex justify-content-between">
                     <div>
                         <h3 class="font-weight-bold">{(index + 1) + (description == '' 
@@ -156,6 +157,15 @@ export default function MyActivity(props){
                                     width="13"/>
                         </button>
                     </div>
+=======
+                <div className="float-right">
+                    <button className="ba-button ba-button ba-button-action"
+                            onClick={onRemove}>
+                        <img src={deleteIcon} 
+                                alt="" 
+                                width="13"/>
+                    </button>
+>>>>>>> Stashed changes
                 </div>
             </div>
             <br/>
