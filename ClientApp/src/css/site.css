@@ -544,12 +544,19 @@ Author URI: http://albermontes.com
 		color: #ffffff;
 	  }
 	  .switcher input:before {
-		content: "POSITIVO";
+		content: "POSITIVE";
 		left: 20px;
+		float: left;
+		color: red!important;
 	  }
 	  .switcher input:after {
+		top: 15px;
 		content: "NEGATIVE";
-		right: 20px;
+		float: right;
+		color: red!important;
+		width: 50px;
+		position: relative;
+		z-index: 2;
 	  }
 	  .switcher label {
 		z-index: 1;
