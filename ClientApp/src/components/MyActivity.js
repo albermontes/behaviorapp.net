@@ -45,6 +45,7 @@ export default function MyActivity(props){
                 ? <label>What type of event was?</label>
                 : <label>How was the response?</label>}
 
+<<<<<<< Updated upstream
                 {/****SWITCHER TESTING ****/}
                 <div class="switcher switcher-1">
                     <input type="checkbox" id="switcher-1" />
@@ -52,6 +53,8 @@ export default function MyActivity(props){
                 </div>
                  {/****SWITCHER TESTING ****/}
 
+=======
+>>>>>>> Stashed changes
                 <div className="form-group d-flex"   
                         onChange={onResponseChange}>
                     <label className="container_radio version_2">
@@ -73,9 +76,7 @@ export default function MyActivity(props){
                         <span className="checkmark"></span>
                     </label>
                 </div>
-            </div>
-            
-            
+            </div>      
 
     const responseActionsElement = 
             response.label == OK_TAG 
