@@ -517,7 +517,7 @@ Author URI: http://albermontes.com
 	}
 	/* /circle menu */
 
-
+	/* switcher */
 	  span.switcher {
 		position: relative;
 		width: 200px;
@@ -663,6 +663,7 @@ Author URI: http://albermontes.com
 		height: 50px;
 		border-radius: 25px;
 	  }
+	/* /switcher */  
 
 
 /*-------- CUSTOM 1.6 Profile Page --------*/
