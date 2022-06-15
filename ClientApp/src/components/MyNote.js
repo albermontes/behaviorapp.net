@@ -396,7 +396,7 @@ export default function MyNote(){
                                     onInterventionReinforceDescriptionChange={setInterventionReinforceDescription(i)}
                                 />
                             ))}
-                        <div class="d-flex justify-content-end">     
+                        <div class="d-flex justify-content-end pb-4">     
                             <div>
                                 <button class="ba-button btn_2"
                                         onClick={addOtherEvent}>
@@ -413,7 +413,7 @@ export default function MyNote(){
                     </div>
             break;
         case 3:
-            note =  <div className="step">
+            note =  <div className="step pb-5">
                         <h2 class="main_question">
                             <div>3/3</div>
                             <div class="pt-3 pb-4">
