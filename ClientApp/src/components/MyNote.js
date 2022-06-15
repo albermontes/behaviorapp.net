@@ -517,31 +517,31 @@ export default function MyNote(){
                                 </div>
                                 <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-activities"></div>
-                                    <span>&nbsp;Activities</span>
+                                    <span>Activities</span>
                                 </div>
                                 <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-behaviors"></div>
-                                    <span>&nbsp;Behaviors</span>
+                                    <span>Behaviors</span>
                                 </div>
                                 <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-interventions"></div>
-                                    <span>&nbsp;Interventions</span>
+                                    <span>Interventions</span>
                                 </div>
                                 <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-transitions"></div>
-                                    <span>&nbsp;Transitions</span>
+                                    <span>Transitions</span>
                                 </div>
                                 <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-replacements"></div>
-                                    <span>&nbsp;Replacements</span>
+                                    <span>Replacements</span>
                                 </div>
                                 <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-reinforcements"></div>
-                                    <span>&nbsp;Reinforcement</span>
+                                    <span>Reinforcement</span>
                                 </div>
                                 <div class="pr-2 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-conclusion"></div>
-                                    <span>&nbsp;Conclusion</span>
+                                    <span>Conclusion</span>
                                 </div>
                             </div>
                         </div>
