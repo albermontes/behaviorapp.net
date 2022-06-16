@@ -396,7 +396,7 @@ export default function MyNote(){
                                     onInterventionReinforceDescriptionChange={setInterventionReinforceDescription(i)}
                                 />
                             ))}
-                        <div class="d-flex justify-content-end pb-4 pt-3 border-top">     
+                        <div class="d-flex justify-content-end pb-5 pt-3 border-top">     
                             <div>
                                 <button class="ba-button btn_2"
                                         onClick={addOtherEvent}>
