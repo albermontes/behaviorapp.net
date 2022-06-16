@@ -332,13 +332,22 @@ export default function MyNote(){
                             </div>
                         </div>    
 {/* TESTING */}
-                        <label class="container_check version_2">
-                            Custom interface
-                            <input type="checkbox" name="question_1[]" class="required" />
-                            <span class="checkmark"></span>
-                        </label>
+                        <div class="container_check version_2">
+                            <label>Custom interface</label>
+                            {caregivers.map(x => 
+                                <div className="container_check">
+                                    {x}
+                                    <input className="required valid" 
+                                            type="checkbox" 
+                                            value={x}
+                                            onChange={setCaregiver}
+                                            checked={detailInfo.caregivers.indexOf(x) > -1}/>
+                                    <span className="checkmark"></span>
+                                </div>
+                            )}
+                        </div>
 {/* /TESTING */}
-                        <div className="container_check">
+                        <div className="form-group">
                             <label>Caregiver</label>
                             {caregivers.map(x => 
                                 <div className="container_check">
@@ -352,7 +361,7 @@ export default function MyNote(){
                                 </div>
                             )}
                         </div>
-                        <div className="container_check">
+                        <div className="form-group">
                             <label>Antecedent</label>
                             <textarea className="form-control"
                                     placeholder="Description of what is this..."
