@@ -331,6 +331,13 @@ export default function MyNote(){
                                 </select>
                             </div>
                         </div>    
+{/* TESTING */}
+                        <label class="container_check version_2">
+                            Custom interface
+                            <input type="checkbox" name="question_1[]" class="required" />
+                            <span class="checkmark"></span>
+                        </label>
+{/* /TESTING */}
                         <div className="form-group">
                             <label>Caregiver</label>
                             {caregivers.map(x => 
