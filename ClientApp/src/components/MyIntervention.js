@@ -77,21 +77,24 @@ export default function MyIntervention(props){
                 behavior={behavior}
                 onBehaviorChange={onBehaviorChange}
             />
-             <div className="form-group">
-                <label>What intervention did you apply?</label>
-                <div className="styled-select clearfix">
-                    <CreatableSelect
-                        styles={customOptionStyle}
-                        defaultValue={interventionOption}
-                        onChange={setInterventionOption}
-                        isMulti
-                        placeholder="Select the Interventions used"
-                        options={interventionDescriptions}
-                    />
-                </div>
-            </div>
-            {responseSelectionElement}
-            {positiveElement}
+            {behavior.length > 0 
+                ?   <div className="form-group">
+                        <label>What intervention did you apply?</label>
+                        <div className="styled-select clearfix">
+                            <CreatableSelect
+                                styles={customOptionStyle}
+                                defaultValue={interventionOption}
+                                onChange={setInterventionOption}
+                                isMulti
+                                placeholder="Select the Interventions used"
+                                options={interventionDescriptions}
+                            />
+                        </div>
+                    </div>
+                : ''
+            }
+            {behavior.length > 0 ? responseSelectionElement : ''}
+            {behavior.length > 0 ? positiveElement : ''}
         </div>
     )
 }
