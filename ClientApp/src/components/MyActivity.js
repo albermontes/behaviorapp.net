@@ -46,10 +46,10 @@ export default function MyActivity(props){
                 : <label>How was the response?</label>}
 
                 {/****SWITCHER TESTING ****/}
-                <div class="switcher switcher-1">
+              {/*   <div class="switcher switcher-1">
                     <input type="checkbox" id="switcher-1" />
                     <label for="switcher-1"></label>
-                </div>
+                </div> */}
                  {/****SWITCHER TESTING ****/}
 
                 <div className="form-group d-flex"   
