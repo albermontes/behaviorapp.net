@@ -1,4 +1,4 @@
-export const activityDescriptions = [
+export const activityDescriptions = [ 
     "",
     "Playing simples and structured didactic activities",
     "Doing some exercises for the focus of attention on the RBT’s" ,
