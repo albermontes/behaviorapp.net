@@ -508,9 +508,9 @@ export default function MyNote(){
                         </div>
                         <div class="footer">
                             <div class="pl-3 text-uppercase">
-                                <span>Legend</span>
+                                <b>Legend</b>
                             </div>
-                            <div class="d-flex flex-wrap px-3 py-2">
+                            <div class="d-flex flex-wrap px-3 pb-2 pt-1">
                                 <div class="pr-3 pb-2 text-truncate">
                                     <div class="gnx-square gnx-bck-introduction"></div>
                                     <span>Introduction</span>
