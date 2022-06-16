@@ -101,40 +101,48 @@ export default function MyActivity(props){
                 : ''
 
     const activityElement = description == 'other'
-        ?   <div className="form-group">
-                <label>Describe what triggers the event</label>
-                <textarea className="form-control"
-                        placeholder="Description of what is this..."
-                        value={eventTrigger}
-                        onChange={onEventTriggerChanged}/>
+        ?   <div>
+                <h3 className="font-weight-bold">
+                    {index + 1 + ' Event'}
+                </h3>
+                <div className="form-group">
+                    <label>Describe what triggers the event</label>
+                    <textarea className="form-control"
+                            placeholder="Description of what is this..."
+                            value={eventTrigger}
+                            onChange={onEventTriggerChanged}/>
+                </div>
             </div>
         :  <div className="form-group">
                 <label>What Activity was scheduled?</label>
                 <div className="styled-select clearfix">
-                    <select className="nice-select nice-select_2 wide required"
-                            value={description}
-                            onChange={onDescriptionChange} >
-                        {activityDescriptions.map(x =>
-                            <option value={x}
-                                    hidden={x == ''}>
-                                {x == '' ? 'Select an Activity' : x}
-                            </option>  
-                        )}
-                    </select>
+                    <div style={{'display': 'flex'}}>
+                        <h3 className="font-weight-bold">
+                            {index + 1}
+                        </h3>
+                        <select className="nice-select nice-select_2 wide required"
+                                value={description}
+                                onChange={onDescriptionChange} >
+                            {activityDescriptions.map(x =>
+                                <option value={x}
+                                        hidden={x == ''}>
+                                    {x == '' ? 'Select an Activity' : x}
+                                </option>  
+                            )}
+                        </select>
+                    </div>
                 </div>
             </div>
 
     return (
         <div  className="shadow p-4 mb-3 gnx-bck-darkgray rounded-4">
-            <div>
-                <div className="float-right">
-                    <button className="ba-button ba-button ba-button-action"
-                            onClick={onRemove}>
-                        <img src={deleteIcon} 
-                                alt="" 
-                                width="13"/>
-                    </button>
-                </div>
+            <div className="float-right">
+                <button className="ba-button ba-button ba-button-action"
+                        onClick={onRemove}>
+                    <img src={deleteIcon} 
+                            alt="" 
+                            width="13"/>
+                </button>
             </div>
             <br/>
             {activityElement}
