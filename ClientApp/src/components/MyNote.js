@@ -338,7 +338,7 @@ export default function MyNote(){
                             <span class="checkmark"></span>
                         </label>
 {/* /TESTING */}
-                        <div className="form-group">
+                        <div className="container_check">
                             <label>Caregiver</label>
                             {caregivers.map(x => 
                                 <div className="container_check">
@@ -352,7 +352,7 @@ export default function MyNote(){
                                 </div>
                             )}
                         </div>
-                        <div className="form-group">
+                        <div className="container_check">
                             <label>Antecedent</label>
                             <textarea className="form-control"
                                     placeholder="Description of what is this..."
