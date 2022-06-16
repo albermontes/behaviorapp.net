@@ -116,8 +116,10 @@ export default function MyActivity(props){
         :  <div className="form-group">
                 <label>What Activity was scheduled?</label>
                 <div className="styled-select clearfix">
-                    <span>
-                        {index + 1}
+                    <div style={{'display': 'flex'}}>
+                        <h3 className="font-weight-bold">
+                            {index + 1}
+                        </h3>
                         <select className="nice-select wide required"
                                 value={description}
                                 onChange={onDescriptionChange} >
@@ -128,7 +130,7 @@ export default function MyActivity(props){
                                 </option>  
                             )}
                         </select>
-                    </span>
+                    </div>
                 </div>
             </div>
 
