@@ -119,7 +119,7 @@ export default function MyNoteSummary(props){
                             }
                         </div>
                     </div>
-                    <div className="gnx-color-lightgray" 
+                    <div className="ba-note gnx-color-lightgray" 
                         dangerouslySetInnerHTML={{ __html: summary }}>
                     </div>
                     {/* <div className="text-right">
