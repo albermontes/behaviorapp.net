@@ -334,7 +334,7 @@ export default function MyNote(){
                         <div className="form-group">
                             <label>Caregiver</label>
                             {caregivers.map(x => 
-                                <div className="container_check">
+                                <label className="container_check">
                                     {x}
                                     <input className="required valid" 
                                             type="checkbox" 
@@ -342,7 +342,7 @@ export default function MyNote(){
                                             onChange={setCaregiver}
                                             checked={detailInfo.caregivers.indexOf(x) > -1}/>
                                     <span className="checkmark"></span>
-                                </div>
+                                </label>
                             )}
                         </div>
                         <div className="form-group">
