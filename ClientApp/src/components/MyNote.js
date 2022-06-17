@@ -40,7 +40,7 @@ export default function MyNote(){
 
     const history = useHistory();
     const onNavigationBack = () => {
-        history.push('/');
+        history.push('/clients');
     }
 
     useEffect(()=>{
