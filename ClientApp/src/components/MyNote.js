@@ -399,7 +399,7 @@ export default function MyNote(){
                         <div class="d-flex justify-content-end pb-5 pt-3 border-top">     
                             <div>
                                 <button class="ba-button btn_2"
-                                        onClick={addOtherEvent}>
+                                        onClick={addOtherEvent}> 
                                     + EVENT
                                 </button>
                             </div> 
