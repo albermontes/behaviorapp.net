@@ -57,7 +57,7 @@ export const behaviorDefinitions = [
         {value:"breaking objects/toys",label:"breaking objects/toys"},
         {value:"smashing any valuable item",label:"smashing any valuable item"}
     ]},
-    {value:"Stimming (Stereotyped/Repetitive) Behaviors",label:"Stimming (Stereotyped/Repetitive) Behaviors", type: [
+    {value:"Stimming (Stereotyped/Repetitive) Behaviors",label:"Stimming (Stereotyped/Repetitive) Behaviors", types: [
         {value:"hand flapping",label:"hand flapping"},
         {value:"pacing",label:"pacing"},
         {value:"eye gazing",label:"eye gazing"},
