@@ -34,6 +34,12 @@ export const interventionDescriptions = [
     {value:"Non-contingent attention",label:"Non-contingent attention"}
 ];
 export const behaviorDefinitions = [
+    {value:"Physical Aggression",label:"Physical Aggression", types: [
+        {value:"pushing",label:"pushing"},
+        {value:"biting",label:"biting"},
+        {value:"pinching",label:"pinching"},
+        {value:"kicking",label:"kicking"}
+    ]},
     {value:"Tantrum",label:"Tantrum", types: [
         {value:"crying with and without tears",label:"crying with and without tears"},
         {value:"yelling and screaming above conversational tone, lasting more than 2 mins",label:"yelling and screaming above conversational tone, lasting more than 2 mins"},
@@ -41,42 +47,17 @@ export const behaviorDefinitions = [
         {value:"kicking the air",label:"kicking the air"},
         {value:"going under the table",label:"going under the table"}
     ]},
-    {value: "Inattention", label: "Inattention", types: [
-        {value:"the client becoming easily distracted",label:"the client becoming easily distracted"},
-        {value:"not looking at the speaker person’s eyes",label:"not looking at the speaker person’s eyes"},
-        {value:"not responding to her name when called",label:"not responding to her name when called"},
-        {value:"not paying attention to instructions",label:"not paying attention to instructions"}
+    {value:"Task Refusal",label:"Task Refusal", types: [
+        {value:"becoming easily distracted within 5 mins of initiating a task",label:"becoming easily distracted within 5 mins of initiating a task"},
+        {value:"not following directions within 5 seconds once verbal prompt is given",label:"not following directions within 5 seconds once verbal prompt is given"},
+        {value:"refusing to remain seated for more than 5 minutes",label:"refusing to remain seated for more than 5 minutes"}
     ]},
-    {value: "Restless Behavior (Hyperactivity)", label: "Restless Behavior (Hyperactivity)", types: [
-        {value:"refusing to remain seated for more than 5 minutes",label:"refusing to remain seated for more than 5 minutes"},
-        {value:"moving walking",label:"moving walking"},
-        {value:"running around constantly",label:"running around constantly"},
-        {value:"getting over furniture",label:"getting over furniture"}
-    ]},
-    {value:"Disruptive behavior",label:"Disruptive behavior", types: [
-        {value:"interrupting other’s conversation or activities by making noises or moving around",label:"interrupting other’s conversation or activities by making noises or moving around"},
-        {value:"displacing furniture from their original location",label:"displacing furniture from their original location"},
-        {value:"talks too much and asking for things",label:"talks too much and asking for things"},
-        {value:"not allow caregivers her mother to do home duties or domestic chores",label:"not allow caregivers her mother to do home duties or domestic chores"}
-    ]},
-    {value:"Property destruction",label:"Property destruction", types: [
+    {value:"Property Destruction",label:"Property Destruction", types: [
         {value:"throwing objects/toys away",label:"throwing objects/toys away"},
         {value:"breaking objects/toys",label:"breaking objects/toys"},
         {value:"smashing any valuable item",label:"smashing any valuable item"}
     ]},
-    {value:"Physical aggression",label:"Physical aggression", types: [
-        {value:"pushing",label:"pushing"},
-        {value:"biting",label:"biting"},
-        {value:"pinching",label:"pinching"},
-        {value:"kicking",label:"kicking"}
-    ]},
-    {value:"Verbal aggression",label:"Verbal aggression", types: [
-        {value:"saying/shouting challenging and offensive phrases over and over",label:"saying/shouting challenging and offensive phrases over and over"},
-        {value:"threatening other with profanities",label:"threatening other with profanities"},
-        {value:"insults",label:"insults"},
-        {value:"humiliating known and unknown persons with his inappropriate language",label:"humiliating known and unknown persons with his inappropriate language"}
-    ]},
-    {value:"Stimming (Stereotyped/Repetitive) behavior",label:"Stereotypy behavior", type: [
+    {value:"Stimming (Stereotyped/Repetitive) Behaviors",label:"Stimming (Stereotyped/Repetitive) Behaviors", type: [
         {value:"hand flapping",label:"hand flapping"},
         {value:"pacing",label:"pacing"},
         {value:"eye gazing",label:"eye gazing"},
@@ -89,13 +70,26 @@ export const behaviorDefinitions = [
         {value:"jumping in place lasting more than 1 minute",label:"jumping in place lasting more than 1 minute"},
         {value:"two or more consecutive repetitive vocalization of sentences or statements",label:"two or more consecutive repetitive vocalization of sentences or statements"}
     ]},
-    {value:"Self-injured behavior",label:"Self-injurious behavior", types: [
+    {value: "Inattention", label: "Inattention", types: [
+        {value:"the client becoming easily distracted",label:"the client becoming easily distracted"},
+        {value:"not looking at the speaker person’s eyes",label:"not looking at the speaker person’s eyes"},
+        {value:"not responding to her name when called",label:"not responding to her name when called"},
+        {value:"not paying attention to instructions",label:"not paying attention to instructions"}
+    ]},
+    {value:"Self-Injured Behavior",label:"Self-Injured Behavior", types: [
         {value:"biting nails and fingers causing damage to her skin",label:"biting nails and fingers causing damage to her skin"}
     ]},
-    {value:"Task refusal",label:"Task refusal", types: [
-        {value:"becoming easily distracted within 5 mins of initiating a task",label:"becoming easily distracted within 5 mins of initiating a task"},
-        {value:"not following directions within 5 seconds once verbal prompt is given",label:"not following directions within 5 seconds once verbal prompt is given"},
-        {value:"refusing to remain seated for more than 5 minutes",label:"refusing to remain seated for more than 5 minutes"}
+    {value:"Disruptive Behavior",label:"Disruptive Behavior", types: [
+        {value:"interrupting other’s conversation or activities by making noises or moving around",label:"interrupting other’s conversation or activities by making noises or moving around"},
+        {value:"displacing furniture from their original location",label:"displacing furniture from their original location"},
+        {value:"talks too much and asking for things",label:"talks too much and asking for things"},
+        {value:"not allow caregivers her mother to do home duties or domestic chores",label:"not allow caregivers her mother to do home duties or domestic chores"}
+    ]},
+    {value: "Restless Behavior (Hyperactivity)", label: "Restless Behavior (Hyperactivity)", types: [
+        {value:"refusing to remain seated for more than 5 minutes",label:"refusing to remain seated for more than 5 minutes"},
+        {value:"moving walking",label:"moving walking"},
+        {value:"running around constantly",label:"running around constantly"},
+        {value:"getting over furniture",label:"getting over furniture"}
     ]},
     {value: "Elopement", label: "Elopement", types: [
         {value:"walking or running out to the allowed area",label:"walking or running out to the allowed area"},
@@ -103,13 +97,21 @@ export const behaviorDefinitions = [
         {value:"in public places the allowed area is measured as an arm’s reach (where there are crowd of people around) or within 3 feet from an adult",label:"in public places the allowed area is measured as an arm’s reach (where there are crowd of people around) or within 3 feet from an adult"},
         {value:"bolting from the designated area for more than 5 feet without a caregiver’s verbal permission or consent",label:"bolting from the designated area for more than 5 feet without a caregiver’s verbal permission or consent"}
     ]},
+    {value:"Verbal Aggression",label:"Verbal Aggression", types: [
+        {value:"saying/shouting challenging and offensive phrases over and over",label:"saying/shouting challenging and offensive phrases over and over"},
+        {value:"threatening other with profanities",label:"threatening other with profanities"},
+        {value:"insults",label:"insults"},
+        {value:"humiliating known and unknown persons with his inappropriate language",label:"humiliating known and unknown persons with his inappropriate language"}
+    ]},
     {value: "Off-Task Behavior", label: "Off-Task Behavior", types: [
         {value:"not engaging in the ongoing task/activity",label:"not engaging in the ongoing task/activity"},
         {value:"staring around the room for more than 10 seconds",label:"staring around the room for more than 10 seconds"}
     ]},
     {value: "Isolative Behavior", label: "Isolative Behavior", types: [
-        {value:"not engaging in the ongoing task/activity",label:"not engaging in the ongoing task/activity"},
-        {value:"staring around the room for more than 10 seconds",label:"staring around the room for more than 10 seconds"}
+        {value:"being unable to respond to greetings",label:"being unable to respond to greetings"},
+        {value:"not maintain eye contact",label:"not maintain eye contact"},
+        {value:"difficulties to establish or maintain a conversation",label:"difficulties to establish or maintain a conversation"},
+        {value:"bolting from during an interaction",label:"bolting from during an interaction"}
     ]},
     {value: "Licking", label: "Licking", types: [
         {value:"licking fabrics (e.g., tank tops/long sleeve shirts)",label:"licking fabrics (e.g., tank tops/long sleeve shirts)"},
@@ -119,7 +121,7 @@ export const behaviorDefinitions = [
         {value:"ingesting or attempting to ingest inedible items (e.g., writing paper)",label:"ingesting or attempting to ingest inedible items (e.g., writing paper)"}
     ]},
     {value: "Inappropriate Social Behavior", label: "Inappropriate Social Behavior", types: [
-        {value: " interacting with unknown children/adults in an overly friendly manner more than 3 feet away from caregiver and without the caregiver’s permission", label: " interacting with unknown children/adults in an overly friendly manner more than 3 feet away from caregiver and without the caregiver’s permission"}
+        {value: "interacting with unknown children/adults in an overly friendly manner more than 3 feet away from caregiver and without the caregiver’s permission", label: " interacting with unknown children/adults in an overly friendly manner more than 3 feet away from caregiver and without the caregiver’s permission"}
     ]},
     {value: "Challenging/Disrespectful Behavior", label: "Challenging/Disrespectful Behavior", types: [
         {value: "talks back when she is scolded by the teachers or caregivers", label: "talks back when she is scolded by the teachers or caregivers"},
@@ -128,17 +130,6 @@ export const behaviorDefinitions = [
     {value: "Lying", label: "Lying", types: [
         {value: "Often lies when asked if school duties are done", label: "Often lies when asked if school duties are done"},
         {value: "to deny misconduct at school and to avoid doing tasks assigned", label: "to deny misconduct at school and to avoid doing tasks assigned"}
-    ]},
-    {value:"Climbing", label:"Climbing", types: [
-        {value: "Scaling on a piece of furniture", label: "Scaling on a piece of furniture"},
-        {value: "Standing on kitchen cabinets", label:"Standing on kitchen cabinets"},
-        {value: "Scaling fences or gates", label: "Scaling fences or gates"}
-    ]},
-    {value:"Inappropriate play", label:"Inappropriate play", types: [
-        {value: "Refusing to share the toys", label: "Refusing to share the toys"},
-        {value: "Failure to cooperate with others in the organization of a game", label: "Failure to cooperate with others in the organization of a game"},
-        {value: "Not respecting the rules of the game or skipping turns", label: "Not respecting the rules of the game or skipping turns"},
-        {value: "Do not accept that others win by responding with physical/verbal aggression, hitting, etc", label: "Do not accept that others win by responding with physical/verbal aggression, hitting, etc"}
     ]}
 ];
 export const reinforceDescriptions = [
