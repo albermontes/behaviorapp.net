@@ -135,7 +135,7 @@ export default function MyActivity(props){
             </div>
 
     return (
-        <div  className="shadow p-4 mb-3 gnx-bck-darkgray rounded-4">
+        <div  className="shadow p-4 pb-5 mb-3 gnx-bck-darkgray rounded-4">
             <div className="float-right">
                 <button className="ba-button ba-button ba-button-action"
                         onClick={onRemove}>
