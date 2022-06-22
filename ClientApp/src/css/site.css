@@ -527,9 +527,11 @@ Author URI: http://albermontes.com
 	}	
 	/* / Borders */
 
+	/* Note paragraph */
 	.ba-note {
 		font-size: .95rem;
 	}
+	/* / Note paragraph */
 
 /*-------- CUSTOM 1.6 Profile Page --------*/
 	/*home icon*/
@@ -1302,6 +1304,10 @@ Author URI: http://albermontes.com
 		min-height: 100%;
 		overflow-y: scroll;
 	}
+
+		#wizard_container .form-group .container_radio:nth-child(2) .checkmark:after {
+			background-color: #17BBA3;
+		}
 	
 	@media (max-width: 767px) {
 		#wizard_container {
@@ -2161,7 +2167,7 @@ Author URI: http://albermontes.com
 		width: 12px;
 		height: 12px;
 		border-radius: 50%;
-		background: #434bdf;
+		background: #5D60D0;
 		-moz-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
 		-webkit-transition: all 0.3s ease-in-out;
