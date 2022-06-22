@@ -1358,9 +1358,10 @@ Author URI: http://albermontes.com
 	}
 
 	button.backward {
-		color: #777;
-		background: #e8e8e8;
+		color: #FFF;
+		background: transparent;
 		float: left;
+		border: 1px solid #D8D8D8;
 	}
 
 	button[disabled] {
