@@ -119,6 +119,10 @@ Author URI: http://albermontes.com
 			color: #4B56C3;
 		}
 
+		.ba-border-l-reinforcements {
+			border-left: 1px solid #4B56C3;
+		}
+
 	.gnx-bck-replacements {
 		background: #CE3C3C;
 	}
