@@ -87,7 +87,7 @@ export default function MyPositiveResponse(props){
             </div>
             <div class="py-2">
                 <label>How was the response to the reinforces applied?</label>
-                <div className="form-group d-flex"   
+                <div className="pb-2 d-flex"   
                         onChange={onReinforceResponseChange}>
                     <label className="container_radio version_1">
                         {OK_TAG}
