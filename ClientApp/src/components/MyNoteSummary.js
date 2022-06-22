@@ -148,7 +148,7 @@ export default function MyNoteSummary(props){
                                     </button>
                                 </div>  
                             </div>
-                            <div className="ba-note p-2 gnx-color-lightgray p-3 d-flex">
+                            <div className="ba-note p-2 gnx-color-lightgray">
                                 {x.summary}
                             </div>   
                         </div>
