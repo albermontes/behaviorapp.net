@@ -112,15 +112,15 @@ Author URI: http://albermontes.com
 		}
 
 	.gnx-bck-reinforcements {
-		background: #4B56C3;
+		background: #818dff;
 	}
 
 		.gnx-color-reinforcements {
-			color: #4B56C3;
+			color: #818dff;
 		}
 
 		.ba-border-l-reinforcements {
-			border-left: 2px solid #4B56C3;
+			border-left: 2px solid #818dff;
 		}
 
 	.gnx-bck-replacements {
@@ -693,7 +693,7 @@ Author URI: http://albermontes.com
 
 		/*replacementes*/
 		.ba-component a.gnx-color-reinforcements {
-			color: #4B56C3;
+			color: #818dff;
 			text-decoration: line-through;
 		}
 
