@@ -124,11 +124,11 @@ Author URI: http://albermontes.com
 		}
 
 	.gnx-bck-replacements {
-		background: #CE3C3C;
+		background: #ff6262;
 	}
 
 		.gnx-color-replacements {
-			color: #CE3C3C;
+			color: #ff6262;
 		}
 
 	.gnx-bck-conclusion {
@@ -682,7 +682,7 @@ Author URI: http://albermontes.com
 
 		/*replacementes*/
 		.ba-component a.gnx-color-replacements {
-			color: #CE3C3C;
+			color: #ff6262;
 			text-decoration: line-through;
 		}
 
