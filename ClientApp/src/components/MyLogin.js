@@ -28,7 +28,10 @@ export default function MyLogin(){
                         Remember me
                     </label>
                 </div>
-                <button class="btn btn-md btn-primary btn-block" type="submit" onClick={onLogin}>LOG IN</button>
+                <button class="btn btn-md btn-primary btn-block" type="submit" onClick={onLogin}>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    LOG IN
+                </button>
                 <p class="mt-5 mb-3 text-muted text-center">BehaviorApp.net © {new Date().getFullYear()}</p>
             </div>
         </div>
