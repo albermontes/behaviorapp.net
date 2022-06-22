@@ -302,12 +302,12 @@ export default function MyNote(){
     switch(step){
         case 1:
             note =  <div className="step">
-                        <h2 class="main_question">
+                        <h3 class="main_question">
                             <div>1/3</div>
-                            <div class="pt-3 pb-3">
+                            <div class="pt-3 pb-1">
                                 <mark>Introduction</mark>
                             </div>    
-                        </h2>
+                        </h3>
                         <label>Select the session date and location</label>
                         <div class="row no-gutters pb-4">
                             <div className="col-lg-6 pr-3">
@@ -356,12 +356,12 @@ export default function MyNote(){
             break;
         case 2:
             note =  <div className="step">
-                        <h2 class="main_question">
+                        <h3 class="main_question">
                             <div>2/3</div>
-                            <div class="pt-3 pb-3">
+                            <div class="pt-3 pb-1">
                                 <mark>Activities</mark>
                             </div>    
-                        </h2>
+                        </h3>
                         { activities.map((a, i) => (
                                 <MyActivity
                                     index={i}
@@ -414,12 +414,12 @@ export default function MyNote(){
             break;
         case 3:
             note =  <div className="step pb-5">
-                        <h2 class="main_question">
+                        <h3 class="main_question">
                             <div>3/3</div>
-                            <div class="pt-3 pb-3">
+                            <div class="pt-3 pb-1">
                                 <mark>Conclusion</mark>
                             </div>    
-                        </h2>
+                        </h3>
                         <div className="form-group">
                             <label>Health summary</label>
                             <textarea className="form-control"
