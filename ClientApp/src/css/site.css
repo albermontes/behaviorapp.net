@@ -1301,7 +1301,7 @@ Author URI: http://albermontes.com
 		overflow-y: scroll;
 	}
 
-		#wizard_container .form-group .container_radio:nth-child(2) {
+		#wizard_container .form-group .container_radio:nth-child(2) .checkmark:after {
 			background-color: #17BBA3;
 		}
 	
