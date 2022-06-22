@@ -457,14 +457,19 @@ export default function MyNote(){
                                 </a>
                             </div>
                         </div>
+<<<<<<< Updated upstream
                         <div className="d-flex justify-content-between p-2 gnx-bck-darkgray border-bottom">
                             <h3 className="p-3 mb-0">
+=======
+                        <div className="d-flex justify-content-between p-2 gnx-bck-darkgray">
+                            <h4 className="px-3 py-2 mb-0">
+>>>>>>> Stashed changes
                                 <a className="ba-home-icon pr-3 pointer"
                                         onClick={onNavigationBack}>
                                     <img src={left} width="16" />
                                 </a>
                                 {client ? client.name : ''}
-                            </h3>
+                            </h4>
                             <div className="px-2 py-3">
                                 <a className="ba-arrow-r pointer" 
                                     onClick={onDownloadPdf}>
