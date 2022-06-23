@@ -458,14 +458,14 @@ export default function MyNote(){
                             </div>
                         </div>
                         <div className="d-flex justify-content-between p-2 gnx-bck-darkgray">
-                            <h3 className="p-3 mb-0">
+                            <h4 className="px-3 py-2 mb-0">
                                 <a className="ba-home-icon pr-3 pointer"
                                         onClick={onNavigationBack}>
                                     <img src={left} width="16" />
                                 </a>
                                 {client ? client.name : ''}
-                            </h3>
-                            <div className="px-2 py-3">
+                            </h4>
+                            <div className="px-2 py-2">
                                 <a className="ba-arrow-r pointer" 
                                     onClick={onDownloadPdf}>
                                     <span className="pr-2">Download PDF</span>
