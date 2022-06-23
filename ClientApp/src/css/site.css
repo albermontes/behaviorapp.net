@@ -112,19 +112,23 @@ Author URI: http://albermontes.com
 		}
 
 	.gnx-bck-reinforcements {
-		background: #4B56C3;
+		background: #818dff;
 	}
 
 		.gnx-color-reinforcements {
-			color: #4B56C3;
+			color: #818dff;
+		}
+
+		.ba-border-l-reinforcements {
+			border-left: 2px solid #818dff;
 		}
 
 	.gnx-bck-replacements {
-		background: #CE3C3C;
+		background: #ff6262;
 	}
 
 		.gnx-color-replacements {
-			color: #CE3C3C;
+			color: #ff6262;
 		}
 
 	.gnx-bck-conclusion {
@@ -678,7 +682,7 @@ Author URI: http://albermontes.com
 
 		/*replacementes*/
 		.ba-component a.gnx-color-replacements {
-			color: #CE3C3C;
+			color: #ff6262;
 			text-decoration: line-through;
 		}
 
@@ -689,7 +693,7 @@ Author URI: http://albermontes.com
 
 		/*replacementes*/
 		.ba-component a.gnx-color-reinforcements {
-			color: #4B56C3;
+			color: #818dff;
 			text-decoration: line-through;
 		}
 
@@ -2121,7 +2125,7 @@ Author URI: http://albermontes.com
 		display: block;
 		position: relative;
 		font-size: 14px;
-		font-size: 0.875rem;
+		font-size: .85rem;
 		padding-left: 30px;
 		line-height: 1.3;
 		margin-bottom: 10px;
@@ -2163,7 +2167,7 @@ Author URI: http://albermontes.com
 		width: 12px;
 		height: 12px;
 		border-radius: 50%;
-		background: #434bdf;
+		background: #5D60D0;
 		-moz-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
 		-webkit-transition: all 0.3s ease-in-out;
@@ -2171,8 +2175,10 @@ Author URI: http://albermontes.com
 		transition: all 0.3s ease-in-out;
 	}
 	.container_radio.version_2 {
-		padding: 6px 0 0 45px;
+		padding: 6px 0 0 36px;
 		min-height: 30px;
+		margin-top: 0.25rem;
+		font-size: 1rem;
 	}
 	.container_radio.version_2 input:checked ~ .checkmark:before {
 		opacity: 1;

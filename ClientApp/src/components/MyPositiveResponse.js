@@ -35,7 +35,7 @@ export default function MyPositiveResponse(props){
     }
 
     return (
-        <div class="pl-3">
+        <div class="ba-border-l-reinforcements pl-3">
             <div className="form-group">
                 <label>Describe the response</label>
                 <textarea className="form-control form-control-textarea"
@@ -85,9 +85,9 @@ export default function MyPositiveResponse(props){
                     />
                 </div>
             </div>
-            <div class="mt-3 ml-4">
+            <div class="py-2">
                 <label>How was the response to the reinforces applied?</label>
-                <div className="form-group d-flex"   
+                <div className="pb-2 d-flex"   
                         onChange={onReinforceResponseChange}>
                     <label className="container_radio version_1">
                         {OK_TAG}
