@@ -137,7 +137,7 @@ export default function MyActivity(props){
     return (
         <div  className="shadow p-4 pb-5 mb-3 gnx-bck-darkgray rounded-4">
             <div className="float-right">
-                <button className="ba-button ba-button ba-button-action"
+                <button className="ba-button ba-button-icon ba-button-action"
                         onClick={onRemove}>
                     <img src={deleteIcon} 
                             alt="" 

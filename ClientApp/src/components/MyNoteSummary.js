@@ -140,7 +140,7 @@ export default function MyNoteSummary(props){
                                     }
                                 </div>
                                 <div style={{"width": "95%", "textAlign":"right", "position":"absolute"}}>
-                                    <button className="ba-button ba-button ba-button-action"
+                                    <button className="ba-button ba-button-icon ba-button-action"
                                             onClick={onRemove(x.id)}>
                                         <img src={deleteIcon} 
                                                 alt="" 

@@ -204,7 +204,7 @@ export default function MyClients(){
                                         {/*  <button className="ba-button ba-button-sm ba-button-action-2">
                                             EDIT
                                         </button> */}
-                                        <button className="ba-button ba-button-sm ba-button-action"
+                                        <button className="ba-button ba-button-icon ba-button-sm ba-button-action"
                                                 onClick={onDeleteClient(x.id)}>
                                             <img src={deleteIcon} alt="" width="13" />
                                         </button>
