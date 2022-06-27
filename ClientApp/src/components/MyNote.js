@@ -506,7 +506,7 @@ export default function MyNote(){
                                     })}/>
                             </div>
                         </div>
-                        <div class="footer d-sm-none d-md-block">
+                        <div class="footer d-none d-md-block">
                             <div class="pl-3 text-uppercase">
                                 <b>Legend</b>
                             </div>
