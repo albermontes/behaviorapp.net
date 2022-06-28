@@ -7,7 +7,7 @@ on:
     - qa
 
 env:
-  HEROKU_API_KEY: ${{ 'd709b692-cdc4-466d-8f4e-ea3e2a1c2c5d' }}
+  HEROKU_API_KEY: ${{ '958b05ea-bcd9-4732-9fcb-72cdc8def584' }}
   APP_NAME_PROD: ${{ 'behavior-net' }}
   APP_NAME_QA: ${{ 'behavior-net-qa' }}
 
