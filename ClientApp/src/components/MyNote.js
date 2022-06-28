@@ -302,12 +302,12 @@ export default function MyNote(){
     switch(step){
         case 1:
             note =  <div className="step">
-                        <h2 class="main_question">
+                        <h3 class="main_question">
                             <div>1/3</div>
-                            <div class="pt-3 pb-3">
+                            <div class="pt-3 pb-1">
                                 <mark>Introduction</mark>
                             </div>    
-                        </h2>
+                        </h3>
                         <label>Select the session date and location</label>
                         <div class="row no-gutters pb-4">
                             <div className="col-lg-6 pr-3">
@@ -356,12 +356,12 @@ export default function MyNote(){
             break;
         case 2:
             note =  <div className="step">
-                        <h2 class="main_question">
+                        <h3 class="main_question">
                             <div>2/3</div>
-                            <div class="pt-3 pb-3">
+                            <div class="pt-3 pb-1">
                                 <mark>Activities</mark>
                             </div>    
-                        </h2>
+                        </h3>
                         { activities.map((a, i) => (
                                 <MyActivity
                                     index={i}
@@ -414,12 +414,12 @@ export default function MyNote(){
             break;
         case 3:
             note =  <div className="step pb-5">
-                        <h2 class="main_question">
+                        <h3 class="main_question">
                             <div>3/3</div>
-                            <div class="pt-3 pb-3">
+                            <div class="pt-3 pb-1">
                                 <mark>Conclusion</mark>
                             </div>    
-                        </h2>
+                        </h3>
                         <div className="form-group">
                             <label>Health summary</label>
                             <textarea className="form-control"
@@ -457,15 +457,15 @@ export default function MyNote(){
                                 </a>
                             </div>
                         </div>
-                        <div className="d-flex justify-content-between p-2 gnx-bck-darkgray border-bottom">
-                            <h3 className="p-3 mb-0">
+                        <div className="d-flex justify-content-between p-2 gnx-bck-darkgray">
+                            <h4 className="px-3 py-2 mb-0">
                                 <a className="ba-home-icon pr-3 pointer"
                                         onClick={onNavigationBack}>
                                     <img src={left} width="16" />
                                 </a>
                                 {client ? client.name : ''}
-                            </h3>
-                            <div className="px-2 py-3">
+                            </h4>
+                            <div className="px-2 py-2">
                                 <a className="ba-arrow-r pointer" 
                                     onClick={onDownloadPdf}>
                                     <span className="pr-2">Download PDF</span>

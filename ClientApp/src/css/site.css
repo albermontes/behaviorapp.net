@@ -530,6 +530,7 @@ Author URI: http://albermontes.com
 	/* Note paragraph */
 	.ba-note {
 		font-size: .95rem;
+		padding: .85rem;
 	}
 	/* / Note paragraph */
 

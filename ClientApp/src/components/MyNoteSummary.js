@@ -111,7 +111,7 @@ export default function MyNoteSummary(props){
 
     return  (   
                 <div>
-                     <div className="d-flex py-2 gnx-bck-lightgray gnx-bb-dark">
+                     <div className="d-flex py-2 gnx-bck-lightgray gnx-bb-dark rounded">
                         <div className="px-3">
                             {new Date(note.date + 'T00:00').toLocaleDateString("en-US", {
                                     month: 'short', year: 'numeric', day: 'numeric'
@@ -148,7 +148,7 @@ export default function MyNoteSummary(props){
                                     </button>
                                 </div>  
                             </div>
-                            <div className="ba-note p-2 gnx-color-lightgray p-3">
+                            <div className="ba-note p-2 gnx-color-lightgray">
                                 {x.summary}
                             </div>   
                         </div>
