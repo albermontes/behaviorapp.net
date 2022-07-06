@@ -325,7 +325,7 @@ export default function MyNote(){
                                     {locations.map(x => 
                                         <option value={x}
                                                 hidden={x == ''}>
-                                            {x == '' ? 'Select a Location' : x}
+                                            {x == '' ? 'Location' : x}
                                         </option>    
                                     )}
                                 </select>
