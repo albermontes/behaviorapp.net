@@ -2348,7 +2348,7 @@ Author URI: http://albermontes.com
 		font-family: inherit;
 		font-size: 1rem;
 		font-weight: normal;
-		height: 42px;
+		min-height: 47px;
 		line-height: 40px;
 		outline: none;
 		padding-left: 15px;
@@ -2631,7 +2631,11 @@ Author URI: http://albermontes.com
 
 	.content-right {
 		border-left: none;
-	}	
+	}
+
+	.form-control {
+		height: calc(2.55rem + 11px);
+	}
  }
 
 /* Medium devices (tablets, 768px and up)
