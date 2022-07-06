@@ -1885,6 +1885,13 @@ Author URI: http://albermontes.com
 			font-size: .875rem;
 		}
 
+	.ba-card-number {
+		font-weight: bold;
+		position: relative;
+		top: 12px;
+		padding-right: 6px;
+	}
+
 	span.error {
 		-moz-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
