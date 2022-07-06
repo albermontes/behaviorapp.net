@@ -309,7 +309,7 @@ export default function MyNote(){
                             </div>    
                         </h3>
                         <label>Select the session date and location</label>
-                        <div class="row no-gutters pb-4">
+                        <div class="row gutters pb-4">
                             <div className="col-6 pr-3">
                                 <input  className="form-control"
                                         placeholder="Select a date"
