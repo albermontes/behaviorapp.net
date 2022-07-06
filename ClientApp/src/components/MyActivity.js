@@ -102,7 +102,7 @@ export default function MyActivity(props){
 
     const activityElement = description == 'other'
         ?   <div>
-                <h3 className="font-weight-bold">
+                <h3 className="ba-card-number">
                     {index + 1 + ' Event'}
                 </h3>
                 <div className="form-group">
