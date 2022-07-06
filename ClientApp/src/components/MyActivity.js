@@ -117,7 +117,7 @@ export default function MyActivity(props){
                 <label>What Activity was scheduled?</label>
                 <div className="styled-select clearfix">
                     <div style={{'display': 'flex'}}>
-                        <h3 className="font-weight-bold">
+                        <h3 className="ba-card-number">
                             {index + 1}
                         </h3>
                         <select className="nice-select nice-select_2 wide required"
