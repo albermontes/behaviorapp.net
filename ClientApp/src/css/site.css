@@ -2624,7 +2624,7 @@ Author URI: http://albermontes.com
 /* No media query since this is the default in Bootstrap */
 
 /* Small devices (landscape phones, 576px and up)*/
-@media (min-width: 576px) { 
+@media (max-width: 576px) { 
 	#bottom-wizard {
 		position: fixed;
 	}
