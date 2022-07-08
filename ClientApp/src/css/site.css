@@ -756,9 +756,17 @@ Author URI: http://albermontes.com
 			color: #202734;
 		}
 
-		.ba-button-icon img:hover {
+		.ba-button.ba-button-icon {
 			opacity: 1;
 		}
+
+			.ba-button-icon img {
+				opacity: .5;
+			}
+
+			.ba-button-icon img:hover {
+				opacity: 1!important;
+			}
 
 			.ba-button.ba-button-icon:hover {
 				background-color: initial;
