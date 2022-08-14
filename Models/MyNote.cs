@@ -9,13 +9,14 @@ namespace behavior_app.Models
     public class MyNote
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime date { get; set; }
+        public int clientId { get; set; }
+        public string jsonNote { get; set; }
+
         [NotMapped]
         public virtual MyDetailInfo detailInfo { get; set; }
         [NotMapped]
         public virtual List<MyActivity> activities { get; set; }
-
-        public int ClientId { get; set; }
 
         public string getSummary()
         {
