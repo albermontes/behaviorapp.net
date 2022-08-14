@@ -41,7 +41,12 @@ namespace behavior_app.Controllers
         [HttpPost]
         public async Task<ActionResult<MyNote>> PostNote(MyNote note)
         {
-            _context.Notes.Add(note);
+            var noteDb = await _context.Notes.FirstOrDefaultAsync(x => x.date == note.date);
+            if(noteDb == null)
+                _context.Notes.Add(note);
+            else
+                noteDb.jsonNote = note.jsonNote;
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetNote), new { id = note.Id }, note);

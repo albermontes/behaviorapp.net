@@ -40,7 +40,6 @@ export default function MyClients(){
 
     const onDeleteClient = i => e => {
         if(e){
-            console.log('id -> ' + i);
             removeClient(i);
         }
     }
@@ -96,7 +95,6 @@ export default function MyClients(){
         })
             .then(r => r.json())
             .then(client => {
-                console.log('client ' + client);
                getClients();
             })
             .catch(error => {
@@ -107,7 +105,6 @@ export default function MyClients(){
     const history = useHistory();
     const onClientClick = i => e => {
         if(e){
-            console.log('client ' + i);
             history.push('/notes/' + i);
         }
     }

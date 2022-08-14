@@ -45,8 +45,8 @@ namespace behavior_app.Controllers
                 return NotFound();
 
             var notes = await _context.Notes
-                .Where(x => x.ClientId == id)
-                .OrderByDescending(x => x.Date)
+                .Where(x => x.clientId == id)
+                .OrderByDescending(x => x.date)
                 .ToListAsync();
 
             return notes;

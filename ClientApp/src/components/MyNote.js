@@ -13,6 +13,7 @@ export default function MyNote(){
     const [activities, setActivities] = useState([]);
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
     const [step, setStep] = useState(1);
+    //const [ notes, setNotes ] = useState([]);
     const [detailInfo, setDetailInfo] = useState({
         location: '', 
         caregivers: [], 
@@ -45,10 +46,10 @@ export default function MyNote(){
 
     useEffect(()=>{
         getClient(id);
+        //getNotes();
     },[])
 
     const getClient = i => {
-        console.log('getting client ' + i);
         fetch('api/clients/' + i, {
             method: 'GET',
             headers:{ 'Content-Type':'application/json' }
@@ -61,6 +62,42 @@ export default function MyNote(){
                 console.log('error getting client ' + i + ' -> ' + JSON.stringify(error));
             })
     }
+
+    
+    /* const getNotes = async () => {
+        const response = await fetch('api/clients/' + id + '/notes');
+        const notesResponse = await response.json();
+        setNotes(await Promise.all(
+            notesResponse.map(
+                async x => {
+                    return { 
+                        ...x,
+                        summary: await getUnformattedSummary(x)
+                    }
+                }
+            )
+        ));
+    }
+
+    const getUnformattedSummary = async (n) => {
+        
+        const response = await fetch('api/notesummary?note=' + JSON.stringify(n));
+        const summaryResponse = await response.json();
+        
+        let summary2 = summaryResponse.summary;
+        
+        summary2 = summary2.replaceAll('</mark>', '');
+        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-introduction\">', '');
+        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-conclusion\">', '');
+        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-activities\">', '');
+        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-transitions\">', '');
+        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-replacements\">', '');
+        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-behaviors\">', '');
+        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-reinforcements\">', '');
+        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-interventions\">', '');
+        
+        return summary2;
+    } */
 
     const onDownloadPdf = e => {
         if(e){
@@ -88,6 +125,11 @@ export default function MyNote(){
                 interventions: [] 
             }
         ])
+    }
+    const setSessionDate = e => {
+        handleClearNote();
+        setDate(e.target.value);
+        //getNotes();
     }
     const removeActivity = i => e => {
         e.preventDefault();
@@ -221,10 +263,7 @@ export default function MyNote(){
         activitiesCopy.at(i).interventions.at(int).response.reinforceAfter = e;
         setActivities(activitiesCopy);
     }
-    const setSessionDate = e => {
-        if(e)
-            setDate(e.target.value);
-    }
+   
     const setLocation = e => {
         setDetailInfo({
             location: e.target.value,
@@ -469,41 +508,20 @@ export default function MyNote(){
                                 <a className="ba-arrow-r pointer" 
                                     onClick={onDownloadPdf}>
                                     <span className="pr-2">Download PDF</span>
-                                    {/* <img src={right} width="20" /> */}
+                                    <img src={right} width="20" />
                                 </a>
                             </div>
                         </div>
-                       {/*  <div class="d-flex flex-wrap py-1 gnx-bck-darkgray">
-                            <div class="px-3 py-2">
-                                Daily Progress Notes<br/>
-                                <span class="font-weight-bold">DEC 2021</span>
-                            </div>
-                            <div class="px-3 py-2">
-                                Recipient's name<br/>
-                                <span class="font-weight-bold">Jhon Doe</span>
-                            </div>
-                            <div class="px-3 py-2">
-                                Behavior Analyst<br/>
-                                <span class="font-weight-bold">Anna Valdes</span>
-                            </div>
-                            <div class="px-3 py-2">
-                                Medicaid #<br/>
-                                <span class="font-weight-bold">00000000</span>
-                            </div>
-                            <div class="px-3 py-2">
-                                RBT #<br/>
-                                <span class="font-weight-bold">Mercedes Sosa</span>
-                            </div>
-                        </div> */}
-                       
                         <div>
                             <div className="p-3">
-                                <MyNoteSummary onClearNote={handleClearNote} jsonNote={JSON.stringify({
+                                <MyNoteSummary 
+                                    onClearNote={handleClearNote}
+                                    jsonNote={JSON.stringify({
                                         detailInfo: detailInfo,
                                         activities: activities,
                                         date: date,
                                         clientId: id
-                                    })}/>
+                                    })} />
                             </div>
                         </div>
                         <div class="footer d-none d-md-block">

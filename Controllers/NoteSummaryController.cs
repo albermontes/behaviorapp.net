@@ -17,7 +17,14 @@ namespace behavior_app.Controllers
         [HttpGet]
         public SummaryWrapper Get(string note)
         {
-            return new SummaryWrapper { Summary = JsonConvert.DeserializeObject<MyNote>(note).getSummary() };
+            var myNote = JsonConvert.DeserializeObject<MyNote>(note);
+            if(myNote.jsonNote != null)
+                myNote = JsonConvert.DeserializeObject<MyNote>(myNote.jsonNote);
+
+            return new SummaryWrapper 
+            { 
+                Summary = myNote.getSummary() 
+            };
         }
     }
 
