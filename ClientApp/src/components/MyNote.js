@@ -13,6 +13,7 @@ export default function MyNote(){
     const [activities, setActivities] = useState([]);
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
     const [step, setStep] = useState(1);
+    const [ showNewNote, setShowNewNote ] = useState(false);
     //const [ notes, setNotes ] = useState([]);
     const [detailInfo, setDetailInfo] = useState({
         location: '', 
@@ -103,6 +104,16 @@ export default function MyNote(){
         if(e){
             alert('Not implemented yet')
         }
+    }
+
+    const onNewNote = e => {
+        handleClearNote();
+        setShowNewNote(true);
+
+    }
+    const onCloseNote = e => {
+        setShowNewNote(false);
+        handleClearNote();
     }
 
     const addActivity = () => {
@@ -483,7 +494,6 @@ export default function MyNote(){
                     </div>
             break;
     }
-
     return (
         <div className="container-fluid full-height">
             <div className="row no-gutters row-height">
@@ -497,7 +507,7 @@ export default function MyNote(){
                             </div>
                         </div>
                         <div className="d-flex justify-content-between p-2 gnx-bck-darkgray">
-                            <h4 className="px-3 py-2 mb-0">
+                            <h4 className="px-3 py-2 mb-0 text-capitalize">
                                 <a className="ba-home-icon pr-3 pointer"
                                         onClick={onNavigationBack}>
                                     <img src={left} width="16" />
@@ -506,9 +516,8 @@ export default function MyNote(){
                             </h4>
                             <div className="px-2 py-2">
                                 <a className="ba-arrow-r pointer" 
-                                    onClick={onDownloadPdf}>
-                                    <span className="pr-2">Download PDF</span>
-                                    <img src={right} width="20" />
+                                    onClick={onNewNote}>
+                                    <span className="pr-2">+ NEW NOTE</span>
                                 </a>
                             </div>
                         </div>
@@ -565,28 +574,38 @@ export default function MyNote(){
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-5 pt-3 pb-5 content-right" id="start">
-                    <div id="wizard_container">
-                        {/*<div id="top-wizard">
-                            <div id="progressbar"></div>
-                        </div>*/}
-                        <div class="px-4 py-5" id="middle-wizard">
-                            {note}
-                        </div>                       
-                    </div>
-                    <div id="bottom-wizard">
-                        <button className="backward"
-                                onClick={prevStep} 
-                                hidden={step == 1}>
-                            PREV
-                        </button>
-                        <button className="forward"
-                                onClick={nextStep} 
-                                hidden={step == 3}>
-                            NEXT
-                        </button>
-                    </div> 
-                </div>
+                {
+                    showNewNote ?
+                    <div className="col-lg-5 pt-3 pb-5 content-right" id="start">
+                        <div className="px-2 py-2">
+                                <a className="ba-arrow-r pointer" 
+                                    onClick={onCloseNote}>
+                                    <span className="pr-2">x CLOSENOTE</span>
+                                </a>
+                            </div>
+                        <div id="wizard_container">
+                            {/*<div id="top-wizard">
+                                <div id="progressbar"></div>
+                            </div>*/}
+                            <div class="px-4 py-5" id="middle-wizard">
+                                {note}
+                            </div>                       
+                        </div>
+                        <div id="bottom-wizard">
+                            <button className="backward"
+                                    onClick={prevStep} 
+                                    hidden={step == 1}>
+                                PREV
+                            </button>
+                            <button className="forward"
+                                    onClick={nextStep} 
+                                    hidden={step == 3}>
+                                NEXT
+                            </button>
+                        </div> 
+                    </div> :
+                    <div></div>
+                }
             </div>
         </div>
     )
