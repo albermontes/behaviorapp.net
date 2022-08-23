@@ -1305,10 +1305,9 @@ Author URI: http://albermontes.com
 	}
 
 	#wizard_container {
-		/*width: 90%;*/
 		height: 100%;
 		min-height: 100%;
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 
 		#wizard_container .form-group .container_radio:nth-child(2) .checkmark:after {
@@ -1407,7 +1406,7 @@ Author URI: http://albermontes.com
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: #283042;
+		background: rgb(40 48 66 / 90%);
 		padding: 20px;
 		text-align: right;
 		margin-top: 25px; 
@@ -1991,7 +1990,7 @@ Author URI: http://albermontes.com
 
 	.rating {
 		display: inline-block;
-		font-size: 0;
+		font-size: 0px;
 		float: right;
 		position: relative;
 	}
