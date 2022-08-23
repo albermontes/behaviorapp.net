@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import deleteIcon from '../img/ba-icon-delete.svg';
+import editIcon from '../img/ba-icon-edit.svg';
 
 export default function MyNoteSummary(props){
-    const { jsonNote, onClearNote } = props;
+    const { jsonNote, onClearNote, onNoteSelection, noCurrentNote } = props;
     const [summary, setSummary] = useState('');
     const [ note, setNote ] = useState(JSON.parse(jsonNote));
     const [ notes, setNotes ] = useState([]);
@@ -21,6 +22,23 @@ export default function MyNoteSummary(props){
     useEffect(() => {
         getNotes();
     }, [])
+
+    const onEdit = i => e => {
+        if(e){
+            setLoading(true);
+            fetch('api/notes/' + i,{
+                method: 'GET',
+                headers:{ 'Content-Type':'application/json' },
+            }).then(r => 
+                r.json()
+            ).then(n => {
+                onNoteSelection(n.jsonNote);
+            }).catch(e => {
+                console.log('error getting note ' + i + ' -> ' + JSON.stringify(e));
+                alert('error getting note ' + i + ' -> ' + JSON.stringify(e));
+            })
+        }
+    }
 
     const onRemove = i => e => {
         if(e){
@@ -120,23 +138,27 @@ export default function MyNoteSummary(props){
 
     return  (   
                 <div>
-                     <div className="d-flex py-2 gnx-bck-lightgray gnx-bb-dark rounded">
-                        <div className="px-3">
-                            { new Date(note.date + 'T00:00').toLocaleDateString("en-US", {
-                                    month: 'short', year: 'numeric', day: 'numeric'
-                                        }).toUpperCase()
-                            }
+                    {   noCurrentNote ? '' :
+                        <div>
+                            <div className="d-flex py-2 gnx-bck-lightgray gnx-bb-dark rounded">
+                                <div className="px-3">
+                                    { new Date(note.date + 'T00:00').toLocaleDateString("en-US", {
+                                            month: 'short', year: 'numeric', day: 'numeric'
+                                                }).toUpperCase()
+                                    }
+                                </div>
+                            </div>
+                            <div className="ba-note gnx-color-lightgray" 
+                                dangerouslySetInnerHTML={{ __html: summary }}>
+                            </div>
+                            <div className="text-right">
+                                <button className="ba-button ba-button-transparent"
+                                        onClick={save}>
+                                    SAVE NOTE
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="ba-note gnx-color-lightgray" 
-                        dangerouslySetInnerHTML={{ __html: summary }}>
-                    </div>
-                    <div className="text-right">
-                        <button className="ba-button ba-button-transparent"
-                                onClick={save}>
-                            SAVE NOTE
-                        </button>
-                    </div>
+                    }
                     {notes.map(x => 
                         <div>
                             <div className="d-flex py-2 mb-2 gnx-bck-lightgray gnx-bb-dark rounded">
@@ -147,6 +169,12 @@ export default function MyNoteSummary(props){
                                     }
                                 </div>
                                 <div style={{"width": "95%", "textAlign":"right", "position":"absolute"}}>
+                                    <button className="ba-button ba-button ba-button-action"
+                                            onClick={onEdit(x.id)}>
+                                        <img src={editIcon} 
+                                                alt="" 
+                                                width="17"/>
+                                    </button>
                                     <button className="ba-button ba-button ba-button-action"
                                             onClick={onRemove(x.id)}>
                                         <img src={deleteIcon} 
