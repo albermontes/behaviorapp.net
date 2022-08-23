@@ -7,13 +7,14 @@ import MyNoteSummary from './MyNoteSummary.js';
 import MyActivity from './MyActivity';
 import { locations, caregivers, BAD_TAG } from './data';
 import { useHistory, useParams } from 'react-router-dom';
+import MyCurrentNote from './MyCurrentNote';
+var classNames = require('classnames');
 
 export default function MyNote(){
 
     const [activities, setActivities] = useState([]);
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
-    const [step, setStep] = useState(1);
-    //const [ notes, setNotes ] = useState([]);
+    const [step, setStep] = useState(0);
     const [detailInfo, setDetailInfo] = useState({
         location: '', 
         caregivers: [], 
@@ -23,17 +24,25 @@ export default function MyNote(){
         caregiverCompetency: '' 
     });
 
-    const handleClearNote = () => {
-        setDate(new Date().toISOString().split('T')[0]);
-        setDetailInfo({
-            location: '', 
-            caregivers: [], 
-            antecedent: '', 
-            healthSummary: '', 
-            familyFeedback: '', 
-            caregiverCompetency: '' 
+    const setNoteData = note => {
+        setDate(note.date);
+        setDetailInfo(note.detailInfo);
+        setActivities(note.activities);
+    }
+
+    const clearNote = () => {
+        setNoteData({
+            date: new Date().toISOString().split('T')[0],
+            detailInfo: {
+                location: '', 
+                caregivers: [], 
+                antecedent: '', 
+                healthSummary: '', 
+                familyFeedback: '', 
+                caregiverCompetency: '' 
+            },
+            activities: []
         });
-        setActivities([]);
     }
     
     const { id } = useParams();
@@ -46,15 +55,13 @@ export default function MyNote(){
 
     useEffect(()=>{
         getClient(id);
-        //getNotes();
     },[])
 
     const getClient = i => {
         fetch('api/clients/' + i, {
             method: 'GET',
             headers:{ 'Content-Type':'application/json' }
-        }) 
-            .then(r => r.json())
+        }).then(r => r.json())
             .then(res => {
                 setClient(res);
             })
@@ -63,46 +70,19 @@ export default function MyNote(){
             })
     }
 
-    
-    /* const getNotes = async () => {
-        const response = await fetch('api/clients/' + id + '/notes');
-        const notesResponse = await response.json();
-        setNotes(await Promise.all(
-            notesResponse.map(
-                async x => {
-                    return { 
-                        ...x,
-                        summary: await getUnformattedSummary(x)
-                    }
-                }
-            )
-        ));
+    const handleNoteSelected = e => {
+        setStep(1);
+        setNoteData(JSON.parse(e));
     }
 
-    const getUnformattedSummary = async (n) => {
-        
-        const response = await fetch('api/notesummary?note=' + JSON.stringify(n));
-        const summaryResponse = await response.json();
-        
-        let summary2 = summaryResponse.summary;
-        
-        summary2 = summary2.replaceAll('</mark>', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-introduction\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-conclusion\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-activities\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-transitions\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-replacements\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-behaviors\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-reinforcements\">', '');
-        summary2 = summary2.replaceAll('<mark class=\"gnx-bck-interventions\">', '');
-        
-        return summary2;
-    } */
+    const onNewNote = e => {
+        setStep(1);
+        clearNote();
+    }
 
-    const onDownloadPdf = e => {
-        if(e){
-            alert('Not implemented yet')
-        }
+    const closeNote = e => {
+        setStep(0);
+        clearNote();
     }
 
     const addActivity = () => {
@@ -127,9 +107,7 @@ export default function MyNote(){
         ])
     }
     const setSessionDate = e => {
-        handleClearNote();
         setDate(e.target.value);
-        //getNotes();
     }
     const removeActivity = i => e => {
         e.preventDefault();
@@ -484,10 +462,17 @@ export default function MyNote(){
             break;
     }
 
+    var mainFrameClass = classNames({
+        'col-lg-7': step > 0,
+        'col-lg-12': step == 0,
+        'gnx-bck-dark': true,
+        'content-left': true
+    });
+
     return (
         <div className="container-fluid full-height">
             <div className="row no-gutters row-height">
-                <div className="col-lg-7 gnx-bck-dark content-left">
+                <div className={mainFrameClass}>
                     <div className="content-left-wrapper">
                         <div className="d-flex justify-content-between p-3">
                             <div>
@@ -497,7 +482,7 @@ export default function MyNote(){
                             </div>
                         </div>
                         <div className="d-flex justify-content-between p-2 gnx-bck-darkgray">
-                            <h4 className="px-3 py-2 mb-0">
+                            <h4 className="px-3 py-2 mb-0 text-capitalize">
                                 <a className="ba-home-icon pr-3 pointer"
                                         onClick={onNavigationBack}>
                                     <img src={left} width="16" />
@@ -506,16 +491,17 @@ export default function MyNote(){
                             </h4>
                             <div className="px-2 py-2">
                                 <a className="ba-arrow-r pointer" 
-                                    onClick={onDownloadPdf}>
-                                    <span className="pr-2">Download PDF</span>
-                                    <img src={right} width="20" />
+                                    onClick={onNewNote}>
+                                    <span className="pr-2">+ NEW NOTE</span>
                                 </a>
                             </div>
                         </div>
                         <div>
                             <div className="p-3">
                                 <MyNoteSummary 
-                                    onClearNote={handleClearNote}
+                                    onClearNote={clearNote}
+                                    onNoteSelection={handleNoteSelected}
+                                    noCurrentNote={step == 0}
                                     jsonNote={JSON.stringify({
                                         detailInfo: detailInfo,
                                         activities: activities,
@@ -565,28 +551,15 @@ export default function MyNote(){
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-5 pt-3 pb-5 content-right" id="start">
-                    <div id="wizard_container">
-                        {/*<div id="top-wizard">
-                            <div id="progressbar"></div>
-                        </div>*/}
-                        <div class="px-4 py-5" id="middle-wizard">
-                            {note}
-                        </div>                       
-                    </div>
-                    <div id="bottom-wizard">
-                        <button className="backward"
-                                onClick={prevStep} 
-                                hidden={step == 1}>
-                            PREV
-                        </button>
-                        <button className="forward"
-                                onClick={nextStep} 
-                                hidden={step == 3}>
-                            NEXT
-                        </button>
-                    </div> 
-                </div>
+                { step > 0 
+                    ? <MyCurrentNote 
+                        step={step}
+                        note={note}
+                        onCloseNote={closeNote} 
+                        onPrevStep={prevStep}
+                        onNextStep={nextStep}/>
+                    : ''    
+                }
             </div>
         </div>
     )
