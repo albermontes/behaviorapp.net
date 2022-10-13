@@ -25,6 +25,7 @@ export default function MyNote(){
     });
 
     const setNoteData = note => {
+        console.log('note: ' + JSON.stringify(note));
         setDate(note.date);
         setDetailInfo(note.detailInfo);
         setActivities(note.activities);
@@ -502,6 +503,7 @@ export default function MyNote(){
                                     onClearNote={clearNote}
                                     onNoteSelection={handleNoteSelected}
                                     noCurrentNote={step == 0}
+                                    onCloseNote={closeNote}
                                     jsonNote={JSON.stringify({
                                         detailInfo: detailInfo,
                                         activities: activities,

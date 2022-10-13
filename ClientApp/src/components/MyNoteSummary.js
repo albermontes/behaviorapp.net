@@ -3,7 +3,7 @@ import deleteIcon from '../img/ba-icon-delete.svg';
 import editIcon from '../img/ba-icon-edit.svg';
 
 export default function MyNoteSummary(props){
-    const { jsonNote, onClearNote, onNoteSelection, noCurrentNote } = props;
+    const { jsonNote, onClearNote, onNoteSelection, noCurrentNote, onCloseNote } = props;
     const [summary, setSummary] = useState('');
     const [ note, setNote ] = useState(JSON.parse(jsonNote));
     const [ notes, setNotes ] = useState([]);
@@ -33,6 +33,7 @@ export default function MyNoteSummary(props){
                 r.json()
             ).then(n => {
                 onNoteSelection(n.jsonNote);
+                console.log('selected note: ' + n.jsonNote);
             }).catch(e => {
                 console.log('error getting note ' + i + ' -> ' + JSON.stringify(e));
                 alert('error getting note ' + i + ' -> ' + JSON.stringify(e));
@@ -90,6 +91,7 @@ export default function MyNoteSummary(props){
             .then(n => {
                 getNotes();
                 onClearNote();
+                onCloseNote();
             })
             .catch(error => {
                 console.log('error saving note -> ' + JSON.stringify(error));
@@ -138,7 +140,7 @@ export default function MyNoteSummary(props){
 
     return  (   
                 <div>
-                    {   noCurrentNote ? '' :
+                    {   noCurrentNote ?  '' :
                         <div>
                             <div className="d-flex py-2 gnx-bck-lightgray gnx-bb-dark rounded">
                                 <div className="px-3">
@@ -159,7 +161,9 @@ export default function MyNoteSummary(props){
                             </div>
                         </div>
                     }
-                    {notes.map(x => 
+                    { notes.length == 0 && noCurrentNote 
+                        ? 'Nothing here. To create your first note click New Note button.'
+                        : notes.map(x => 
                         <div>
                             <div className="d-flex py-2 mb-2 gnx-bck-lightgray gnx-bb-dark rounded">
                                 <div className="px-3">
