@@ -163,7 +163,7 @@ export default function MyNoteSummary(props){
                     }
                     { notes.length == 0 && noCurrentNote 
                         ? 'Nothing here. To create your first note click New Note button.'
-                        : notes.map(x => 
+                        : !noCurrentNote ? '' : notes.map(x => 
                         <div>
                             <div className="d-flex py-2 mb-2 gnx-bck-lightgray gnx-bb-dark rounded">
                                 <div className="px-3">
