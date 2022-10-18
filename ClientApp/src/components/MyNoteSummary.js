@@ -7,16 +7,25 @@ export default function MyNoteSummary(props){
     const [summary, setSummary] = useState('');
     const [ note, setNote ] = useState(JSON.parse(jsonNote));
     const [ notes, setNotes ] = useState([]);
-    const [ loading, setLoading ] = useState(true);
-
+    const [ loading, setLoading ] = useState(false);
+    
     useEffect(() => {
+        setLoading(true);
         setNote(JSON.parse(jsonNote));
         fetch('api/notesummary?note=' + jsonNote)
             .then(response => response.json())
             .then(responseWrapper => {
                 setSummary(responseWrapper.summary);
+                if(responseWrapper.summary != ""){
+                    console.log('note to save: ' + jsonNote);
+                    save();
+                }
+                setLoading(false);
+            })
+            .catch(e => {
+                console.log(e);
+                setLoading(false);
             });
-        //save();
     }, [jsonNote])
 
     useEffect(() => {
@@ -59,6 +68,7 @@ export default function MyNoteSummary(props){
     }
 
     const getNotes = async () => {
+        setLoading(true);
         const response = await fetch('api/clients/' + note.clientId + '/notes');
         const notesResponse = await response.json();
         setNotes(await Promise.all(
@@ -71,6 +81,7 @@ export default function MyNoteSummary(props){
                 }
             )
         ));
+        setLoading(false);
     }
 
     const save = () => {
@@ -90,22 +101,38 @@ export default function MyNoteSummary(props){
         .then(r => r.json())
             .then(n => {
                 getNotes();
-                onClearNote();
-                onCloseNote();
+                //onClearNote();
+                //onCloseNote();
+                setLoading(false);
             })
             .catch(error => {
+                setLoading(false);
                 console.log('error saving note -> ' + JSON.stringify(error));
             })
         .catch(error => {
+            setLoading(false);
             console.log('error saving note -> ' + JSON.stringify(error));
         })
     }
  
    const getUnformattedSummary = async (n) => {
         
+        console.log('note before save: ' + JSON.stringify(n));
         const response = await fetch('api/notesummary?note=' + JSON.stringify(n));
         const summaryResponse = await response.json();
-        
+
+        await  fetch('api/notes',{
+            method: 'POST',
+            headers:{ 'Content-Type':'application/json' },
+            body: JSON.stringify({
+                date: n.date,
+                jsonNote: n.jsonNote.replaceAll('"','\"'),
+                detailInfo: n.detailInfo,
+                activities: n.activities,
+                clientId: parseInt(n.clientId)
+            })
+        })
+
         let summary2 = summaryResponse.summary;
         
         summary2 = summary2.replaceAll('</mark>', '');
@@ -153,15 +180,17 @@ export default function MyNoteSummary(props){
                             <div className="ba-note gnx-color-lightgray" 
                                 dangerouslySetInnerHTML={{ __html: summary }}>
                             </div>
-                            <div className="text-right">
+                            {/* <div className="text-right">
                                 <button className="ba-button ba-button-transparent"
                                         onClick={save}>
                                     SAVE NOTE
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     }
-                    { notes.length == 0 && noCurrentNote 
+                    { loading 
+                        ? 'Loading...'
+                        : notes.length == 0 && noCurrentNote 
                         ? 'Nothing here. To create your first note click New Note button.'
                         : !noCurrentNote ? '' : notes.map(x => 
                         <div>
