@@ -10,6 +10,7 @@ export default function MyClients(){
     const [comments, setComments] = useState();
     const [birthDate, setDate] = useState();
     const [verbal, setVerbal] = useState();
+    const [ loading , setLoading] = useState(false);
 
     const clearData = () => {
         setClientName("");
@@ -59,6 +60,7 @@ export default function MyClients(){
     }
 
     const getClients = () => {
+        setLoading(true);
         console.log('getting clients');
         fetch('api/clients',{
             method: 'GET',
@@ -68,9 +70,12 @@ export default function MyClients(){
             .then(clients => {
                 setClients(clients);
                 clearData();
+                setLoading(false);
             })
             .catch(error => {
+                setLoading(false);
                 console.log('error getting clients -> ' + JSON.stringify(error));
+                alert('error getting clients');
             })
     }
 
@@ -99,6 +104,7 @@ export default function MyClients(){
             })
             .catch(error => {
                 console.log('error creating new client -> ' + JSON.stringify(error));
+                alert('error inserting new client');
             })
     }
 
@@ -184,7 +190,9 @@ export default function MyClients(){
                             </tr>
                         </thead>
                         <tbody>
-                            {clients.map(x =>
+                            {loading 
+                                ? 'Loading...'
+                                : clients.map(x =>
                                 <tr className="pointer">
                                     <th onClick={onClientClick(x.id)} scope="row">
                                         {pad(x.number, 4)}
