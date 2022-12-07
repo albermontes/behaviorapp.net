@@ -10,6 +10,7 @@ export default function MyClients(){
     const [comments, setComments] = useState();
     const [birthDate, setDate] = useState();
     const [verbal, setVerbal] = useState();
+    const [ loading , setLoading] = useState(false);
 
     const clearData = () => {
         setClientName("");
@@ -40,7 +41,6 @@ export default function MyClients(){
 
     const onDeleteClient = i => e => {
         if(e){
-            console.log('id -> ' + i);
             removeClient(i);
         }
     }
@@ -60,6 +60,7 @@ export default function MyClients(){
     }
 
     const getClients = () => {
+        setLoading(true);
         console.log('getting clients');
         fetch('api/clients',{
             method: 'GET',
@@ -69,9 +70,12 @@ export default function MyClients(){
             .then(clients => {
                 setClients(clients);
                 clearData();
+                setLoading(false);
             })
             .catch(error => {
+                setLoading(false);
                 console.log('error getting clients -> ' + JSON.stringify(error));
+                alert('error getting clients');
             })
     }
 
@@ -96,18 +100,17 @@ export default function MyClients(){
         })
             .then(r => r.json())
             .then(client => {
-                console.log('client ' + client);
                getClients();
             })
             .catch(error => {
                 console.log('error creating new client -> ' + JSON.stringify(error));
+                alert('error inserting new client');
             })
     }
 
     const history = useHistory();
     const onClientClick = i => e => {
         if(e){
-            console.log('client ' + i);
             history.push('/notes/' + i);
         }
     }
@@ -187,7 +190,9 @@ export default function MyClients(){
                             </tr>
                         </thead>
                         <tbody>
-                            {clients.map(x =>
+                            {loading 
+                                ? 'Loading...'
+                                : clients.map(x =>
                                 <tr className="pointer">
                                     <th onClick={onClientClick(x.id)} scope="row">
                                         {pad(x.number, 4)}
@@ -204,7 +209,7 @@ export default function MyClients(){
                                         {/*  <button className="ba-button ba-button-sm ba-button-action-2">
                                             EDIT
                                         </button> */}
-                                        <button className="ba-button ba-button-sm ba-button-action"
+                                        <button className="ba-button ba-button-icon ba-button-sm ba-button-action"
                                                 onClick={onDeleteClient(x.id)}>
                                             <img src={deleteIcon} alt="" width="13" />
                                         </button>

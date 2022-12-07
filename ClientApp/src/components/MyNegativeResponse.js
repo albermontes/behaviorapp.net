@@ -27,7 +27,7 @@ export default function MyNegativeResponse(props){
                                 {/*<h3>Behavior {i+1}</h3> TONY I REMOVED LA MUMERACION LO DEJO PARA DEJARTE SABER, QUITALO SI QUIERES*/}
                             </div>
                             <div className="pt-2">
-                                <button className="pt-2 ba-button ba-button ba-button-action"
+                                <button className="pt-2 ba-button ba-button-icon ba-button-action"
                                         onClick={onRemove(i)}>
                                     <img src={deleteIcon} 
                                             alt="" 

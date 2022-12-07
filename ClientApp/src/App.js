@@ -6,7 +6,7 @@ import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizat
 import { ApplicationPaths } from './components/api-authorization/ApiAuthorizationConstants';
 import MyLogin from './components/MyLogin';
 import MyClients from './components/MyClients';
-import MyNote from './components/MyNote';
+import MyNoteEditor from './components/MyNoteEditor';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -16,7 +16,7 @@ export default class App extends Component {
       <Layout>
             <Route exact path='/' component={MyLogin} />
             <Route exact path='/clients' component={MyClients} />
-            <Route path='/notes/:id' component={MyNote} />
+            <Route path='/notes/:id' component={MyNoteEditor} />
             {/* <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes} /> */}
       </Layout>
     );

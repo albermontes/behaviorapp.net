@@ -7,6 +7,7 @@ namespace behavior_app.Models
 {
     public class BxDataModel
     {
+        /*
         private const string NEGATIVE = "NEGATIVE";
         private const string POSITIVE = "POSITIVE";
         public List<BxClient> ConvertToBxModel(List<MyClient> clients)
@@ -111,7 +112,7 @@ namespace behavior_app.Models
                 result.Add(item.value);
             }
             return result;
-        }
+        }*/
     }
     public class BxClient
     {
