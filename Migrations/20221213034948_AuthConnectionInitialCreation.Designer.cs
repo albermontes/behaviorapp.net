@@ -10,8 +10,8 @@ using behavior_app.Data;
 namespace behavior_app.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211030045446_IdentityForPostgreSql")]
-    partial class IdentityForPostgreSql
+    [Migration("20221213034948_AuthConnectionInitialCreation")]
+    partial class AuthConnectionInitialCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
