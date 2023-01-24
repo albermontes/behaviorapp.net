@@ -1,10 +1,12 @@
 import React from 'react';
 import logo from '../img/logo.png';
 import { useHistory, useParams } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function MyLogin(){
 
     const history = useHistory();
+    const { loginWithRedirect } = useAuth0();
     const onLogin = e => {
         e.preventDefault();
         history.push('/clients');
@@ -18,7 +20,7 @@ export default function MyLogin(){
                     <br/>
                     BehaviorApp
                 </h1>
-                <label for="inputEmail" class="sr-only">Email</label>
+                {/* <label for="inputEmail" class="sr-only">Email</label>
                 <input type="email" id="inputEmail" class="form-control mb-3" placeholder="Email address" required="" autofocus=""/>
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""/>
@@ -27,8 +29,11 @@ export default function MyLogin(){
                         <input type="checkbox" value="remember-me"/> 
                         Remember me
                     </label>
-                </div>
-                <button class="btn btn-md btn-primary btn-block" type="submit" onClick={onLogin}>
+                </div> */}
+                <button 
+                        class="btn btn-md btn-primary btn-block" 
+                        type="submit" 
+                        onClick={loginWithRedirect}>
                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                     LOG IN
                 </button>

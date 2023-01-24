@@ -1,23 +1,31 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 import MyNote from './components/MyNote';
-//import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './registerServiceWorker';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');
 
 ReactDOM.render(
-  <BrowserRouter basename={baseUrl}>
-    <App/>
-  </BrowserRouter>,
-  rootElement);
+	<Auth0Provider
+			domain='jolly-mud-9657.us.auth0.com'
+			clientId='EIuQZkGZvVUMUtyNCEzvb7Sj79VqF1SC'
+			authorizationParams={{
+				redirect_uri: window.location.origin + '/clients'
+			}}>
+		<BrowserRouter basename={baseUrl}>
+			<App/>
+		</BrowserRouter>
+	</Auth0Provider>,
+rootElement);
 
 /* ReactDOM.render(
-  <MyNote/>,
-  rootElement
+<MyNote/>,
+rootElement
 ); */
 // Uncomment the line above that imports the registerServiceWorker function
 // and the line below to register the generated service worker.

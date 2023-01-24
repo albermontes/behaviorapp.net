@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from '../img/logo.png';
 import deleteIcon from '../img/ba-icon-delete.svg';
 import { useHistory } from 'react-router-dom';
+import MyProfile from './MyProfile';
 
 export default function MyClients(){
 
@@ -138,6 +139,7 @@ export default function MyClients(){
                             <img src={logo} alt="" width="49" height="35"/>
                         </a>
                     </div>
+                    <MyProfile/>
                 </div>
                 <div className="d-flex justify-content-between gnx-bck-lightgray ba-add-client py-2">
                     <h3>ADD CLIENT</h3>

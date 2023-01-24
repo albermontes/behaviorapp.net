@@ -7,6 +7,7 @@ namespace behavior_app.Models
 {
     public class BxDataModel
     {
+        #region to remove
         /*
         private const string NEGATIVE = "NEGATIVE";
         private const string POSITIVE = "POSITIVE";
@@ -113,6 +114,7 @@ namespace behavior_app.Models
             }
             return result;
         }*/
+        #endregion
     }
     public class BxClient
     {
