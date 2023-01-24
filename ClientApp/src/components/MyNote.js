@@ -8,6 +8,8 @@ import MyActivity from './MyActivity';
 import { locations, caregivers, BAD_TAG } from './data';
 import { useHistory, useParams } from 'react-router-dom';
 import MyCurrentNote from './MyCurrentNote';
+import MyProfile from './MyProfile';
+
 var classNames = require('classnames');
 
 export default function MyNote(){
@@ -481,6 +483,7 @@ export default function MyNote(){
                                     <img src={logo} alt="" width="49" height="35"/>
                                 </a>
                             </div>
+                            <MyProfile/>
                         </div>
                         <div className="d-flex justify-content-between p-2 gnx-bck-darkgray">
                             <h4 className="px-3 py-2 mb-0 text-capitalize">
