@@ -23,6 +23,6 @@ const MyProfile = () => {
         </h3>
         
     )
-}
+} 
 
 export default MyProfile;
