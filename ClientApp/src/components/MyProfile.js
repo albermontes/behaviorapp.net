@@ -18,7 +18,7 @@ const MyProfile = () => {
                 className="nav-user-profile rounded-circle"
                 width="50"
             />
-            {user.name}
+            &nbsp;&nbsp;{user.name}&nbsp;&nbsp;
             <MyLogoutButton/>
         </h3>
         
