@@ -16,7 +16,7 @@ const MyProfile = () => {
                 src={user.picture}
                 alt="Profile"
                 className="nav-user-profile rounded-circle"
-                width="50"
+                width="24"
             />
             &nbsp;&nbsp;{user.name}&nbsp;&nbsp;
             <MyLogoutButton/>
