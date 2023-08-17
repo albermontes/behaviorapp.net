@@ -11,12 +11,12 @@ const MyProfile = () => {
 	}
 
     return (
-        <h3 className="h3 mb-4">
+        <h3 className="mb-4">
             <img
                 src={user.picture}
                 alt="Profile"
                 className="nav-user-profile rounded-circle"
-                width="50"
+                width="24"
             />
             &nbsp;&nbsp;{user.name}&nbsp;&nbsp;
             <MyLogoutButton/>
